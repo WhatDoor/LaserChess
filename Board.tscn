@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Square.tscn" type="PackedScene" id=1]
 [ext_resource path="res://RedLaser.png" type="Texture" id=2]
@@ -41,22 +41,58 @@ tracks/0/keys = {
 "values": [ 0.0, -90.0 ]
 }
 
+[sub_resource type="Animation" id=3]
+resource_name = "SwingDown"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -90.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "SwingRight"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -90.0 ]
+}
+
 [node name="World" type="Node2D"]
-position = Vector2( 24, 32 )
+position = Vector2( 24, 24 )
 scale = Vector2( 0.9, 0.9 )
 __meta__ = {
 "_edit_horizontal_guides_": [  ]
 }
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 114.661, 69.4174 )
+visible = false
+position = Vector2( 115.438, 69.4174 )
 scale = Vector2( 0.23, 0.23 )
 texture = ExtResource( 5 )
 
 [node name="Board" type="TileMap" parent="."]
-visible = false
 cell_y_sort = true
 format = 1
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
 
 [node name="A8" parent="Board" instance=ExtResource( 1 )]
 position = Vector2( 0.100002, 0 )
@@ -407,14 +443,13 @@ vframes = 2
 position = Vector2( -0.324436, -0.973301 )
 
 [node name="BlueKing" parent="YSort" instance=ExtResource( 7 )]
-position = Vector2( 81.2858, 34.9661 )
+position = Vector2( 46.9263, 92.7216 )
 
 [node name="BlueKing2" parent="YSort" instance=ExtResource( 7 )]
-position = Vector2( 148.141, 34.5874 )
+position = Vector2( 201.772, 115.641 )
 
 [node name="RedLaser" type="Node2D" parent="YSort"]
-position = Vector2( 17.9126, -11.7308 )
-rotation = -1.5708
+position = Vector2( 1.24907, 3.13077 )
 scale = Vector2( 0.9, 0.9 )
 script = ExtResource( 9 )
 __meta__ = {
@@ -436,5 +471,39 @@ position = Vector2( 0.52, 15 )
 rotation = 1.5708
 scale = Vector2( 1.42857, 1.42857 )
 
+[node name="RedLaser2" type="Node2D" parent="YSort"]
+position = Vector2( 201.675, 90.1538 )
+rotation = 1.5708
+scale = Vector2( 0.9, 0.9 )
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="YSort/RedLaser2"]
+anims/SwingDown = SubResource( 3 )
+anims/SwingRight = SubResource( 4 )
+
+[node name="RedLaserSprite" type="Sprite" parent="YSort/RedLaser2"]
+position = Vector2( 0.0439034, -0.0937233 )
+texture = ExtResource( 2 )
+vframes = 2
+frame = 1
+
+[node name="FirePoint" type="Node2D" parent="YSort/RedLaser2"]
+position = Vector2( 0.52, 15 )
+rotation = 1.5708
+scale = Vector2( 1.42857, 1.42857 )
+
 [node name="RedSwitch" parent="YSort" instance=ExtResource( 8 )]
-position = Vector2( 145.545, -11.7308 )
+position = Vector2( -0.430183, 70.3531 )
+
+[node name="RedSwitch3" parent="YSort" instance=ExtResource( 8 )]
+position = Vector2( 110.306, 70.0841 )
+
+[node name="RedSwitch2" parent="YSort" instance=ExtResource( 8 )]
+position = Vector2( 157.158, 90.2216 )
+rotation = -1.5708
+
+[node name="RedSwitch4" parent="YSort" instance=ExtResource( 8 )]
+position = Vector2( 156.833, 1.00281 )

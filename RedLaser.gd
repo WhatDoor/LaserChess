@@ -36,7 +36,6 @@ func _process(delta):
 	if Input.is_action_pressed("End_Turn") and can_fire:
 		var blast = Blast.instance()
 		blast.position = get_position()
-		print($RedLaserSprite.rotation_degrees)
 		blast.rotation_degrees = rotation_degrees
 		var rot = deg2rad(rotation_degrees)
 		

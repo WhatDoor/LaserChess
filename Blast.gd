@@ -9,6 +9,6 @@ func fire(direction):
 func _process(delta):
 	position += velocity.normalized() * speed
 
-
 func _on_Blast_area_entered(area):
-	queue_free()
+	#queue_free()
+	pass
