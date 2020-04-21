@@ -443,10 +443,10 @@ vframes = 2
 position = Vector2( -0.324436, -0.973301 )
 
 [node name="BlueKing" parent="YSort" instance=ExtResource( 7 )]
-position = Vector2( 46.9263, 92.7216 )
+position = Vector2( 45.3041, 25.5642 )
 
 [node name="BlueKing2" parent="YSort" instance=ExtResource( 7 )]
-position = Vector2( 201.772, 115.641 )
+position = Vector2( 45.3958, 2.73865 )
 
 [node name="RedLaser" type="Node2D" parent="YSort"]
 position = Vector2( 1.24907, 3.13077 )
@@ -496,14 +496,13 @@ rotation = 1.5708
 scale = Vector2( 1.42857, 1.42857 )
 
 [node name="RedSwitch" parent="YSort" instance=ExtResource( 8 )]
-position = Vector2( -0.430183, 70.3531 )
+position = Vector2( 112.472, -5.23959 )
 
 [node name="RedSwitch3" parent="YSort" instance=ExtResource( 8 )]
-position = Vector2( 110.306, 70.0841 )
-
-[node name="RedSwitch2" parent="YSort" instance=ExtResource( 8 )]
-position = Vector2( 157.158, 90.2216 )
-rotation = -1.5708
+position = Vector2( 105.115, 48.996 )
 
 [node name="RedSwitch4" parent="YSort" instance=ExtResource( 8 )]
-position = Vector2( 156.833, 1.00281 )
+position = Vector2( 157.158, 42.5301 )
+
+[node name="RedSwitch5" parent="YSort" instance=ExtResource( 8 )]
+position = Vector2( 153.264, 93.7904 )

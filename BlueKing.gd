@@ -16,5 +16,6 @@ func _ready():
 #	pass
 
 
-func _on_BlueKing_area_entered(area):
+func _on_BlueKing_area_entered(blast):
+	blast.kill()
 	queue_free()
