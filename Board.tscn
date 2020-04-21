@@ -1,0 +1,440 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Square.tscn" type="PackedScene" id=1]
+[ext_resource path="res://RedLaser.png" type="Texture" id=2]
+[ext_resource path="res://BlueLaser.png" type="Texture" id=3]
+[ext_resource path="res://TileSymbols.png" type="Texture" id=4]
+[ext_resource path="res://shiftBoard.png" type="Texture" id=5]
+[ext_resource path="res://BlueKing.tscn" type="PackedScene" id=7]
+[ext_resource path="res://RedSwitch.tscn" type="PackedScene" id=8]
+[ext_resource path="res://RedLaser.gd" type="Script" id=9]
+
+[sub_resource type="Animation" id=1]
+resource_name = "SwingDown"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -90.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "SwingRight"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -90.0 ]
+}
+
+[node name="World" type="Node2D"]
+position = Vector2( 24, 32 )
+scale = Vector2( 0.9, 0.9 )
+__meta__ = {
+"_edit_horizontal_guides_": [  ]
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 114.661, 69.4174 )
+scale = Vector2( 0.23, 0.23 )
+texture = ExtResource( 5 )
+
+[node name="Board" type="TileMap" parent="."]
+visible = false
+cell_y_sort = true
+format = 1
+
+[node name="A8" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 0.100002, 0 )
+
+[node name="A7" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 0.100002, 22.4 )
+
+[node name="RedSymbol" type="Sprite" parent="Board/A7"]
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 4 )
+vframes = 2
+frame = 1
+
+[node name="A6" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 0, 44.8 )
+
+[node name="RedSymbol" type="Sprite" parent="Board/A6"]
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 4 )
+vframes = 2
+frame = 1
+
+[node name="A5" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 0, 67.2 )
+
+[node name="RedSymbol" type="Sprite" parent="Board/A5"]
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 4 )
+vframes = 2
+frame = 1
+
+[node name="A4" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 0, 89.6 )
+
+[node name="RedSymbol" type="Sprite" parent="Board/A4"]
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 4 )
+vframes = 2
+frame = 1
+
+[node name="A3" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 0, 112 )
+
+[node name="RedSymbol" type="Sprite" parent="Board/A3"]
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 4 )
+vframes = 2
+frame = 1
+
+[node name="A2" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 0, 134.4 )
+
+[node name="RedSymbol" type="Sprite" parent="Board/A2"]
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 4 )
+vframes = 2
+frame = 1
+
+[node name="A1" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 0, 156.8 )
+
+[node name="RedSymbol" type="Sprite" parent="Board/A1"]
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 4 )
+vframes = 2
+frame = 1
+
+[node name="B8" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 22.4, 0 )
+
+[node name="RedSymbol" type="Sprite" parent="Board/B8"]
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 4 )
+vframes = 2
+
+[node name="B7" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 22.4, 22.4 )
+
+[node name="B6" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 22.4, 44.8 )
+
+[node name="B5" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 22.4, 67.2 )
+
+[node name="B4" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 22.4, 89.6 )
+
+[node name="B3" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 22.4, 112 )
+
+[node name="B2" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 22.4, 134.4 )
+
+[node name="B1" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 22.4, 156.8 )
+
+[node name="RedSymbol" type="Sprite" parent="Board/B1"]
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 4 )
+vframes = 2
+
+[node name="C8" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 44.8, 0 )
+
+[node name="C7" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 44.8, 22.4 )
+
+[node name="C6" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 44.8, 44.8 )
+
+[node name="C5" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 44.8, 67.2 )
+
+[node name="C4" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 44.8, 89.6 )
+
+[node name="C3" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 44.8, 112 )
+
+[node name="C2" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 44.8, 134.4 )
+
+[node name="C1" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 44.8, 156.8 )
+
+[node name="D8" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 67.2, 0 )
+
+[node name="D7" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 67.2, 22.4 )
+
+[node name="D6" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 67.2, 44.8 )
+
+[node name="D5" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 67.2, 67.2 )
+
+[node name="D4" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 67.2, 89.6 )
+
+[node name="D3" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 67.2, 112 )
+
+[node name="D2" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 67.2, 134.4 )
+
+[node name="D1" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 67.2, 156.8 )
+
+[node name="E8" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 89.5611, 0 )
+
+[node name="E7" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 89.5611, 22.4 )
+
+[node name="E6" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 89.5611, 44.8 )
+
+[node name="E5" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 89.5611, 67.2 )
+
+[node name="E4" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 89.5611, 89.6 )
+
+[node name="E3" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 89.5611, 112 )
+
+[node name="E2" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 89.5611, 134.4 )
+
+[node name="E1" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 89.5611, 156.8 )
+
+[node name="F8" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 111.961, 0 )
+
+[node name="F7" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 111.961, 22.4 )
+
+[node name="F6" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 111.961, 44.8 )
+
+[node name="F5" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 111.961, 67.2 )
+
+[node name="F4" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 111.961, 89.6 )
+
+[node name="F3" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 111.961, 112 )
+
+[node name="F2" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 111.961, 134.4 )
+
+[node name="F1" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 111.961, 156.8 )
+
+[node name="G8" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 134.361, 0 )
+
+[node name="G7" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 134.361, 22.4 )
+
+[node name="G6" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 134.361, 44.8 )
+
+[node name="G5" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 134.361, 67.2 )
+
+[node name="G4" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 134.361, 89.6 )
+
+[node name="G3" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 134.361, 112 )
+
+[node name="G2" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 134.361, 134.4 )
+
+[node name="G1" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 134.361, 156.8 )
+
+[node name="H8" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 156.761, 0 )
+
+[node name="H7" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 156.761, 22.4 )
+
+[node name="H6" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 156.761, 44.8 )
+
+[node name="H5" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 156.761, 67.2 )
+
+[node name="H4" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 156.761, 89.6 )
+
+[node name="H3" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 156.761, 112 )
+
+[node name="H2" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 156.761, 134.4 )
+
+[node name="H1" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 156.761, 156.8 )
+
+[node name="I8" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 179.161, 0 )
+
+[node name="RedSymbol" type="Sprite" parent="Board/I8"]
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 4 )
+vframes = 2
+frame = 1
+
+[node name="I7" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 179.161, 22.4 )
+
+[node name="I6" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 179.161, 44.8 )
+
+[node name="I5" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 179.161, 67.2 )
+
+[node name="I4" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 179.161, 89.6 )
+
+[node name="I3" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 179.161, 112 )
+
+[node name="I2" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 179.161, 134.4 )
+
+[node name="I1" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 179.161, 156.8 )
+
+[node name="RedSymbol" type="Sprite" parent="Board/I1"]
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 4 )
+vframes = 2
+frame = 1
+
+[node name="J8" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 201.499, 0 )
+
+[node name="RedSymbol" type="Sprite" parent="Board/J8"]
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 4 )
+vframes = 2
+
+[node name="J7" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 201.499, 22.4 )
+
+[node name="RedSymbol" type="Sprite" parent="Board/J7"]
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 4 )
+vframes = 2
+
+[node name="J6" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 201.499, 44.8 )
+
+[node name="RedSymbol" type="Sprite" parent="Board/J6"]
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 4 )
+vframes = 2
+
+[node name="J5" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 201.499, 67.2 )
+
+[node name="RedSymbol" type="Sprite" parent="Board/J5"]
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 4 )
+vframes = 2
+
+[node name="J4" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 201.499, 89.6 )
+
+[node name="RedSymbol" type="Sprite" parent="Board/J4"]
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 4 )
+vframes = 2
+
+[node name="J3" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 201.499, 112 )
+
+[node name="RedSymbol" type="Sprite" parent="Board/J3"]
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 4 )
+vframes = 2
+
+[node name="J2" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 201.499, 134.4 )
+
+[node name="RedSymbol" type="Sprite" parent="Board/J2"]
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 4 )
+vframes = 2
+
+[node name="J1" parent="Board" instance=ExtResource( 1 )]
+position = Vector2( 201.499, 156.8 )
+
+[node name="Sprite" type="Sprite" parent="Board/J1"]
+rotation = -1.5708
+scale = Vector2( 0.9, 0.9 )
+texture = ExtResource( 3 )
+vframes = 2
+
+[node name="YSort" type="YSort" parent="."]
+position = Vector2( -0.324436, -0.973301 )
+
+[node name="BlueKing" parent="YSort" instance=ExtResource( 7 )]
+position = Vector2( 81.2858, 34.9661 )
+
+[node name="BlueKing2" parent="YSort" instance=ExtResource( 7 )]
+position = Vector2( 148.141, 34.5874 )
+
+[node name="RedLaser" type="Node2D" parent="YSort"]
+position = Vector2( 17.9126, -11.7308 )
+rotation = -1.5708
+scale = Vector2( 0.9, 0.9 )
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="YSort/RedLaser"]
+anims/SwingDown = SubResource( 1 )
+anims/SwingRight = SubResource( 2 )
+
+[node name="RedLaserSprite" type="Sprite" parent="YSort/RedLaser"]
+position = Vector2( 0.0439034, -0.0937233 )
+texture = ExtResource( 2 )
+vframes = 2
+frame = 1
+
+[node name="FirePoint" type="Node2D" parent="YSort/RedLaser"]
+position = Vector2( 0.52, 15 )
+rotation = 1.5708
+scale = Vector2( 1.42857, 1.42857 )
+
+[node name="RedSwitch" parent="YSort" instance=ExtResource( 8 )]
+position = Vector2( 145.545, -11.7308 )
