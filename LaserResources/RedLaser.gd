@@ -10,7 +10,7 @@ export var fire_rate = 0.2
 var state = RIGHT
 var can_fire = true
 
-var Blast = preload("res://Blast.tscn")
+var Blast = preload("res://Projectiles/Blast.tscn")
 
 onready var animationPlayer = $AnimationPlayer
 

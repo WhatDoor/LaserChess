@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/BlueLaser.png-4d221c6b956ab82d9ce42c82182c614f.stex"
+path="res://.import/RedLaser.png-925e8c676ce02e84d60bee812fad3b6e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://BlueLaser.png"
-dest_files=[ "res://.import/BlueLaser.png-4d221c6b956ab82d9ce42c82182c614f.stex" ]
+source_file="res://LaserResources/RedLaser.png"
+dest_files=[ "res://.import/RedLaser.png-925e8c676ce02e84d60bee812fad3b6e.stex" ]
 
 [params]
 

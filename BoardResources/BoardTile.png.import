@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/RedLaser.png-27a152c1110cc7b5f3e91b4b37a7fdb8.stex"
+path="res://.import/BoardTile.png-6f6160cb4525f159dc0334700722bc60.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://RedLaser.png"
-dest_files=[ "res://.import/RedLaser.png-27a152c1110cc7b5f3e91b4b37a7fdb8.stex" ]
+source_file="res://BoardResources/BoardTile.png"
+dest_files=[ "res://.import/BoardTile.png-6f6160cb4525f159dc0334700722bc60.stex" ]
 
 [params]
 

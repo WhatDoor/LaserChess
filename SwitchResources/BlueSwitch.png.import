@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Blast.png-46dad726d60d839af5afec712367e81d.stex"
+path="res://.import/BlueSwitch.png-404ca201109cee8e511ba546bc8b2738.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Blast.png"
-dest_files=[ "res://.import/Blast.png-46dad726d60d839af5afec712367e81d.stex" ]
+source_file="res://SwitchResources/BlueSwitch.png"
+dest_files=[ "res://.import/BlueSwitch.png-404ca201109cee8e511ba546bc8b2738.stex" ]
 
 [params]
 

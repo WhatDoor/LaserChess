@@ -1,6 +1,7 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://BoardTile.png" type="Texture" id=1]
+[ext_resource path="res://BoardResources/BoardTile.png" type="Texture" id=1]
+
 
 [node name="Square" type="Node2D"]
 

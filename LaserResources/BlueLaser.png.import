@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/BlueSwitch.png-8bc5b7064f6fbbcf9a322806264f8925.stex"
+path="res://.import/BlueLaser.png-f47f2b54630429a86cd76185c3bcb26e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://BlueSwitch.png"
-dest_files=[ "res://.import/BlueSwitch.png-8bc5b7064f6fbbcf9a322806264f8925.stex" ]
+source_file="res://LaserResources/BlueLaser.png"
+dest_files=[ "res://.import/BlueLaser.png-f47f2b54630429a86cd76185c3bcb26e.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/BlueKing.png-7e774411ec4a0918ae7715bf436a1c31.stex"
+path="res://.import/RedSwitch.png-99d492361d4c8b8c84304c5a95e8a685.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://BlueKing.png"
-dest_files=[ "res://.import/BlueKing.png-7e774411ec4a0918ae7715bf436a1c31.stex" ]
+source_file="res://SwitchResources/RedSwitch.png"
+dest_files=[ "res://.import/RedSwitch.png-99d492361d4c8b8c84304c5a95e8a685.stex" ]
 
 [params]
 

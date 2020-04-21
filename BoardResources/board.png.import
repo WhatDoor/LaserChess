@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/TileSymbols.png-7a372899d0b3c9fa459e63ec36ec2197.stex"
+path="res://.import/board.png-9655d0deab5da848031b8b69ab9c359d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TileSymbols.png"
-dest_files=[ "res://.import/TileSymbols.png-7a372899d0b3c9fa459e63ec36ec2197.stex" ]
+source_file="res://BoardResources/board.png"
+dest_files=[ "res://.import/board.png-9655d0deab5da848031b8b69ab9c359d.stex" ]
 
 [params]
 

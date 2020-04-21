@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/shiftBoard.png-5af1f9b4aac981a2f25dfe0ccf7f622a.stex"
+path="res://.import/BlueKing.png-68990f7bad3602c93c150a78f89d1c07.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://shiftBoard.png"
-dest_files=[ "res://.import/shiftBoard.png-5af1f9b4aac981a2f25dfe0ccf7f622a.stex" ]
+source_file="res://KingResources/BlueKing.png"
+dest_files=[ "res://.import/BlueKing.png-68990f7bad3602c93c150a78f89d1c07.stex" ]
 
 [params]
 
