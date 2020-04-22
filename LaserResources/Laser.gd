@@ -5,7 +5,7 @@ enum {
 	RIGHT
 }
 
-export var fire_rate = 0.2
+export var fire_rate = 0.5
 
 var state = RIGHT
 var can_fire = true
@@ -13,8 +13,6 @@ var can_fire = true
 var Blast = preload("res://Projectiles/Blast.tscn")
 
 onready var animationPlayer = $AnimationPlayer
-
-
 
 func _input(event):
 	# Mouse in viewport coordinates

@@ -1,508 +1,346 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://KingResources/BlueKing.tscn" type="PackedScene" id=1]
 [ext_resource path="res://BoardResources/Square.tscn" type="PackedScene" id=2]
-[ext_resource path="res://SwitchResources/RedSwitch.tscn" type="PackedScene" id=3]
-[ext_resource path="res://LaserResources/RedLaser.png" type="Texture" id=4]
-[ext_resource path="res://LaserResources/BlueLaser.png" type="Texture" id=5]
 [ext_resource path="res://BoardResources/TileSymbols.png" type="Texture" id=6]
-[ext_resource path="res://BoardResources/shiftBoard.png" type="Texture" id=7]
-[ext_resource path="res://LaserResources/RedLaser.gd" type="Script" id=8]
 
-[sub_resource type="Animation" id=1]
-resource_name = "SwingDown"
-length = 0.9
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:rotation_degrees")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.9 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ -90.0, 0.0 ]
-}
-
-[sub_resource type="Animation" id=2]
-resource_name = "SwingRight"
-length = 0.9
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:rotation_degrees")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.9 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0.0, -90.0 ]
-}
-
-[sub_resource type="Animation" id=3]
-resource_name = "SwingDown"
-length = 0.9
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:rotation_degrees")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.9 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ -90.0, 0.0 ]
-}
-
-[sub_resource type="Animation" id=4]
-resource_name = "SwingRight"
-length = 0.9
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:rotation_degrees")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.9 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0.0, -90.0 ]
-}
-
-[node name="World" type="Node2D"]
-position = Vector2( 24, 24 )
+[node name="Board" type="Node2D"]
 scale = Vector2( 0.9, 0.9 )
-__meta__ = {
-"_edit_horizontal_guides_": [  ]
-}
 
-[node name="Sprite" type="Sprite" parent="."]
-visible = false
-position = Vector2( 115.438, 69.4174 )
-scale = Vector2( 0.23, 0.23 )
-texture = ExtResource( 7 )
+[node name="A8" parent="." instance=ExtResource( 2 )]
+position = Vector2( -8.88889, -8.88889 )
 
-[node name="Board" type="TileMap" parent="."]
-cell_y_sort = true
-format = 1
-__meta__ = {
-"_edit_group_": true,
-"_edit_lock_": true
-}
+[node name="A7" parent="." instance=ExtResource( 2 )]
+position = Vector2( -8.88889, 8.88889 )
 
-[node name="A8" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 0.100002, 0 )
-
-[node name="A7" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 0.100002, 22.4 )
-
-[node name="RedSymbol" type="Sprite" parent="Board/A7"]
+[node name="RedSymbol" type="Sprite" parent="A7"]
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 6 )
 vframes = 2
 frame = 1
 
-[node name="A6" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 0, 44.8 )
+[node name="A6" parent="." instance=ExtResource( 2 )]
+position = Vector2( -8.88889, 26.6667 )
 
-[node name="RedSymbol" type="Sprite" parent="Board/A6"]
+[node name="RedSymbol" type="Sprite" parent="A6"]
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 6 )
 vframes = 2
 frame = 1
 
-[node name="A5" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 0, 67.2 )
+[node name="A5" parent="." instance=ExtResource( 2 )]
+position = Vector2( -8.88889, 44.4444 )
 
-[node name="RedSymbol" type="Sprite" parent="Board/A5"]
+[node name="RedSymbol" type="Sprite" parent="A5"]
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 6 )
 vframes = 2
 frame = 1
 
-[node name="A4" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 0, 89.6 )
+[node name="A4" parent="." instance=ExtResource( 2 )]
+position = Vector2( -8.88889, 62.2222 )
 
-[node name="RedSymbol" type="Sprite" parent="Board/A4"]
+[node name="RedSymbol" type="Sprite" parent="A4"]
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 6 )
 vframes = 2
 frame = 1
 
-[node name="A3" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 0, 112 )
+[node name="A3" parent="." instance=ExtResource( 2 )]
+position = Vector2( -8.88889, 80 )
 
-[node name="RedSymbol" type="Sprite" parent="Board/A3"]
+[node name="RedSymbol" type="Sprite" parent="A3"]
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 6 )
 vframes = 2
 frame = 1
 
-[node name="A2" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 0, 134.4 )
+[node name="A2" parent="." instance=ExtResource( 2 )]
+position = Vector2( -8.88889, 97.7778 )
 
-[node name="RedSymbol" type="Sprite" parent="Board/A2"]
+[node name="RedSymbol" type="Sprite" parent="A2"]
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 6 )
 vframes = 2
 frame = 1
 
-[node name="A1" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 0, 156.8 )
+[node name="A1" parent="." instance=ExtResource( 2 )]
+position = Vector2( -8.88889, 115.556 )
 
-[node name="RedSymbol" type="Sprite" parent="Board/A1"]
+[node name="RedSymbol" type="Sprite" parent="A1"]
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 6 )
 vframes = 2
 frame = 1
 
-[node name="B8" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 22.4, 0 )
+[node name="B8" parent="." instance=ExtResource( 2 )]
+position = Vector2( 8.88889, -8.88889 )
 
-[node name="RedSymbol" type="Sprite" parent="Board/B8"]
+[node name="RedSymbol" type="Sprite" parent="B8"]
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 6 )
 vframes = 2
 
-[node name="B7" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 22.4, 22.4 )
+[node name="B7" parent="." instance=ExtResource( 2 )]
+position = Vector2( 8.88889, 8.88889 )
 
-[node name="B6" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 22.4, 44.8 )
+[node name="B6" parent="." instance=ExtResource( 2 )]
+position = Vector2( 8.88889, 26.6667 )
 
-[node name="B5" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 22.4, 67.2 )
+[node name="B5" parent="." instance=ExtResource( 2 )]
+position = Vector2( 8.88889, 44.4444 )
 
-[node name="B4" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 22.4, 89.6 )
+[node name="B4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 8.88889, 62.2222 )
 
-[node name="B3" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 22.4, 112 )
+[node name="B3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 8.88889, 80 )
 
-[node name="B2" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 22.4, 134.4 )
+[node name="B2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 8.88889, 97.7778 )
 
-[node name="B1" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 22.4, 156.8 )
+[node name="B1" parent="." instance=ExtResource( 2 )]
+position = Vector2( 8.88889, 115.556 )
 
-[node name="RedSymbol" type="Sprite" parent="Board/B1"]
+[node name="RedSymbol" type="Sprite" parent="B1"]
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 6 )
 vframes = 2
 
-[node name="C8" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 44.8, 0 )
+[node name="C8" parent="." instance=ExtResource( 2 )]
+position = Vector2( 26.6667, -8.88889 )
 
-[node name="C7" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 44.8, 22.4 )
+[node name="C7" parent="." instance=ExtResource( 2 )]
+position = Vector2( 26.6667, 8.88889 )
 
-[node name="C6" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 44.8, 44.8 )
+[node name="C6" parent="." instance=ExtResource( 2 )]
+position = Vector2( 26.6667, 26.6667 )
 
-[node name="C5" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 44.8, 67.2 )
+[node name="C5" parent="." instance=ExtResource( 2 )]
+position = Vector2( 26.6667, 44.4444 )
 
-[node name="C4" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 44.8, 89.6 )
+[node name="C4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 26.6667, 62.2222 )
 
-[node name="C3" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 44.8, 112 )
+[node name="C3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 26.6667, 80 )
 
-[node name="C2" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 44.8, 134.4 )
+[node name="C2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 26.6667, 97.7778 )
 
-[node name="C1" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 44.8, 156.8 )
+[node name="C1" parent="." instance=ExtResource( 2 )]
+position = Vector2( 26.6667, 115.556 )
 
-[node name="D8" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 67.2, 0 )
+[node name="D8" parent="." instance=ExtResource( 2 )]
+position = Vector2( 44.4444, -8.88889 )
 
-[node name="D7" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 67.2, 22.4 )
+[node name="D7" parent="." instance=ExtResource( 2 )]
+position = Vector2( 44.4444, 8.88889 )
 
-[node name="D6" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 67.2, 44.8 )
+[node name="D6" parent="." instance=ExtResource( 2 )]
+position = Vector2( 44.4444, 26.6667 )
 
-[node name="D5" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 67.2, 67.2 )
+[node name="D5" parent="." instance=ExtResource( 2 )]
+position = Vector2( 44.4444, 44.4444 )
 
-[node name="D4" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 67.2, 89.6 )
+[node name="D4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 44.4444, 62.2222 )
 
-[node name="D3" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 67.2, 112 )
+[node name="D3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 44.4444, 80 )
 
-[node name="D2" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 67.2, 134.4 )
+[node name="D2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 44.4444, 97.7778 )
 
-[node name="D1" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 67.2, 156.8 )
+[node name="D1" parent="." instance=ExtResource( 2 )]
+position = Vector2( 44.4444, 115.556 )
 
-[node name="E8" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 89.5611, 0 )
+[node name="E8" parent="." instance=ExtResource( 2 )]
+position = Vector2( 62.2222, -8.88889 )
 
-[node name="E7" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 89.5611, 22.4 )
+[node name="E7" parent="." instance=ExtResource( 2 )]
+position = Vector2( 62.2222, 8.88889 )
 
-[node name="E6" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 89.5611, 44.8 )
+[node name="E6" parent="." instance=ExtResource( 2 )]
+position = Vector2( 62.2222, 26.6667 )
 
-[node name="E5" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 89.5611, 67.2 )
+[node name="E5" parent="." instance=ExtResource( 2 )]
+position = Vector2( 62.2222, 44.4444 )
 
-[node name="E4" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 89.5611, 89.6 )
+[node name="E4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 62.2222, 62.2222 )
 
-[node name="E3" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 89.5611, 112 )
+[node name="E3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 62.2222, 80 )
 
-[node name="E2" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 89.5611, 134.4 )
+[node name="E2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 62.2222, 97.7778 )
 
-[node name="E1" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 89.5611, 156.8 )
+[node name="E1" parent="." instance=ExtResource( 2 )]
+position = Vector2( 62.2222, 115.556 )
 
-[node name="F8" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 111.961, 0 )
+[node name="F8" parent="." instance=ExtResource( 2 )]
+position = Vector2( 80, -8.88889 )
 
-[node name="F7" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 111.961, 22.4 )
+[node name="F7" parent="." instance=ExtResource( 2 )]
+position = Vector2( 80, 8.88889 )
 
-[node name="F6" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 111.961, 44.8 )
+[node name="F6" parent="." instance=ExtResource( 2 )]
+position = Vector2( 80, 26.6667 )
 
-[node name="F5" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 111.961, 67.2 )
+[node name="F5" parent="." instance=ExtResource( 2 )]
+position = Vector2( 80, 44.4444 )
 
-[node name="F4" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 111.961, 89.6 )
+[node name="F4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 80, 62.2222 )
 
-[node name="F3" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 111.961, 112 )
+[node name="F3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 80, 80 )
 
-[node name="F2" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 111.961, 134.4 )
+[node name="F2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 80, 97.7778 )
 
-[node name="F1" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 111.961, 156.8 )
+[node name="F1" parent="." instance=ExtResource( 2 )]
+position = Vector2( 80, 115.556 )
 
-[node name="G8" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 134.361, 0 )
+[node name="G8" parent="." instance=ExtResource( 2 )]
+position = Vector2( 97.7778, -8.88889 )
 
-[node name="G7" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 134.361, 22.4 )
+[node name="G7" parent="." instance=ExtResource( 2 )]
+position = Vector2( 97.7778, 8.88889 )
 
-[node name="G6" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 134.361, 44.8 )
+[node name="G6" parent="." instance=ExtResource( 2 )]
+position = Vector2( 97.7778, 26.6667 )
 
-[node name="G5" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 134.361, 67.2 )
+[node name="G5" parent="." instance=ExtResource( 2 )]
+position = Vector2( 97.7778, 44.4444 )
 
-[node name="G4" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 134.361, 89.6 )
+[node name="G4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 97.7778, 62.2222 )
 
-[node name="G3" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 134.361, 112 )
+[node name="G3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 97.7778, 80 )
 
-[node name="G2" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 134.361, 134.4 )
+[node name="G2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 97.7778, 97.7778 )
 
-[node name="G1" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 134.361, 156.8 )
+[node name="G1" parent="." instance=ExtResource( 2 )]
+position = Vector2( 97.7778, 115.556 )
 
-[node name="H8" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 156.761, 0 )
+[node name="H8" parent="." instance=ExtResource( 2 )]
+position = Vector2( 115.556, -8.88889 )
 
-[node name="H7" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 156.761, 22.4 )
+[node name="H7" parent="." instance=ExtResource( 2 )]
+position = Vector2( 115.556, 8.88889 )
 
-[node name="H6" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 156.761, 44.8 )
+[node name="H6" parent="." instance=ExtResource( 2 )]
+position = Vector2( 115.556, 26.6667 )
 
-[node name="H5" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 156.761, 67.2 )
+[node name="H5" parent="." instance=ExtResource( 2 )]
+position = Vector2( 115.556, 44.4444 )
 
-[node name="H4" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 156.761, 89.6 )
+[node name="H4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 115.556, 62.2222 )
 
-[node name="H3" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 156.761, 112 )
+[node name="H3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 115.556, 80 )
 
-[node name="H2" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 156.761, 134.4 )
+[node name="H2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 115.556, 97.7778 )
 
-[node name="H1" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 156.761, 156.8 )
+[node name="H1" parent="." instance=ExtResource( 2 )]
+position = Vector2( 115.556, 115.556 )
 
-[node name="I8" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 179.161, 0 )
+[node name="I8" parent="." instance=ExtResource( 2 )]
+position = Vector2( 133.333, -8.88889 )
 
-[node name="RedSymbol" type="Sprite" parent="Board/I8"]
-scale = Vector2( 0.7, 0.7 )
-texture = ExtResource( 6 )
-vframes = 2
-frame = 1
-
-[node name="I7" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 179.161, 22.4 )
-
-[node name="I6" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 179.161, 44.8 )
-
-[node name="I5" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 179.161, 67.2 )
-
-[node name="I4" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 179.161, 89.6 )
-
-[node name="I3" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 179.161, 112 )
-
-[node name="I2" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 179.161, 134.4 )
-
-[node name="I1" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 179.161, 156.8 )
-
-[node name="RedSymbol" type="Sprite" parent="Board/I1"]
+[node name="RedSymbol" type="Sprite" parent="I8"]
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 6 )
 vframes = 2
 frame = 1
 
-[node name="J8" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 201.499, 0 )
+[node name="I7" parent="." instance=ExtResource( 2 )]
+position = Vector2( 133.333, 8.88889 )
 
-[node name="RedSymbol" type="Sprite" parent="Board/J8"]
+[node name="I6" parent="." instance=ExtResource( 2 )]
+position = Vector2( 133.333, 26.6667 )
+
+[node name="I5" parent="." instance=ExtResource( 2 )]
+position = Vector2( 133.333, 44.4444 )
+
+[node name="I4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 133.333, 62.2222 )
+
+[node name="I3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 133.333, 80 )
+
+[node name="I2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 133.333, 97.7778 )
+
+[node name="I1" parent="." instance=ExtResource( 2 )]
+position = Vector2( 133.333, 115.556 )
+
+[node name="RedSymbol" type="Sprite" parent="I1"]
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 6 )
-vframes = 2
-
-[node name="J7" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 201.499, 22.4 )
-
-[node name="RedSymbol" type="Sprite" parent="Board/J7"]
-scale = Vector2( 0.7, 0.7 )
-texture = ExtResource( 6 )
-vframes = 2
-
-[node name="J6" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 201.499, 44.8 )
-
-[node name="RedSymbol" type="Sprite" parent="Board/J6"]
-scale = Vector2( 0.7, 0.7 )
-texture = ExtResource( 6 )
-vframes = 2
-
-[node name="J5" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 201.499, 67.2 )
-
-[node name="RedSymbol" type="Sprite" parent="Board/J5"]
-scale = Vector2( 0.7, 0.7 )
-texture = ExtResource( 6 )
-vframes = 2
-
-[node name="J4" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 201.499, 89.6 )
-
-[node name="RedSymbol" type="Sprite" parent="Board/J4"]
-scale = Vector2( 0.7, 0.7 )
-texture = ExtResource( 6 )
-vframes = 2
-
-[node name="J3" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 201.499, 112 )
-
-[node name="RedSymbol" type="Sprite" parent="Board/J3"]
-scale = Vector2( 0.7, 0.7 )
-texture = ExtResource( 6 )
-vframes = 2
-
-[node name="J2" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 201.499, 134.4 )
-
-[node name="RedSymbol" type="Sprite" parent="Board/J2"]
-scale = Vector2( 0.7, 0.7 )
-texture = ExtResource( 6 )
-vframes = 2
-
-[node name="J1" parent="Board" instance=ExtResource( 2 )]
-position = Vector2( 201.499, 156.8 )
-
-[node name="Sprite" type="Sprite" parent="Board/J1"]
-rotation = -1.5708
-scale = Vector2( 0.9, 0.9 )
-texture = ExtResource( 5 )
-vframes = 2
-
-[node name="YSort" type="YSort" parent="."]
-position = Vector2( -0.324436, -0.973301 )
-
-[node name="BlueKing" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 45.3041, 25.5642 )
-
-[node name="BlueKing2" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 45.3958, 2.73865 )
-
-[node name="RedLaser" type="Node2D" parent="YSort"]
-position = Vector2( 1.24907, 3.13077 )
-scale = Vector2( 0.9, 0.9 )
-script = ExtResource( 8 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="YSort/RedLaser"]
-anims/SwingDown = SubResource( 1 )
-anims/SwingRight = SubResource( 2 )
-
-[node name="RedLaserSprite" type="Sprite" parent="YSort/RedLaser"]
-position = Vector2( 0.0439034, -0.0937233 )
-texture = ExtResource( 4 )
 vframes = 2
 frame = 1
 
-[node name="FirePoint" type="Node2D" parent="YSort/RedLaser"]
-position = Vector2( 0.52, 15 )
-rotation = 1.5708
-scale = Vector2( 1.42857, 1.42857 )
+[node name="J8" parent="." instance=ExtResource( 2 )]
+position = Vector2( 151.111, -8.88889 )
 
-[node name="RedLaser2" type="Node2D" parent="YSort"]
-position = Vector2( 201.675, 90.1538 )
-rotation = 1.5708
-scale = Vector2( 0.9, 0.9 )
-script = ExtResource( 8 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="YSort/RedLaser2"]
-anims/SwingDown = SubResource( 3 )
-anims/SwingRight = SubResource( 4 )
-
-[node name="RedLaserSprite" type="Sprite" parent="YSort/RedLaser2"]
-position = Vector2( 0.0439034, -0.0937233 )
-texture = ExtResource( 4 )
+[node name="RedSymbol" type="Sprite" parent="J8"]
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 6 )
 vframes = 2
-frame = 1
 
-[node name="FirePoint" type="Node2D" parent="YSort/RedLaser2"]
-position = Vector2( 0.52, 15 )
-rotation = 1.5708
-scale = Vector2( 1.42857, 1.42857 )
+[node name="J7" parent="." instance=ExtResource( 2 )]
+position = Vector2( 151.111, 8.88889 )
 
-[node name="RedSwitch" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( 112.472, -5.23959 )
+[node name="RedSymbol" type="Sprite" parent="J7"]
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 6 )
+vframes = 2
 
-[node name="RedSwitch3" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( 105.115, 48.996 )
+[node name="J6" parent="." instance=ExtResource( 2 )]
+position = Vector2( 151.111, 26.6667 )
 
-[node name="RedSwitch4" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( 157.158, 42.5301 )
+[node name="RedSymbol" type="Sprite" parent="J6"]
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 6 )
+vframes = 2
 
-[node name="RedSwitch5" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( 153.264, 93.7904 )
+[node name="J5" parent="." instance=ExtResource( 2 )]
+position = Vector2( 151.111, 44.4444 )
+
+[node name="RedSymbol" type="Sprite" parent="J5"]
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 6 )
+vframes = 2
+
+[node name="J4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 151.111, 62.2222 )
+
+[node name="RedSymbol" type="Sprite" parent="J4"]
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 6 )
+vframes = 2
+
+[node name="J3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 151.111, 80 )
+
+[node name="RedSymbol" type="Sprite" parent="J3"]
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 6 )
+vframes = 2
+
+[node name="J2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 151.111, 97.7778 )
+
+[node name="RedSymbol" type="Sprite" parent="J2"]
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 6 )
+vframes = 2
+
+[node name="J1" parent="." instance=ExtResource( 2 )]
+position = Vector2( 151.111, 115.556 )

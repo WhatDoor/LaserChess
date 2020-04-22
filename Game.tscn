@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://BoardResources/Board.tscn" type="PackedScene" id=1]
+[ext_resource path="res://DefenderResources/Defender.tscn" type="PackedScene" id=2]
+[ext_resource path="res://LaserResources/Laser.tscn" type="PackedScene" id=3]
+[ext_resource path="res://SwitchResources/Switch.tscn" type="PackedScene" id=4]
+[ext_resource path="res://KingResources/King.tscn" type="PackedScene" id=5]
+
+[node name="World" type="Node2D"]
+position = Vector2( 55.6756, 64 )
+__meta__ = {
+"_edit_horizontal_guides_": [  ]
+}
+
+[node name="Board" parent="." instance=ExtResource( 1 )]
+position = Vector2( -24, -16.3609 )
+
+[node name="YSort" type="YSort" parent="."]
+position = Vector2( -0.324436, -0.973301 )
+
+[node name="Laser" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( -8.56445, -7.91559 )
+
+[node name="Laser2" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 133.658, 27.64 )
+rotation = 1.5708
+
+[node name="Defender" parent="YSort" instance=ExtResource( 2 )]
+position = Vector2( 115.88, -8.31455 )
+
+[node name="Defender2" parent="YSort" instance=ExtResource( 2 )]
+position = Vector2( 32.3244, -23.0267 )
+
+[node name="King" parent="YSort" instance=ExtResource( 5 )]
+position = Vector2( 62.5467, 27.64 )
+
+[node name="King2" parent="YSort" instance=ExtResource( 5 )]
+position = Vector2( 98.1022, 80.9733 )
+
+[node name="RedSwitch" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 44.7689, 9.86219 )
+
+[node name="RedSwitch2" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 26.9911, 27.64 )
+
+[node name="RedSwitch3" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 98.1022, 27.64 )

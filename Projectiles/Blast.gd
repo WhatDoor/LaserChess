@@ -1,6 +1,6 @@
 extends Area2D
 
-var speed = .5
+var speed = 1
 var velocity = Vector2.ZERO
 
 func fire(direction):
