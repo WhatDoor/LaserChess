@@ -19,29 +19,27 @@ position = Vector2( -24, -16.3609 )
 position = Vector2( -0.324436, -0.973301 )
 
 [node name="Laser" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( -8.56445, -7.91559 )
+position = Vector2( -31.3512, -23.0267 )
 
 [node name="Laser2" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( 133.658, 27.64 )
+position = Vector2( 112.649, 88.9733 )
 rotation = 1.5708
 
 [node name="Defender" parent="YSort" instance=ExtResource( 2 )]
-position = Vector2( 115.88, -8.31455 )
+position = Vector2( 64.6488, 8.9733 )
 
 [node name="Defender2" parent="YSort" instance=ExtResource( 2 )]
-position = Vector2( 32.3244, -23.0267 )
+position = Vector2( 32.6488, -23.0267 )
+orientation = 2
 
 [node name="King" parent="YSort" instance=ExtResource( 5 )]
-position = Vector2( 62.5467, 27.64 )
-
-[node name="King2" parent="YSort" instance=ExtResource( 5 )]
-position = Vector2( 98.1022, 80.9733 )
+position = Vector2( 48.6488, -23.0267 )
 
 [node name="RedSwitch" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 44.7689, 9.86219 )
+position = Vector2( 48.6488, 8.9733 )
 
 [node name="RedSwitch2" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 26.9911, 27.64 )
+position = Vector2( 32.6488, 8.9733 )
 
 [node name="RedSwitch3" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 98.1022, 27.64 )
+position = Vector2( 80.6488, 88.9733 )

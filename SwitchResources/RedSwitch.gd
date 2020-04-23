@@ -4,7 +4,7 @@ onready var animationPlayer = $Offset/AnimationPlayer
 
 var Blast = preload("res://Projectiles/Blast.tscn")
 
-var OFFSET = 5 #offsets from the centre of the switch piece so colliding projectiles dont get stuck when collding
+var OFFSET = 7 #offsets from the centre of the switch piece so colliding projectiles dont get stuck when collding
 
 func _input(event):
 	# Mouse in viewport coordinates

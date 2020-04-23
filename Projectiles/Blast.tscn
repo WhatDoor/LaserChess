@@ -4,8 +4,8 @@
 [ext_resource path="res://Projectiles/Blast.gd" type="Script" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 0.4272
-height = 5.92893
+radius = 5.71225
+height = 0.0838227
 
 [node name="Blast" type="Area2D"]
 scale = Vector2( 0.7, 0.9 )
@@ -18,6 +18,6 @@ scale = Vector2( 0.4, 0.6 )
 texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0.0038898, -1.39601 )
+position = Vector2( 0.224037, -4.56365 )
 scale = Vector2( 0.321, 0.425 )
 shape = SubResource( 1 )

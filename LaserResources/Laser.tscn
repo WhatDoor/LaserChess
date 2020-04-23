@@ -37,7 +37,7 @@ tracks/0/keys = {
 
 [node name="Laser" type="Node2D"]
 rotation = -1.5708
-scale = Vector2( 0.9, 0.9 )
+scale = Vector2( 0.8, 0.8 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
