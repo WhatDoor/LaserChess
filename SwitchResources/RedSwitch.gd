@@ -4,7 +4,7 @@ onready var animationPlayer = $Offset/AnimationPlayer
 
 var Blast = preload("res://Projectiles/Blast.tscn")
 
-var OFFSET = 7 #offsets from the centre of the switch piece so colliding projectiles dont get stuck when collding
+var DISTANCE_OFFSET = 7 #offsets from the centre of the switch piece so colliding projectiles dont get stuck when collding
 
 func _input(event):
 	# Mouse in viewport coordinates
@@ -15,20 +15,24 @@ func _input(event):
 
 func _on_BotHitBox_area_entered(blast):
 	var angleOffset = 135
-	var normalAngle = deg2rad($Offset.rotation_degrees + angleOffset)
-	var normalVec = Vector2(cos(normalAngle), sin(normalAngle))
-	var reflectionVec = blast.velocity.bounce(normalVec)
+	var reflectionVec = get_reflectionVec(blast, angleOffset)
 	
-	blast.rotation_degrees = rad2deg(acos(reflectionVec.dot(Vector2(0,1))))
-	blast.position = position + (reflectionVec * OFFSET)
+	blast.rotation_degrees = get_reflection_rotation(reflectionVec)
+	blast.position = position + (reflectionVec * DISTANCE_OFFSET)
 	blast.fire(reflectionVec)
 
 func _on_HitBoxTop_area_entered(blast):
 	var angleOffset = 135 + 180
+	var reflectionVec = get_reflectionVec(blast, angleOffset)
+	
+	blast.rotation_degrees = -get_reflection_rotation(reflectionVec) #This needs to be negative because it reflects on the other side
+	blast.position = position + (reflectionVec * DISTANCE_OFFSET)
+	blast.fire(reflectionVec)
+	
+func get_reflectionVec(blast, angleOffset):
 	var normalAngle = deg2rad($Offset.rotation_degrees + angleOffset)
 	var normalVec = Vector2(cos(normalAngle), sin(normalAngle))
-	var reflectionVec = blast.velocity.bounce(normalVec)
-	
-	blast.rotation_degrees = -rad2deg(acos(reflectionVec.dot(Vector2(0,1))))
-	blast.position = position + (reflectionVec * OFFSET)
-	blast.fire(reflectionVec)
+	return blast.velocity.bounce(normalVec)
+
+func get_reflection_rotation(reflectionVec):	
+	return rad2deg(acos(reflectionVec.dot(Vector2(0,1))))

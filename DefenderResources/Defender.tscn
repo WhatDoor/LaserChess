@@ -7,10 +7,10 @@
 [ext_resource path="res://DefenderResources/redDefenderFront.png" type="Texture" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 0.671014, 17.5949 )
+extents = Vector2( 0.261966, 3.88968 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 18.4287, 6.18583 )
+extents = Vector2( 2.3944, 2.40876 )
 
 [node name="Defender" type="Node2D"]
 scale = Vector2( 0.3, 0.3 )
@@ -34,7 +34,7 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="DefendBox" type="CollisionShape2D" parent="Offset/Left/DefendBox"]
-position = Vector2( -24.357, 8.91191 )
+position = Vector2( -26.4493, 20.6012 )
 shape = SubResource( 1 )
 disabled = true
 
@@ -53,7 +53,7 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="DefendBox" type="CollisionShape2D" parent="Offset/Front/DefendBox"]
-position = Vector2( 0.332718, 13.114 )
+position = Vector2( 3.50604, 23.4027 )
 rotation = 1.5708
 shape = SubResource( 1 )
 disabled = true
@@ -63,7 +63,7 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="DeathBox" type="CollisionShape2D" parent="Offset/DeathBox"]
-position = Vector2( 0.539772, 4.474 )
+position = Vector2( 3.30504, 19.7955 )
 shape = SubResource( 2 )
 [connection signal="area_entered" from="Offset/Left/DefendBox" to="." method="_on_DefendBox_area_entered"]
 [connection signal="area_entered" from="Offset/Front/DefendBox" to="." method="_on_DefendBox_area_entered"]
