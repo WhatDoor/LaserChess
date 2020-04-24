@@ -1,16 +1,20 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://DefenderResources/blueDefenderLeft.png" type="Texture" id=1]
 [ext_resource path="res://DefenderResources/redDefenderLeft.png" type="Texture" id=2]
 [ext_resource path="res://DefenderResources/Defender.gd" type="Script" id=3]
 [ext_resource path="res://DefenderResources/blueDefenderFront.png" type="Texture" id=4]
 [ext_resource path="res://DefenderResources/redDefenderFront.png" type="Texture" id=5]
+[ext_resource path="res://EffectsResources/ClickBox.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 0.261966, 3.88968 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 2.3944, 2.40876 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 21.2775, 37.8385 )
 
 [node name="Defender" type="Node2D"]
 scale = Vector2( 0.3, 0.3 )
@@ -65,6 +69,20 @@ collision_mask = 0
 [node name="DeathBox" type="CollisionShape2D" parent="Offset/DeathBox"]
 position = Vector2( 3.30504, 19.7955 )
 shape = SubResource( 2 )
+
+[node name="ClickBox" parent="." instance=ExtResource( 6 )]
+
+[node name="ClickBox" parent="ClickBox" index="0"]
+position = Vector2( -1.13153, -20.0108 )
+shape = SubResource( 3 )
+
+[node name="selectSprite" parent="ClickBox" index="1"]
+visible = false
+position = Vector2( 0.328778, -17.4895 )
+scale = Vector2( 2.96741, 3.56175 )
 [connection signal="area_entered" from="Offset/Left/DefendBox" to="." method="_on_DefendBox_area_entered"]
 [connection signal="area_entered" from="Offset/Front/DefendBox" to="." method="_on_DefendBox_area_entered"]
 [connection signal="area_entered" from="Offset/DeathBox" to="." method="_on_DeathBox_area_entered"]
+[connection signal="input_event" from="ClickBox" to="." method="_on_ClickBox_input_event"]
+
+[editable path="ClickBox"]

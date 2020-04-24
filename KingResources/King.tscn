@@ -1,19 +1,18 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://KingResources/BlueKing.png" type="Texture" id=1]
 [ext_resource path="res://KingResources/King.gd" type="Script" id=2]
 [ext_resource path="res://KingResources/RedKing.png" type="Texture" id=3]
+[ext_resource path="res://EffectsResources/ClickBox.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 5.94691, 3.12884 )
+extents = Vector2( 1.11991, 1.07906 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 5.24661, 12.5021 )
+extents = Vector2( 6.24362, 12.4791 )
 
-[node name="King" type="Area2D"]
+[node name="King" type="Node2D"]
 position = Vector2( 0, -3.647 )
-collision_layer = 0
-collision_mask = 0
 script = ExtResource( 2 )
 
 [node name="Offset" type="Node2D" parent="."]
@@ -28,15 +27,23 @@ texture = ExtResource( 1 )
 scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 3 )
 
-[node name="Area2D" type="Area2D" parent="Offset"]
+[node name="HitBox" type="Area2D" parent="Offset"]
 collision_layer = 2
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Offset/Area2D"]
-position = Vector2( 0.00623439, 8.92155 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Offset/HitBox"]
+position = Vector2( 0.0333145, 10.9354 )
 shape = SubResource( 1 )
 
-[node name="ClickBox" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -7.07892 )
+[node name="ClickBox" parent="." instance=ExtResource( 5 )]
+
+[node name="ClickBox" parent="ClickBox" index="0"]
 shape = SubResource( 2 )
-[connection signal="area_entered" from="Offset/Area2D" to="." method="_on_Area2D_area_entered"]
+
+[node name="selectSprite" parent="ClickBox" index="1"]
+visible = false
+position = Vector2( 0.47234, -5.76256 )
+[connection signal="area_entered" from="Offset/HitBox" to="." method="_on_HitBox_area_entered"]
+[connection signal="input_event" from="ClickBox" to="." method="_on_ClickBox_input_event"]
+
+[editable path="ClickBox"]

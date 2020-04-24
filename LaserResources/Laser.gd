@@ -17,13 +17,6 @@ var Blast = preload("res://Projectiles/Blast.tscn")
 
 onready var animationPlayer = $AnimationPlayer
 
-func _input(event):
-	# Mouse in viewport coordinates
-	if event is InputEventMouseButton and event.is_pressed():
-		var clickPos = to_local(event.position)
-		if clickPos.x < 10.6 and clickPos.y < 10.6:
-			animate()
-
 func animate():
 	match state:
 		DOWN:

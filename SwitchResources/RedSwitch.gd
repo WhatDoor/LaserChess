@@ -4,14 +4,11 @@ onready var animationPlayer = $Offset/AnimationPlayer
 
 var Blast = preload("res://Projectiles/Blast.tscn")
 
-var DISTANCE_OFFSET = 7 #offsets from the centre of the switch piece so colliding projectiles dont get stuck when collding
+var DISTANCE_OFFSET = 4 #offsets from the centre of the switch piece so colliding projectiles dont get stuck when collding
 
-func _input(event):
-	# Mouse in viewport coordinates
-	if event is InputEventMouseButton and event.is_pressed():
-		var clickPos = to_local(event.position)
-		if clickPos.x < 10.6 and clickPos.y < 10.6:
-			animationPlayer.play("RotateRight")
+var selected = false
+
+signal selected(self_piece)
 
 func _on_BotHitBox_area_entered(blast):
 	var angleOffset = 135
@@ -36,3 +33,18 @@ func get_reflectionVec(blast, angleOffset):
 
 func get_reflection_rotation(reflectionVec):	
 	return rad2deg(acos(reflectionVec.dot(Vector2(0,1))))
+
+func _on_ClickBox_input_event(viewport, event, shape_idx):
+	if (filterLeftClick(event)):
+		selected = !selected
+		set_selector(selected)
+
+func set_selector(selected):
+	if (selected):
+		$ClickBox/selectSprite.show()
+		emit_signal("selected", self)
+	else:
+		$ClickBox/selectSprite.hide()
+
+func filterLeftClick(event):
+	return (event is InputEventMouseButton && event.pressed && event.get_button_index() == 1)

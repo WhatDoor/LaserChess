@@ -64,6 +64,8 @@ End_Turn={
 2d_physics/layer_1="Projectile"
 2d_physics/layer_2="Piece"
 2d_physics/layer_3="Wall"
+2d_physics/layer_4="Board"
+2d_physics/layer_5="ClickBox"
 
 [rendering]
 
