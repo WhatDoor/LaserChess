@@ -40,9 +40,15 @@ func _process(delta):
 		#blast.position += blast.velocity * CENTRE_OFFSET
 		#blast.position += VERTICAL_OFFSET
 		
-	
 		get_parent().add_child(blast)
 		
 		can_fire = false
 		yield(get_tree().create_timer(fire_rate), "timeout")
 		can_fire = true
+
+func _on_ClickBox_input_event(viewport, event, shape_idx):
+	if (filterLeftClick(event)):
+		animate()
+
+func filterLeftClick(event):
+	return (event is InputEventMouseButton && event.pressed && event.get_button_index() == 1)
