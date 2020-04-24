@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://LaserResources/RedLaser.png" type="Texture" id=1]
 [ext_resource path="res://LaserResources/Laser.gd" type="Script" id=2]
+[ext_resource path="res://LaserResources/newRedLaserLeft.png" type="Texture" id=3]
 
 [sub_resource type="Animation" id=1]
 resource_name = "SwingDown"
@@ -16,7 +17,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.9 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ -90.0, 0.0 ]
+"values": [ 0.0, 90.0 ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -32,11 +33,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.9 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 0.0, -90.0 ]
+"values": [ 90.0, 0.0 ]
 }
 
 [node name="Laser" type="Node2D"]
-rotation = -1.5708
 scale = Vector2( 0.8, 0.8 )
 script = ExtResource( 2 )
 __meta__ = {
@@ -48,12 +48,17 @@ anims/SwingDown = SubResource( 1 )
 anims/SwingRight = SubResource( 2 )
 
 [node name="RedLaserSprite" type="Sprite" parent="."]
+visible = false
 texture = ExtResource( 1 )
 offset = Vector2( -0.469, 0 )
 vframes = 2
 frame = 1
 
 [node name="FirePoint" type="Node2D" parent="."]
-position = Vector2( 0, 13.57 )
-rotation = 1.5708
-scale = Vector2( 1.42857, 1.42857 )
+position = Vector2( 15.6763, -5.8094 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 3 )
+offset = Vector2( -1.799, -21.796 )
+flip_h = true

@@ -7,39 +7,39 @@
 [ext_resource path="res://KingResources/King.tscn" type="PackedScene" id=5]
 
 [node name="World" type="Node2D"]
-position = Vector2( 55.6756, 64 )
+position = Vector2( 64, 64 )
 __meta__ = {
 "_edit_horizontal_guides_": [  ]
 }
 
 [node name="Board" parent="." instance=ExtResource( 1 )]
-position = Vector2( -24, -16.3609 )
+position = Vector2( -24, -16 )
 
 [node name="YSort" type="YSort" parent="."]
 position = Vector2( -0.324436, -0.973301 )
 
 [node name="Laser" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( -31.3512, -23.0267 )
+position = Vector2( -31.6756, -23.0267 )
 
 [node name="Laser2" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( 112.649, 88.9733 )
-rotation = 1.5708
+position = Vector2( 64.3244, 24.9733 )
+rotation = 3.14159
 
 [node name="Defender" parent="YSort" instance=ExtResource( 2 )]
-position = Vector2( 64.6488, 8.9733 )
+position = Vector2( 64.3244, 8.9733 )
 
 [node name="Defender2" parent="YSort" instance=ExtResource( 2 )]
-position = Vector2( 32.6488, -23.0267 )
+position = Vector2( 32.3244, -23.0267 )
 orientation = 2
 
 [node name="King" parent="YSort" instance=ExtResource( 5 )]
-position = Vector2( 48.6488, -23.0267 )
-
-[node name="RedSwitch" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 48.6488, 8.9733 )
+position = Vector2( 48.3244, -23.0267 )
 
 [node name="RedSwitch2" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 32.6488, 8.9733 )
+position = Vector2( 16.3244, -23.0267 )
 
 [node name="RedSwitch3" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 80.6488, 88.9733 )
+position = Vector2( -31.6756, 24.9733 )
+
+[node name="Switch" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 16.3244, 24.9733 )
