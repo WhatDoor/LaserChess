@@ -8,40 +8,46 @@
 [ext_resource path="res://Game.gd" type="Script" id=6]
 
 [node name="World" type="Node2D"]
-position = Vector2( 64, 64 )
+position = Vector2( 56, 40 )
 script = ExtResource( 6 )
 __meta__ = {
 "_edit_horizontal_guides_": [  ]
 }
 
 [node name="Board" parent="." instance=ExtResource( 1 )]
-position = Vector2( -24, -16 )
 
 [node name="Pieces" type="YSort" parent="."]
-position = Vector2( -0.324436, -0.973301 )
+position = Vector2( 1.78814e-07, -5.96046e-08 )
 
 [node name="Defender" parent="Pieces" instance=ExtResource( 2 )]
-position = Vector2( 16.3244, 72.9733 )
+position = Vector2( 40, 88 )
+board_coords = "D2"
 
 [node name="Defender2" parent="Pieces" instance=ExtResource( 2 )]
-position = Vector2( 0.324432, -7.0267 )
+position = Vector2( 24, 24 )
+board_coords = "C6"
 orientation = 2
 
 [node name="King" parent="Pieces" instance=ExtResource( 5 )]
-position = Vector2( 48.3244, 40.9733 )
+position = Vector2( 72, 56 )
+board_coords = "F4"
 
 [node name="RedSwitch2" parent="Pieces" instance=ExtResource( 4 )]
-position = Vector2( 16.3244, -23.0267 )
+position = Vector2( 40, -8 )
+board_coords = "D8"
 
 [node name="RedSwitch3" parent="Pieces" instance=ExtResource( 4 )]
-position = Vector2( -31.6756, 24.9733 )
+position = Vector2( -8, 40 )
+board_coords = "A5"
 
 [node name="Switch" parent="Pieces" instance=ExtResource( 4 )]
-position = Vector2( 0.324436, 56.9733 )
+position = Vector2( 24, 72 )
+board_coords = "C3"
 
 [node name="Laser" parent="." instance=ExtResource( 3 )]
-position = Vector2( -32, -24 )
+position = Vector2( -8, -8 )
 
 [node name="Laser2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 64, 56 )
+position = Vector2( 80, 80 )
 rotation = -3.14159
+[connection signal="board_clicked" from="Board" to="." method="_on_board_clicked"]

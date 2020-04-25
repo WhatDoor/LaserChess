@@ -17,6 +17,7 @@ var Blast = preload("res://Projectiles/Blast.tscn")
 
 onready var animationPlayer = $AnimationPlayer
 
+
 func animate():
 	match state:
 		DOWN:
