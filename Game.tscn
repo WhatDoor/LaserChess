@@ -40,6 +40,10 @@ board_coords = "D8"
 position = Vector2( -8, 40 )
 board_coords = "A5"
 
+[node name="RedSwitch4" parent="Pieces" instance=ExtResource( 4 )]
+position = Vector2( 152, 80 )
+board_coords = "J3"
+
 [node name="Switch" parent="Pieces" instance=ExtResource( 4 )]
 position = Vector2( 24, 72 )
 board_coords = "C3"
