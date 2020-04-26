@@ -11,7 +11,17 @@ export(ORIENTATION_TYPES) var orientation
 
 func _ready():
 	$Offset/Front.hide() #Hide the starting orientation which is used for game dev
+	set_colour(team_colour)
 	set_orientation(orientation)
+
+func set_colour(team_colour):
+	match team_colour:
+		COLOUR.RED:
+			$Offset/Left/LeftBlueDefender.hide()
+			$Offset/Front/FrontBlueDefender.hide()
+		COLOUR.BLUE:
+			$Offset/Left/LeftRedDefender.hide()
+			$Offset/Front/FrontRedDefender.hide()
 
 func set_orientation(orientation):	
 	var orientationNode

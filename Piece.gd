@@ -1,7 +1,13 @@
 extends Node2D
 
+enum COLOUR {
+	RED = 1,
+	BLUE = 2
+}
+
 var selected = false
 export(String) var board_coords
+export(COLOUR) var team_colour
 
 signal selected(self_node)
 signal deselected(self_node)

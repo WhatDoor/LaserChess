@@ -6,6 +6,16 @@ var Blast = preload("res://Projectiles/Blast.tscn")
 
 var DISTANCE_OFFSET = 4 #offsets from the centre of the switch piece so colliding projectiles dont get stuck when collding
 
+func _ready():
+	set_colour(team_colour)
+
+func set_colour(team_colour):
+	match team_colour:
+		COLOUR.RED:
+			$Offset/BlueSwitchSprite.hide()
+		COLOUR.BLUE:
+			$Offset/RedSwitchSprite.hide()
+
 func _on_BotHitBox_area_entered(blast):
 	var angleOffset = 135
 	var reflectionVec = get_reflectionVec(blast, angleOffset)

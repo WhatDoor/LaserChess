@@ -25,7 +25,7 @@ tracks/0/keys = {
 extents = Vector2( 12.209, 0.899685 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 9.10066, 14.1846 )
+extents = Vector2( 8.58849, 8.95631 )
 
 [node name="Switch" type="Node2D"]
 script = ExtResource( 2 )
@@ -61,7 +61,7 @@ shape = SubResource( 2 )
 [node name="ClickBox" parent="." instance=ExtResource( 4 )]
 
 [node name="ClickBox" parent="ClickBox" index="0"]
-position = Vector2( -0.484169, -5.62301 )
+position = Vector2( -0.118683, -0.213773 )
 shape = SubResource( 3 )
 
 [node name="selectSprite" parent="ClickBox" index="1"]

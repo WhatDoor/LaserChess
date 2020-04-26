@@ -19,39 +19,60 @@ __meta__ = {
 [node name="Pieces" type="YSort" parent="."]
 position = Vector2( 1.78814e-07, -5.96046e-08 )
 
-[node name="Defender" parent="Pieces" instance=ExtResource( 2 )]
-position = Vector2( 40, 88 )
-board_coords = "D2"
-
 [node name="Defender2" parent="Pieces" instance=ExtResource( 2 )]
 position = Vector2( 24, 24 )
 board_coords = "C6"
+team_colour = 1
 orientation = 2
 
+[node name="Defender3" parent="Pieces" instance=ExtResource( 2 )]
+position = Vector2( 80, 120 )
+board_coords = "F1"
+team_colour = 2
+
 [node name="King" parent="Pieces" instance=ExtResource( 5 )]
-position = Vector2( 72, 56 )
+position = Vector2( 80, 64 )
 board_coords = "F4"
+team_colour = 1
+
+[node name="King2" parent="Pieces" instance=ExtResource( 5 )]
+position = Vector2( 96, 64 )
+board_coords = "G4"
+team_colour = 2
 
 [node name="RedSwitch2" parent="Pieces" instance=ExtResource( 4 )]
-position = Vector2( 40, -8 )
+position = Vector2( 48, -8 )
 board_coords = "D8"
+team_colour = 1
 
 [node name="RedSwitch3" parent="Pieces" instance=ExtResource( 4 )]
 position = Vector2( -8, 40 )
 board_coords = "A5"
+team_colour = 1
 
 [node name="RedSwitch4" parent="Pieces" instance=ExtResource( 4 )]
 position = Vector2( 152, 80 )
 board_coords = "J3"
+team_colour = 2
 
 [node name="Switch" parent="Pieces" instance=ExtResource( 4 )]
-position = Vector2( 24, 72 )
+position = Vector2( 24, 80 )
 board_coords = "C3"
+team_colour = 2
 
 [node name="Laser" parent="." instance=ExtResource( 3 )]
 position = Vector2( -8, -8 )
 
+[node name="BlueLaserSprite" parent="Laser" index="4"]
+visible = false
+
 [node name="Laser2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 80, 80 )
-rotation = -3.14159
+position = Vector2( 152, 120 )
+
+[node name="RedLaserSprite" parent="Laser2" index="3"]
+visible = false
 [connection signal="board_clicked" from="Board" to="." method="_on_board_clicked"]
+
+[editable path="Laser"]
+
+[editable path="Laser2"]

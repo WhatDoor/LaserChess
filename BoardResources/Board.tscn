@@ -142,6 +142,7 @@ collision_mask = 0
 position = Vector2( -8.88889, 8.88889 )
 collision_layer = 8
 collision_mask = 0
+colour = 1
 
 [node name="RedSymbol" type="Sprite" parent="Squares/A7"]
 scale = Vector2( 0.7, 0.7 )
@@ -153,6 +154,7 @@ frame = 1
 position = Vector2( -8.88889, 26.6667 )
 collision_layer = 8
 collision_mask = 0
+colour = 1
 
 [node name="RedSymbol" type="Sprite" parent="Squares/A6"]
 scale = Vector2( 0.7, 0.7 )
@@ -164,6 +166,7 @@ frame = 1
 position = Vector2( -8.88889, 44.4444 )
 collision_layer = 8
 collision_mask = 0
+colour = 1
 
 [node name="RedSymbol" type="Sprite" parent="Squares/A5"]
 scale = Vector2( 0.7, 0.7 )
@@ -175,6 +178,7 @@ frame = 1
 position = Vector2( -8.88889, 62.2222 )
 collision_layer = 8
 collision_mask = 0
+colour = 1
 
 [node name="RedSymbol" type="Sprite" parent="Squares/A4"]
 scale = Vector2( 0.7, 0.7 )
@@ -186,6 +190,7 @@ frame = 1
 position = Vector2( -8.88889, 80 )
 collision_layer = 8
 collision_mask = 0
+colour = 1
 
 [node name="RedSymbol" type="Sprite" parent="Squares/A3"]
 scale = Vector2( 0.7, 0.7 )
@@ -197,6 +202,7 @@ frame = 1
 position = Vector2( -8.88889, 97.7778 )
 collision_layer = 8
 collision_mask = 0
+colour = 1
 
 [node name="RedSymbol" type="Sprite" parent="Squares/A2"]
 scale = Vector2( 0.7, 0.7 )
@@ -208,6 +214,7 @@ frame = 1
 position = Vector2( -8.88889, 115.556 )
 collision_layer = 8
 collision_mask = 0
+colour = 1
 
 [node name="RedSymbol" type="Sprite" parent="Squares/A1"]
 scale = Vector2( 0.7, 0.7 )
@@ -219,6 +226,7 @@ frame = 1
 position = Vector2( 8.88889, -8.88889 )
 collision_layer = 8
 collision_mask = 0
+colour = 2
 
 [node name="RedSymbol" type="Sprite" parent="Squares/B8"]
 scale = Vector2( 0.7, 0.7 )
@@ -259,6 +267,7 @@ collision_mask = 0
 position = Vector2( 8.88889, 115.556 )
 collision_layer = 8
 collision_mask = 0
+colour = 2
 
 [node name="RedSymbol" type="Sprite" parent="Squares/B1"]
 scale = Vector2( 0.7, 0.7 )
@@ -509,6 +518,7 @@ collision_mask = 0
 position = Vector2( 133.333, -8.88889 )
 collision_layer = 8
 collision_mask = 0
+colour = 1
 
 [node name="RedSymbol" type="Sprite" parent="Squares/I8"]
 scale = Vector2( 0.7, 0.7 )
@@ -550,6 +560,7 @@ collision_mask = 0
 position = Vector2( 133.333, 115.556 )
 collision_layer = 8
 collision_mask = 0
+colour = 1
 
 [node name="RedSymbol" type="Sprite" parent="Squares/I1"]
 scale = Vector2( 0.7, 0.7 )
@@ -561,6 +572,7 @@ frame = 1
 position = Vector2( 151.111, -8.88889 )
 collision_layer = 8
 collision_mask = 0
+colour = 2
 
 [node name="RedSymbol" type="Sprite" parent="Squares/J8"]
 scale = Vector2( 0.7, 0.7 )
@@ -571,6 +583,7 @@ vframes = 2
 position = Vector2( 151.111, 8.88889 )
 collision_layer = 8
 collision_mask = 0
+colour = 2
 
 [node name="RedSymbol" type="Sprite" parent="Squares/J7"]
 scale = Vector2( 0.7, 0.7 )
@@ -581,6 +594,7 @@ vframes = 2
 position = Vector2( 151.111, 26.6667 )
 collision_layer = 8
 collision_mask = 0
+colour = 2
 
 [node name="RedSymbol" type="Sprite" parent="Squares/J6"]
 scale = Vector2( 0.7, 0.7 )
@@ -591,6 +605,7 @@ vframes = 2
 position = Vector2( 151.111, 44.4444 )
 collision_layer = 8
 collision_mask = 0
+colour = 2
 
 [node name="RedSymbol" type="Sprite" parent="Squares/J5"]
 scale = Vector2( 0.7, 0.7 )
@@ -601,6 +616,7 @@ vframes = 2
 position = Vector2( 151.111, 62.2222 )
 collision_layer = 8
 collision_mask = 0
+colour = 2
 
 [node name="RedSymbol" type="Sprite" parent="Squares/J4"]
 scale = Vector2( 0.7, 0.7 )
@@ -611,6 +627,7 @@ vframes = 2
 position = Vector2( 151.111, 80 )
 collision_layer = 8
 collision_mask = 0
+colour = 2
 
 [node name="RedSymbol" type="Sprite" parent="Squares/J3"]
 scale = Vector2( 0.7, 0.7 )
@@ -621,6 +638,7 @@ vframes = 2
 position = Vector2( 151.111, 97.7778 )
 collision_layer = 8
 collision_mask = 0
+colour = 2
 
 [node name="RedSymbol" type="Sprite" parent="Squares/J2"]
 scale = Vector2( 0.7, 0.7 )

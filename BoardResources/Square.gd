@@ -1,5 +1,13 @@
 extends Area2D
 
+enum SQUARE_COLOUR {
+	NORMAL,
+	RED = 1,
+	BLUE = 2
+}
+
+export(SQUARE_COLOUR) var colour = SQUARE_COLOUR.NORMAL
+
 signal clicked(square)
 
 func set_selected(selected):

@@ -4,7 +4,14 @@ onready var blueKingSprite = $Offset/BlueKingSprite
 onready var redKingSprite = $Offset/RedKingSprite
 
 func _ready():
-	pass
+	set_colour(team_colour)
+
+func set_colour(team_colour):
+	match team_colour:
+		COLOUR.RED:
+			$Offset/BlueKingSprite.hide()
+		COLOUR.BLUE:
+			$Offset/RedKingSprite.hide()
 
 func _on_ClickBox_input_event(viewport, event, shape_idx):
 	if (filterLeftClick(event)):

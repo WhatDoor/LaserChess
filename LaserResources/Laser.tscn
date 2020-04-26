@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://LaserResources/RedLaser.png" type="Texture" id=1]
 [ext_resource path="res://LaserResources/Laser.gd" type="Script" id=2]
 [ext_resource path="res://LaserResources/newRedLaserLeft.png" type="Texture" id=3]
 [ext_resource path="res://EffectsResources/ClickBox.tscn" type="PackedScene" id=4]
+[ext_resource path="res://LaserResources/newBlueLaserLeft.png" type="Texture" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "SwingDown"
@@ -51,7 +52,7 @@ __meta__ = {
 anims/SwingDown = SubResource( 1 )
 anims/SwingRight = SubResource( 2 )
 
-[node name="RedLaserSprite" type="Sprite" parent="."]
+[node name="OLDRedLaserSprite" type="Sprite" parent="."]
 visible = false
 texture = ExtResource( 1 )
 offset = Vector2( -0.469, 0 )
@@ -61,11 +62,16 @@ frame = 1
 [node name="FirePoint" type="Node2D" parent="."]
 position = Vector2( 15.6763, -5.8094 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="RedLaserSprite" type="Sprite" parent="."]
 scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 3 )
 offset = Vector2( -1.799, -21.796 )
 flip_h = true
+
+[node name="BlueLaserSprite" type="Sprite" parent="."]
+position = Vector2( -0.547153, -6.53761 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 5 )
 
 [node name="ClickBox" parent="." instance=ExtResource( 4 )]
 
