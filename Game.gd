@@ -39,7 +39,7 @@ func _on_board_clicked(square, square_indexes):
 func _on_piece_selected(piece):	
 	print(piece.name, " selected at ", piece.board_coords)
 	
-	#Update pieces state
+	#Update state of pieces list
 	pieces = $Board_Objects/Pieces.get_children()
 	
 	#Deselect any other piece that that is currently selected
@@ -52,7 +52,7 @@ func _on_piece_selected(piece):
 		for squares in currently_selected_squares:
 			squares.set_selected(false)
 			
-	#Make any currently swappable pieces unswappable
+	#Make any currently swappable pieces unswappable - only relevant to Switch
 	for p in currently_swappable_pieces:
 		p.make_swappable(false)
 	
@@ -60,12 +60,38 @@ func _on_piece_selected(piece):
 	currently_selected_piece = piece
 	
 	#Set the currently available squares
-	var available_squares_list = available_squares(piece.board_coords)
-	currently_selected_squares = available_squares_list
+	currently_selected_squares = available_squares(piece.board_coords)
 	
 	#Highlight the currently available squares
-	for squares in available_squares_list:
+	for squares in currently_selected_squares:
 		squares.set_selected(true)
+	
+	#Set the currently swappable pieces - only relevant to Switch
+	currently_swappable_pieces = get_swappable_pieces(piece)
+	
+	#Make the currently swappable pieces swappable - only relevant to Switch
+	for p in currently_swappable_pieces:
+		p.make_swappable(true)
+
+func get_swappable_pieces(piece):
+	#While refactoring this, need to refactor the way in which the surrounding square of piece is acquired
+	
+	#Check if piece is a switch, skip this function if not
+	
+	#Get surrounding squares of piece
+	
+	#Check if any pieces occupy those pieces, and whether they are defender or deflector
+	#Add those pieces to the list
+	
+	#return list
+	
+	for p in pieces:
+		#BUT - if the selected piece is a switch, you should be able to select occupying defenders and deflectors
+		if currently_selected_piece.get_type() == "SWITCH" and (p.get_type() == "DEFENDER" or p.get_type() == "DEFLECTOR"):
+			#Make that piece swappable
+			p.make_swappable(true)
+			currently_swappable_pieces.append(p)
+			return true
 	
 func _on_piece_deselected(piece):
 	print(piece.name, " deselected")
@@ -77,11 +103,11 @@ func _on_piece_deselected(piece):
 	for squares in currently_selected_squares:
 		squares.set_selected(false)
 		
-	#Make any currently swappable pieces unswappable
+	#Make any currently swappable pieces unswappable - only relevant to Switch
 	for p in currently_swappable_pieces:
 		p.make_swappable(false)
 	
-	#Unset the currently selected the piece and squares
+	#Unset the currently selected/highlighted pieces and squares
 	currently_selected_piece = null
 	currently_selected_squares = null
 	currently_swappable_pieces = []
@@ -150,14 +176,6 @@ func is_valid_array_square(row, column):
 	for p in pieces:
 		if p.board_coords == square.name:
 			print(square.name, " occupied by ", p.name)
-
-			#BUT - if the selected piece is a switch, you should be able to select occupying defenders and deflectors
-			if currently_selected_piece.get_type() == "SWITCH" and (p.get_type() == "DEFENDER" or p.get_type() == "DEFLECTOR"):
-				#Make that piece swappable
-				p.make_swappable(true) #TODO - this code probably shouldnt be here, need to refactor
-				currently_swappable_pieces.append(p)
-				return true
-				
 			return false
 	
 	return true
