@@ -106,6 +106,6 @@ position = Vector2( -8, -8 )
 fire_rate = 0.1
 
 [node name="BlueLaser" parent="." instance=ExtResource( 3 )]
-position = Vector2( -8, 112 )
+position = Vector2( 152, 112 )
 fire_rate = 0.1
 [connection signal="board_clicked" from="Board" to="." method="_on_board_clicked"]

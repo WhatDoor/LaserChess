@@ -13,6 +13,9 @@ func set_colour(team_colour):
 		COLOUR.BLUE:
 			$Offset/RedKingSprite.hide()
 
+func get_type():
+	return "KING"
+	
 func _on_ClickBox_input_event(viewport, event, shape_idx):
 	if (Helper.filterLeftClick(event)):
 		toggle_selected()
@@ -20,3 +23,4 @@ func _on_ClickBox_input_event(viewport, event, shape_idx):
 func _on_HitBox_area_entered(blast):
 	blast.kill()
 	queue_free()
+

@@ -9,6 +9,10 @@ enum ORIENTATION_TYPES {
 
 export(ORIENTATION_TYPES) var orientation
 
+signal swap_clicked(self_node)
+
+onready var swapClickBox = $SwapClickBox
+
 func _ready():
 	rotationArrows = $RotationArrows #initalize rotation arrows
 	
@@ -41,6 +45,12 @@ func set_orientation(orientation):
 	orientationNode.show()
 	orientationNode.get_node("DefendBox/DefendBox").disabled = false
 
+func make_swappable(swappable):
+	swapClickBox.enabled = swappable
+
+func get_type():
+	return "DEFENDER"
+
 func _on_ClickBox_input_event(viewport, event, shape_idx):
 	if (Helper.filterLeftClick(event)):
 		toggle_selected()
@@ -59,3 +69,6 @@ func _on_RotationArrows_clicked_left():
 func _on_RotationArrows_clicked_right():
 	print(self.name, " rotating left")
 	$Offset.rotation_degrees -= 90
+
+func _on_SwapClickBox_swap_clicked():
+	emit_signal("swap_clicked", self)

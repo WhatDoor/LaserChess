@@ -88,12 +88,12 @@ shape = SubResource( 2 )
 position = Vector2( 7.496, 5.995 )
 shape = SubResource( 3 )
 [connection signal="clicked" from="Left/LeftArrowClick" to="." method="_on_LeftArrowClick_clicked"]
-[connection signal="mouse_entered" from="Left/LeftArrowClick" to="Left" method="_on_LeftArrowClick_mouse_entered"]
 [connection signal="mouse_entered" from="Left/LeftArrowClick" to="Left/LeftArrowClick" method="_on_LeftArrowClick_mouse_entered"]
-[connection signal="mouse_exited" from="Left/LeftArrowClick" to="Left" method="_on_LeftArrowClick_mouse_exited"]
+[connection signal="mouse_entered" from="Left/LeftArrowClick" to="Left" method="_on_LeftArrowClick_mouse_entered"]
 [connection signal="mouse_exited" from="Left/LeftArrowClick" to="Left/LeftArrowClick" method="_on_LeftArrowClick_mouse_exited"]
+[connection signal="mouse_exited" from="Left/LeftArrowClick" to="Left" method="_on_LeftArrowClick_mouse_exited"]
 [connection signal="clicked" from="Right/RightArrowClick" to="." method="_on_RightArrowClick_clicked"]
-[connection signal="mouse_entered" from="Right/RightArrowClick" to="Right" method="_on_RightArrowClick_mouse_entered"]
 [connection signal="mouse_entered" from="Right/RightArrowClick" to="Right/RightArrowClick" method="_on_RightArrowClick_mouse_entered"]
-[connection signal="mouse_exited" from="Right/RightArrowClick" to="Right" method="_on_RightArrowClick_mouse_exited"]
+[connection signal="mouse_entered" from="Right/RightArrowClick" to="Right" method="_on_RightArrowClick_mouse_entered"]
 [connection signal="mouse_exited" from="Right/RightArrowClick" to="Right/RightArrowClick" method="_on_RightArrowClick_mouse_exited"]
+[connection signal="mouse_exited" from="Right/RightArrowClick" to="Right" method="_on_RightArrowClick_mouse_exited"]

@@ -17,6 +17,9 @@ func set_colour(team_colour):
 		COLOUR.BLUE:
 			$Offset/RedSwitchSprite.hide()
 
+func get_type():
+	return "SWITCH"
+
 func _on_BotHitBox_area_entered(blast):
 	var normalAngleOffset = 135
 	var reflectionVec = get_reflectionVec(blast, normalAngleOffset)
