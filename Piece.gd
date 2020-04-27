@@ -33,10 +33,10 @@ func set_selected(newSelected):
 	if (newSelected):
 		$ClickBox/selectSprite.show()
 		if rotationArrows != null:
-			rotationArrows.enabled = selected
+			rotationArrows.enabled = newSelected
 	else:
 		$ClickBox/selectSprite.hide()
 		if rotationArrows != null:
-			rotationArrows.enabled = selected
+			rotationArrows.enabled = newSelected
 		
 	selected = newSelected
