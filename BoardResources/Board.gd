@@ -22,6 +22,14 @@ func _on_square_clicked(square):
 	var square_indexes = name2dictIndex(square.name)
 	#print(squares_array[square_indexes.row][square_indexes.column].name)
 	emit_signal("board_clicked", square, square_indexes)
+
+#Gets squares from array indexes, but returns null if indexes are invalid
+func get_square_from_array(row, column):
+	#Test whether the array indexes are valid
+	if (row >= 8 || column >= 10 || row < 0 || column < 0):
+		return null
+	
+	return squares_array[row][column]
 	
 func get_square(square_name):
 	var square_indexes = name2dictIndex(square_name)

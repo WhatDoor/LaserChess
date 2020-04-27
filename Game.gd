@@ -5,7 +5,7 @@ onready var pieces = $Board_Objects/Pieces.get_children()
 
 var currently_selected_piece = null
 var currently_selected_squares = null
-var currently_swappable_pieces = []
+var currently_swappable_pieces = null
 
 func _ready():	
 	#Connect signal handlers for each piece and place each piece in the correct position on the board
@@ -20,9 +20,19 @@ func _ready():
 
 func _on_swappable_piece_clicked(click_piece):
 	print("Swapping ", currently_selected_piece.name, " with ", click_piece.name)
+	#Save the Switch's position and square
 	var currently_selected_piece_position = currently_selected_piece.position
+	var currently_selected_piece_square = currently_selected_piece.board_coords
+	
+	#Swap the Switch and piece's position
 	currently_selected_piece.position = click_piece.position
 	click_piece.position = currently_selected_piece_position
+	
+	#Swap the Switch and piece's square
+	currently_selected_piece.board_coords = click_piece.board_coords
+	click_piece.board_coords = currently_selected_piece_square
+	
+	#Unselect/Highlight Switch and piece
 	_on_piece_deselected(currently_selected_piece)
 	click_piece.make_swappable(false)
 
@@ -48,13 +58,14 @@ func _on_piece_selected(piece):
 			p.set_selected(false)
 	
 	#Deselect any other squares that are currently selected
-	if (currently_selected_squares != null):
+	if currently_selected_squares != null:
 		for squares in currently_selected_squares:
 			squares.set_selected(false)
 			
 	#Make any currently swappable pieces unswappable - only relevant to Switch
-	for p in currently_swappable_pieces:
-		p.make_swappable(false)
+	if currently_swappable_pieces != null:
+		for p in currently_swappable_pieces:
+			p.make_swappable(false)
 	
 	#Set the currently selected piece
 	currently_selected_piece = piece
@@ -74,24 +85,26 @@ func _on_piece_selected(piece):
 		p.make_swappable(true)
 
 func get_swappable_pieces(piece):
-	#While refactoring this, need to refactor the way in which the surrounding square of piece is acquired
+	var swappable_pieces = []
 	
 	#Check if piece is a switch, skip this function if not
+	if piece.get_type() == "SWITCH":
+		
+		#Get surrounding squares of piece
+		var surrounding_squares = get_surrounding_squares(piece.board_coords)
 	
-	#Get surrounding squares of piece
+		#Check if any pieces occupy those squares, and whether they are defender or deflector
+		for square in surrounding_squares:
+			for p in pieces:
+				if square != null and p.board_coords == square.name and (p.get_type() == "DEFENDER" or p.get_type() == "DEFLECTOR"):
+					#Check if the piece is standing on their coloured square and that the switch is not that colour, piece should not be swappable if true
+					if p.team_colour == square.colour and piece.team_colour != square.colour:
+						pass
+					else:
+						#Add those pieces to the list
+						swappable_pieces.append(p)
 	
-	#Check if any pieces occupy those pieces, and whether they are defender or deflector
-	#Add those pieces to the list
-	
-	#return list
-	
-	for p in pieces:
-		#BUT - if the selected piece is a switch, you should be able to select occupying defenders and deflectors
-		if currently_selected_piece.get_type() == "SWITCH" and (p.get_type() == "DEFENDER" or p.get_type() == "DEFLECTOR"):
-			#Make that piece swappable
-			p.make_swappable(true)
-			currently_swappable_pieces.append(p)
-			return true
+	return swappable_pieces
 	
 func _on_piece_deselected(piece):
 	print(piece.name, " deselected")
@@ -110,54 +123,56 @@ func _on_piece_deselected(piece):
 	#Unset the currently selected/highlighted pieces and squares
 	currently_selected_piece = null
 	currently_selected_squares = null
-	currently_swappable_pieces = []
-	
-func available_squares(square_name):
-	var available_square_list = []
+	currently_swappable_pieces = null
+
+
+func get_surrounding_squares(square_name):
+	var surrounding_squares = []
 	
 	var square_index = board.name2dictIndex(square_name)
 	var row = square_index.row
 	var column = square_index.column
 	
 	#Up Left
-	if is_valid_array_square(row-1,column-1):
-		available_square_list.append(board.squares_array[row-1][column-1])
+	surrounding_squares.append(board.get_square_from_array(row-1,column-1))
 	
 	#Up
-	if is_valid_array_square(row-1,column):
-		available_square_list.append(board.squares_array[row-1][column])
+	surrounding_squares.append(board.get_square_from_array(row-1,column))
 	
 	#Up Right
-	if is_valid_array_square(row-1,column+1):
-		available_square_list.append(board.squares_array[row-1][column+1])
+	surrounding_squares.append(board.get_square_from_array(row-1,column+1))
 	
 	#Left
-	if is_valid_array_square(row,column-1):
-		available_square_list.append(board.squares_array[row][column-1])
+	surrounding_squares.append(board.get_square_from_array(row,column-1))
 	
 	#Right
-	if is_valid_array_square(row,column+1):
-		available_square_list.append(board.squares_array[row][column+1])
+	surrounding_squares.append(board.get_square_from_array(row,column+1))
 	
 	#Down Left
-	if is_valid_array_square(row+1,column-1):
-		available_square_list.append(board.squares_array[row+1][column-1])
+	surrounding_squares.append(board.get_square_from_array(row+1,column-1))
 		
 	#Down
-	if is_valid_array_square(row+1,column):
-		available_square_list.append(board.squares_array[row+1][column])
+	surrounding_squares.append(board.get_square_from_array(row+1,column))
 		
 	#Down Right
-	if is_valid_array_square(row+1,column+1):
-		available_square_list.append(board.squares_array[row+1][column+1])
+	surrounding_squares.append(board.get_square_from_array(row+1,column+1))
+	
+	return surrounding_squares
+	
+func available_squares(square_name):
+	var available_square_list = []
+	var surrounding_squares = get_surrounding_squares(square_name)
+	
+	for square in surrounding_squares:
+		if (square != null and is_valid_array_square(square.name)):
+			available_square_list.append(square)
 	
 	return available_square_list
 
-func is_valid_array_square(row, column):
-	
-	#Test whether the array indexes are valid
-	if (row >= 8 || column >= 10 || row < 0 || column < 0):
-		return false
+func is_valid_array_square(square_name):
+	var square_index = board.name2dictIndex(square_name)
+	var row = square_index.row
+	var column = square_index.column
 	
 	var square = board.squares_array[row][column]
 	#print("testing ", square_name)
