@@ -16,63 +16,96 @@ __meta__ = {
 
 [node name="Board" parent="." instance=ExtResource( 1 )]
 
-[node name="Pieces" type="YSort" parent="."]
-position = Vector2( 1.78814e-07, -5.96046e-08 )
+[node name="Board_Objects" type="YSort" parent="."]
 
-[node name="Defender2" parent="Pieces" instance=ExtResource( 2 )]
-position = Vector2( 24, 24 )
-board_coords = "C6"
+[node name="Pieces" type="YSort" parent="Board_Objects"]
+
+[node name="Defender2" parent="Board_Objects/Pieces" instance=ExtResource( 2 )]
+position = Vector2( 8, 8 )
+board_coords = "B7"
 team_colour = 1
 orientation = 2
 
-[node name="Defender3" parent="Pieces" instance=ExtResource( 2 )]
-position = Vector2( 80, 120 )
-board_coords = "F1"
+[node name="Defender3" parent="Board_Objects/Pieces" instance=ExtResource( 2 )]
+position = Vector2( 24, 120 )
+board_coords = "C1"
 team_colour = 2
 
-[node name="King" parent="Pieces" instance=ExtResource( 5 )]
-position = Vector2( 80, 64 )
-board_coords = "F4"
+[node name="King" parent="Board_Objects/Pieces" instance=ExtResource( 5 )]
+position = Vector2( 40, 64 )
+board_coords = "D4"
 team_colour = 1
 
-[node name="King2" parent="Pieces" instance=ExtResource( 5 )]
+[node name="King2" parent="Board_Objects/Pieces" instance=ExtResource( 5 )]
 position = Vector2( 96, 64 )
 board_coords = "G4"
 team_colour = 2
 
-[node name="RedSwitch2" parent="Pieces" instance=ExtResource( 4 )]
+[node name="RedSwitch2" parent="Board_Objects/Pieces" instance=ExtResource( 4 )]
 position = Vector2( 48, -8 )
 board_coords = "D8"
 team_colour = 1
 
-[node name="RedSwitch3" parent="Pieces" instance=ExtResource( 4 )]
-position = Vector2( -8, 40 )
-board_coords = "A5"
+[node name="RedSwitch3" parent="Board_Objects/Pieces" instance=ExtResource( 4 )]
+position = Vector2( 8, 24 )
+board_coords = "B6"
 team_colour = 1
 
-[node name="RedSwitch4" parent="Pieces" instance=ExtResource( 4 )]
-position = Vector2( 152, 80 )
-board_coords = "J3"
+[node name="RedSwitch4" parent="Board_Objects/Pieces" instance=ExtResource( 4 )]
+position = Vector2( 48, 24 )
+board_coords = "D6"
 team_colour = 2
 
-[node name="Switch" parent="Pieces" instance=ExtResource( 4 )]
-position = Vector2( 24, 80 )
-board_coords = "C3"
+[node name="Switch" parent="Board_Objects/Pieces" instance=ExtResource( 4 )]
+position = Vector2( 8, 80 )
+board_coords = "B3"
 team_colour = 2
 
-[node name="Laser" parent="." instance=ExtResource( 3 )]
+[node name="Switch2" parent="Board_Objects/Pieces" instance=ExtResource( 4 )]
+position = Vector2( 48, 80 )
+board_coords = "D3"
+team_colour = 2
+
+[node name="Switch3" parent="Board_Objects/Pieces" instance=ExtResource( 4 )]
+position = Vector2( 48, 112 )
+board_coords = "D1"
+team_colour = 2
+
+[node name="Switch4" parent="Board_Objects/Pieces" instance=ExtResource( 4 )]
+position = Vector2( 96, 112 )
+board_coords = "G1"
+team_colour = 2
+
+[node name="Switch5" parent="Board_Objects/Pieces" instance=ExtResource( 4 )]
+position = Vector2( 96, 80 )
+board_coords = "G3"
+team_colour = 2
+
+[node name="Switch6" parent="Board_Objects/Pieces" instance=ExtResource( 4 )]
+position = Vector2( 136, 80 )
+board_coords = "I3"
+team_colour = 2
+
+[node name="Switch7" parent="Board_Objects/Pieces" instance=ExtResource( 4 )]
+position = Vector2( 136, 24 )
+board_coords = "I6"
+team_colour = 2
+
+[node name="Switch8" parent="Board_Objects/Pieces" instance=ExtResource( 4 )]
+position = Vector2( 96, 24 )
+board_coords = "G6"
+team_colour = 2
+
+[node name="Switch9" parent="Board_Objects/Pieces" instance=ExtResource( 4 )]
+position = Vector2( 96, -8 )
+board_coords = "G8"
+team_colour = 2
+
+[node name="RedLaser" parent="." instance=ExtResource( 3 )]
 position = Vector2( -8, -8 )
+fire_rate = 0.1
 
-[node name="BlueLaserSprite" parent="Laser" index="4"]
-visible = false
-
-[node name="Laser2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 152, 120 )
-
-[node name="RedLaserSprite" parent="Laser2" index="3"]
-visible = false
+[node name="BlueLaser" parent="." instance=ExtResource( 3 )]
+position = Vector2( -8, 112 )
+fire_rate = 0.1
 [connection signal="board_clicked" from="Board" to="." method="_on_board_clicked"]
-
-[editable path="Laser"]
-
-[editable path="Laser2"]

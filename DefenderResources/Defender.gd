@@ -10,6 +10,8 @@ enum ORIENTATION_TYPES {
 export(ORIENTATION_TYPES) var orientation
 
 func _ready():
+	rotationArrows = $RotationArrows #initalize rotation arrows
+	
 	$Offset/Front.hide() #Hide the starting orientation which is used for game dev
 	set_colour(team_colour)
 	set_orientation(orientation)
@@ -40,7 +42,7 @@ func set_orientation(orientation):
 	orientationNode.get_node("DefendBox/DefendBox").disabled = false
 
 func _on_ClickBox_input_event(viewport, event, shape_idx):
-	if (filterLeftClick(event)):
+	if (Helper.filterLeftClick(event)):
 		toggle_selected()
 
 func _on_DefendBox_area_entered(blast):
@@ -49,3 +51,11 @@ func _on_DefendBox_area_entered(blast):
 func _on_DeathBox_area_entered(blast):
 	blast.kill()
 	queue_free()
+
+func _on_RotationArrows_clicked_left():
+	print(self.name, " rotating right")
+	$Offset.rotation_degrees += 90
+
+func _on_RotationArrows_clicked_right():
+	print(self.name, " rotating left")
+	$Offset.rotation_degrees -= 90

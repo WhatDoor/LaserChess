@@ -1,9 +1,26 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://SwitchResources/RedSwitch.png" type="Texture" id=1]
 [ext_resource path="res://SwitchResources/Switch.gd" type="Script" id=2]
 [ext_resource path="res://SwitchResources/BlueSwitch.png" type="Texture" id=3]
 [ext_resource path="res://EffectsResources/ClickBox.tscn" type="PackedScene" id=4]
+[ext_resource path="res://EffectsResources/RotationArrows.tscn" type="PackedScene" id=5]
+
+[sub_resource type="Animation" id=4]
+resource_name = "FullRotation"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
 
 [sub_resource type="Animation" id=1]
 resource_name = "RotateRight"
@@ -31,6 +48,7 @@ extents = Vector2( 8.58849, 8.95631 )
 script = ExtResource( 2 )
 
 [node name="Offset" type="Node2D" parent="."]
+rotation = 6.28319
 scale = Vector2( 0.8, 0.8 )
 
 [node name="RedSwitchSprite" type="Sprite" parent="Offset"]
@@ -42,6 +60,7 @@ scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Offset"]
+anims/FullRotation = SubResource( 4 )
 anims/RotateRight = SubResource( 1 )
 
 [node name="HitBoxBot" type="Area2D" parent="Offset"]
@@ -66,8 +85,13 @@ shape = SubResource( 3 )
 
 [node name="selectSprite" parent="ClickBox" index="1"]
 visible = false
+
+[node name="RotationArrows" parent="." instance=ExtResource( 5 )]
+scale = Vector2( 0.55, 0.55 )
 [connection signal="area_entered" from="Offset/HitBoxBot" to="." method="_on_BotHitBox_area_entered"]
 [connection signal="area_entered" from="Offset/HitBoxTop" to="." method="_on_HitBoxTop_area_entered"]
 [connection signal="input_event" from="ClickBox" to="." method="_on_ClickBox_input_event"]
+[connection signal="clicked_left" from="RotationArrows" to="." method="_on_RotationArrows_clicked_left"]
+[connection signal="clicked_right" from="RotationArrows" to="." method="_on_RotationArrows_clicked_right"]
 
 [editable path="ClickBox"]

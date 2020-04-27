@@ -19,6 +19,10 @@ config/name="Laser Chess"
 run/main_scene="res://Game.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Helper="*res://Helper.gd"
+
 [display]
 
 window/size/width=320

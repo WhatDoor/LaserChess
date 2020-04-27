@@ -1,23 +1,33 @@
 extends Node2D
 
 onready var board = $Board
-onready var pieces = $Pieces.get_children()
+onready var pieces = $Board_Objects/Pieces.get_children()
 
 var currently_selected_piece = null
 var currently_selected_squares = null
 
 func _ready():	
+	#Connect signal handlers for each piece and place each piece in the correct position on the board
 	for piece in pieces:
 		piece.connect("selected", self, "_on_piece_selected")
 		piece.connect("deselected", self, "_on_piece_deselected")
-		#print(piece.name, "'s position is ", piece.position, " and its square coords are ", piece.board_coords, " which is at ", board.get_square(piece.board_coords).position)
 		piece.position = board.get_square(piece.board_coords).position
+
+func _on_board_clicked(square, square_indexes):
+	print(square.name, " clicked")
+	
+	#If 
+	if currently_selected_piece != null and square_exists_in(currently_selected_squares, square):
+		print("moving ", currently_selected_piece.name, " to ", square.name)
+		currently_selected_piece.position = square.position
+		currently_selected_piece.board_coords = square.name
+		_on_piece_deselected(currently_selected_piece)
 
 func _on_piece_selected(piece):	
 	print(piece.name, " selected at ", piece.board_coords)
 	
 	#Update pieces state
-	pieces = $Pieces.get_children()
+	pieces = $Board_Objects/Pieces.get_children()
 	
 	#Deselect any other piece that that is currently selected
 	for p in pieces:
@@ -43,14 +53,17 @@ func _on_piece_selected(piece):
 func _on_piece_deselected(piece):
 	print(piece.name, " deselected")
 	
+	#Deselect the piece
 	piece.set_selected(false)
 	
+	#Deselect the selected squares
 	for squares in currently_selected_squares:
 		squares.set_selected(false)
 	
+	#Unset the currently selected the piece and squares
 	currently_selected_piece = null
 	currently_selected_squares = null
-
+	
 func available_squares(square_name):
 	var available_square_list = []
 	
@@ -119,13 +132,6 @@ func is_valid_array_square(row, column):
 			return false
 	
 	return true
-	
-func _on_board_clicked(square, square_indexes):
-	if currently_selected_piece != null and square_exists_in(currently_selected_squares, square):
-		print("moving ", currently_selected_piece.name, " to ", square.name)
-		currently_selected_piece.position = square.position
-		currently_selected_piece.board_coords = square.name
-		_on_piece_deselected(currently_selected_piece)
 
 func square_exists_in(square_list, square):
 	for s in square_list:

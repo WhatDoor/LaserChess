@@ -31,17 +31,15 @@ func _process(delta):
 	if Input.is_action_pressed("End_Turn") and can_fire:
 		#Instance, rotate and position blast
 		var blast = Blast.instance()
+		#blast.set_global_position($FirePoint.get_global_position())
 		blast.position = get_position()
-		blast.rotation_degrees = rotation_degrees - 90
-		
+		#print("this position is ", get_global_position())
+		#print("fire point position is ", $FirePoint.get_global_position())		
+		print(name, " ", rotation_degrees)
 		var rot = deg2rad(rotation_degrees - 90)
 		blast.fire(Vector2(-sin(rot), cos(rot)))
 		
-		#Offset position
-		#blast.position += blast.velocity * CENTRE_OFFSET
-		#blast.position += VERTICAL_OFFSET
-		
-		get_parent().add_child(blast)
+		get_parent().get_node("Board_Objects").add_child(blast)
 		
 		can_fire = false
 		yield(get_tree().create_timer(fire_rate), "timeout")

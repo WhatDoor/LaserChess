@@ -5,6 +5,8 @@ enum COLOUR {
 	BLUE = 2
 }
 
+onready var rotationArrows = null #REMEMBER TO INITIALIZE THIS IF YOU WANT ROTATION ARROWS
+
 var selected = false
 export(String) var board_coords
 export(COLOUR) var team_colour
@@ -18,18 +20,23 @@ func toggle_selected():
 	
 	if (selected):
 		$ClickBox/selectSprite.show()
+		if rotationArrows != null:
+			rotationArrows.enabled = selected
 		emit_signal("selected", self)
 	else:
 		$ClickBox/selectSprite.hide()
+		if rotationArrows != null:
+			rotationArrows.enabled = selected
 		emit_signal("deselected", self)
 
 func set_selected(newSelected):
 	if (newSelected):
 		$ClickBox/selectSprite.show()
+		if rotationArrows != null:
+			rotationArrows.enabled = selected
 	else:
 		$ClickBox/selectSprite.hide()
+		if rotationArrows != null:
+			rotationArrows.enabled = selected
 		
 	selected = newSelected
-
-func filterLeftClick(event):
-	return (event is InputEventMouseButton && event.pressed && event.get_button_index() == 1)
