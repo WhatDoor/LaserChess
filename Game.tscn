@@ -101,11 +101,26 @@ position = Vector2( 96, -8 )
 board_coords = "G8"
 team_colour = 2
 
-[node name="RedLaser" parent="." instance=ExtResource( 3 )]
-position = Vector2( -8, -8 )
+[node name="RedLaser" parent="Board_Objects" instance=ExtResource( 3 )]
+position = Vector2( -8.37603, -7.81199 )
 fire_rate = 0.1
 
-[node name="BlueLaser" parent="." instance=ExtResource( 3 )]
-position = Vector2( 152, 112 )
+[node name="BlueLaserSprite" parent="Board_Objects/RedLaser" index="2"]
+visible = false
+
+[node name="BlueLaser" parent="Board_Objects" instance=ExtResource( 3 )]
+position = Vector2( 151.643, 117.179 )
+team_colour = 1
 fire_rate = 0.1
+
+[node name="RedLaserSprite" parent="Board_Objects/BlueLaser" index="1"]
+visible = false
+
+[node name="ClickBox" parent="Board_Objects/BlueLaser" index="3"]
+position = Vector2( -1.69278, 1.23111 )
+scale = Vector2( 0.8, 1 )
 [connection signal="board_clicked" from="Board" to="." method="_on_board_clicked"]
+
+[editable path="Board_Objects/RedLaser"]
+
+[editable path="Board_Objects/BlueLaser"]

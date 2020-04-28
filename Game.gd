@@ -37,7 +37,7 @@ func _on_swappable_piece_clicked(click_piece):
 	click_piece.make_swappable(false)
 
 func _on_board_clicked(square, square_indexes):
-	print(square.name, " clicked")
+	#print(square.name, " clicked")
 	
 	#If a piece has been selected and a highlighted square is chosen, then move the piece to that square
 	if currently_selected_piece != null and square_exists_in(currently_selected_squares, square):

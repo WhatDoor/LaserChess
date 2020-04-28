@@ -2,14 +2,22 @@ extends Node2D
 
 enum {
 	DOWN,
-	RIGHT
+	RIGHT,
+	LEFT,
+	UP
 }
 
-var state = RIGHT
+enum team_colours {
+	RED,
+	BLUE
+}
+
+export(team_colours) var team_colour
 
 export var fire_rate = 0.5
 var can_fire = true
 
+var state
 var CENTRE_OFFSET = 12
 var VERTICAL_OFFSET = Vector2(0,-6.7)
 
@@ -17,15 +25,26 @@ var Blast = preload("res://Projectiles/Blast.tscn")
 
 onready var animationPlayer = $AnimationPlayer
 
+func _ready():
+	if team_colour == team_colours.RED:
+		state = RIGHT
+	elif team_colour == team_colours.BLUE:
+		state = LEFT
 
 func animate():
 	match state:
 		DOWN:
-			animationPlayer.play("SwingRight")
+			animationPlayer.play("SwingToRightFromDown")
 			state = RIGHT
 		RIGHT:
-			animationPlayer.play("SwingDown")
+			animationPlayer.play("SwingToDownFromRight")
 			state = DOWN
+		LEFT:
+			animationPlayer.play("SwingToUpFromLeft")
+			state = UP
+		UP:
+			animationPlayer.play("SwingToLeftFromUp")
+			state = LEFT
 
 func _process(delta):
 	if Input.is_action_pressed("End_Turn") and can_fire:
@@ -36,10 +55,16 @@ func _process(delta):
 		#print("this position is ", get_global_position())
 		#print("fire point position is ", $FirePoint.get_global_position())		
 		print(name, " ", rotation_degrees)
-		var rot = deg2rad(rotation_degrees - 90)
+		
+		var rot
+		if team_colour == team_colours.RED:
+			rot = deg2rad(rotation_degrees - 90)
+		elif team_colour == team_colours.BLUE:
+			rot = deg2rad(rotation_degrees + 90)
+		
 		blast.fire(Vector2(-sin(rot), cos(rot)))
 		
-		get_parent().get_node("Board_Objects").add_child(blast)
+		get_parent().add_child(blast)
 		
 		can_fire = false
 		yield(get_tree().create_timer(fire_rate), "timeout")

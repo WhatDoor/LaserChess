@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://LaserResources/Laser.gd" type="Script" id=2]
 [ext_resource path="res://LaserResources/newRedLaserLeft.png" type="Texture" id=3]
@@ -6,7 +6,7 @@
 [ext_resource path="res://LaserResources/newBlueLaserLeft.png" type="Texture" id=5]
 
 [sub_resource type="Animation" id=1]
-resource_name = "SwingDown"
+resource_name = "SwingToDownFromRight"
 length = 0.9
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rotation_degrees")
@@ -22,7 +22,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=2]
-resource_name = "SwingRight"
+resource_name = "SwingToLeftFromUp"
 length = 0.9
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rotation_degrees")
@@ -37,7 +37,38 @@ tracks/0/keys = {
 "values": [ 90.0, 0.0 ]
 }
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="Animation" id=3]
+length = 0.9
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 90.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "SwingToUpFromLeft"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 90.0 ]
+}
+
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 10.6488, 10.5399 )
 
 [node name="Laser" type="Node2D"]
@@ -47,8 +78,10 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/SwingDown = SubResource( 1 )
-anims/SwingRight = SubResource( 2 )
+anims/SwingToDownFromRight = SubResource( 1 )
+anims/SwingToLeftFromUp = SubResource( 2 )
+anims/SwingToRightFromDown = SubResource( 3 )
+anims/SwingToUpFromLeft = SubResource( 4 )
 
 [node name="RedLaserSprite" type="Sprite" parent="."]
 scale = Vector2( 0.3, 0.3 )
@@ -57,7 +90,6 @@ offset = Vector2( -1.799, -21.796 )
 flip_h = true
 
 [node name="BlueLaserSprite" type="Sprite" parent="."]
-visible = false
 position = Vector2( -0.547153, -6.53761 )
 scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 5 )
@@ -66,7 +98,7 @@ texture = ExtResource( 5 )
 
 [node name="ClickBox" parent="ClickBox" index="0"]
 position = Vector2( 1.48846, -3.7103 )
-shape = SubResource( 3 )
+shape = SubResource( 5 )
 
 [node name="selectSprite" parent="ClickBox" index="1"]
 visible = false
