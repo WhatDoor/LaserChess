@@ -17,8 +17,13 @@ func get_sprite_ground_offset(direction):
 	return -angle * 8
 
 func get_reflection_rotation(direction):	
-	var x = round(direction.x)
-	var y = round(direction.y)
+	var x = direction.x
+	var y = direction.y
+	
+	#Rounding here locks the projectile to rotating in right angles, comment these out to get continuous rotation
+	#BUT NOTE, that there is a bug with infinite/undefined numbers that make the projectiles disappear if you don't round
+	x = round(x)
+	y = round(y)
 	
 	print("finding rotation angle for ", x,",",y)
 	
@@ -46,3 +51,6 @@ func _process(delta):
 
 func kill():
 	queue_free()
+
+func _on_Blast_area_entered(area):
+	pass # Replace with function body.
