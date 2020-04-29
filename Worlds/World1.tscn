@@ -1,0 +1,159 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Worlds/World.gd" type="Script" id=5]
+[ext_resource path="res://BoardResources/Wall.gd" type="Script" id=6]
+[ext_resource path="res://BoardResources/Board.tscn" type="PackedScene" id=8]
+[ext_resource path="res://DefenderResources/Defender.tscn" type="PackedScene" id=9]
+[ext_resource path="res://SwitchResources/Switch.tscn" type="PackedScene" id=10]
+[ext_resource path="res://LaserResources/Laser.tscn" type="PackedScene" id=11]
+[ext_resource path="res://KingResources/King.tscn" type="PackedScene" id=12]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 4.39662, 129.295 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 4.09546, 128.127 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 270.86, 7.48053 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 276.673, 4.20639 )
+
+[node name="World" type="Node2D"]
+position = Vector2( 56, 40 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_horizontal_guides_": [  ]
+}
+
+[node name="Board" parent="." instance=ExtResource( 8 )]
+
+[node name="Board_Objects" type="YSort" parent="."]
+
+[node name="Pieces" type="YSort" parent="Board_Objects"]
+
+[node name="Defender2" parent="Board_Objects/Pieces" instance=ExtResource( 9 )]
+position = Vector2( 8, 8 )
+board_coords = "B7"
+team_colour = 1
+orientation = 2
+
+[node name="Defender3" parent="Board_Objects/Pieces" instance=ExtResource( 9 )]
+position = Vector2( 24, 120 )
+board_coords = "C1"
+team_colour = 2
+
+[node name="King" parent="Board_Objects/Pieces" instance=ExtResource( 12 )]
+position = Vector2( 40, 64 )
+board_coords = "D4"
+team_colour = 1
+
+[node name="King2" parent="Board_Objects/Pieces" instance=ExtResource( 12 )]
+position = Vector2( 96, 64 )
+board_coords = "G4"
+team_colour = 2
+
+[node name="RedSwitch2" parent="Board_Objects/Pieces" instance=ExtResource( 10 )]
+position = Vector2( 48, -8 )
+board_coords = "D8"
+team_colour = 2
+
+[node name="RedSwitch3" parent="Board_Objects/Pieces" instance=ExtResource( 10 )]
+position = Vector2( 8, 24 )
+board_coords = "B6"
+team_colour = 2
+
+[node name="RedSwitch4" parent="Board_Objects/Pieces" instance=ExtResource( 10 )]
+position = Vector2( 48, 24 )
+board_coords = "D6"
+team_colour = 2
+
+[node name="Switch" parent="Board_Objects/Pieces" instance=ExtResource( 10 )]
+position = Vector2( 8, 80 )
+board_coords = "B3"
+team_colour = 1
+
+[node name="Switch2" parent="Board_Objects/Pieces" instance=ExtResource( 10 )]
+position = Vector2( 48, 80 )
+board_coords = "D3"
+team_colour = 1
+
+[node name="Switch3" parent="Board_Objects/Pieces" instance=ExtResource( 10 )]
+position = Vector2( 48, 112 )
+board_coords = "D1"
+team_colour = 1
+
+[node name="Switch4" parent="Board_Objects/Pieces" instance=ExtResource( 10 )]
+position = Vector2( 96, 112 )
+board_coords = "G1"
+team_colour = 1
+
+[node name="Switch5" parent="Board_Objects/Pieces" instance=ExtResource( 10 )]
+position = Vector2( 96, 80 )
+board_coords = "G3"
+team_colour = 1
+
+[node name="Switch6" parent="Board_Objects/Pieces" instance=ExtResource( 10 )]
+position = Vector2( 136, 80 )
+board_coords = "I3"
+team_colour = 1
+
+[node name="Switch7" parent="Board_Objects/Pieces" instance=ExtResource( 10 )]
+position = Vector2( 136, 24 )
+board_coords = "I6"
+team_colour = 2
+
+[node name="Switch8" parent="Board_Objects/Pieces" instance=ExtResource( 10 )]
+position = Vector2( 96, 24 )
+board_coords = "G6"
+team_colour = 2
+
+[node name="Switch9" parent="Board_Objects/Pieces" instance=ExtResource( 10 )]
+position = Vector2( 95.7622, -9.18912 )
+board_coords = "G8"
+team_colour = 2
+
+[node name="RedLaser" parent="Board_Objects" instance=ExtResource( 11 )]
+position = Vector2( -8.37603, -7.81199 )
+
+[node name="BlueLaser" parent="Board_Objects" instance=ExtResource( 11 )]
+position = Vector2( 151.643, 117.179 )
+team_colour = 1
+
+[node name="LeftWall" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall"]
+position = Vector2( -94.2375, 50.0338 )
+shape = SubResource( 1 )
+
+[node name="RightWall" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall"]
+position = Vector2( 317.511, 50.0083 )
+shape = SubResource( 2 )
+
+[node name="TopWall" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopWall"]
+position = Vector2( 90.4385, -86.4569 )
+shape = SubResource( 3 )
+
+[node name="BottomWall" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomWall"]
+position = Vector2( 94.2837, 182.277 )
+shape = SubResource( 4 )
+[connection signal="board_clicked" from="Board" to="." method="_on_board_clicked"]

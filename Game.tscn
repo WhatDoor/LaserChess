@@ -1,175 +1,47 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://BoardResources/Board.tscn" type="PackedScene" id=1]
-[ext_resource path="res://DefenderResources/Defender.tscn" type="PackedScene" id=2]
-[ext_resource path="res://LaserResources/Laser.tscn" type="PackedScene" id=3]
-[ext_resource path="res://SwitchResources/Switch.tscn" type="PackedScene" id=4]
-[ext_resource path="res://KingResources/King.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Game.gd" type="Script" id=6]
-[ext_resource path="res://BoardResources/Wall.gd" type="Script" id=7]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 4.39662, 129.295 )
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 4.09546, 128.127 )
-
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 270.86, 7.48053 )
-
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 276.673, 4.20639 )
-
-[node name="World" type="Node2D"]
-position = Vector2( 56, 40 )
+[node name="Lobby" type="Node2D"]
 script = ExtResource( 6 )
+
+[node name="hostButton" type="Button" parent="."]
+margin_left = 96.0
+margin_top = 40.0
+margin_right = 212.0
+margin_bottom = 60.0
+text = "Host Game"
 __meta__ = {
-"_edit_horizontal_guides_": [  ]
+"_edit_use_anchors_": false
 }
 
-[node name="Board" parent="." instance=ExtResource( 1 )]
+[node name="joinButton" type="Button" parent="."]
+margin_left = 96.0
+margin_top = 72.0
+margin_right = 212.0
+margin_bottom = 92.0
+text = "Join Game"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Board_Objects" type="YSort" parent="."]
+[node name="TextEdit" type="TextEdit" parent="."]
+margin_left = 96.0
+margin_top = 104.0
+margin_right = 264.0
+margin_bottom = 128.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Pieces" type="YSort" parent="Board_Objects"]
-
-[node name="Defender2" parent="Board_Objects/Pieces" instance=ExtResource( 2 )]
-position = Vector2( 8, 8 )
-board_coords = "B7"
-team_colour = 1
-orientation = 2
-
-[node name="Defender3" parent="Board_Objects/Pieces" instance=ExtResource( 2 )]
-position = Vector2( 24, 120 )
-board_coords = "C1"
-team_colour = 2
-
-[node name="King" parent="Board_Objects/Pieces" instance=ExtResource( 5 )]
-position = Vector2( 40, 64 )
-board_coords = "D4"
-team_colour = 1
-
-[node name="King2" parent="Board_Objects/Pieces" instance=ExtResource( 5 )]
-position = Vector2( 96, 64 )
-board_coords = "G4"
-team_colour = 2
-
-[node name="RedSwitch2" parent="Board_Objects/Pieces" instance=ExtResource( 4 )]
-position = Vector2( 48, -8 )
-board_coords = "D8"
-team_colour = 1
-
-[node name="RedSwitch3" parent="Board_Objects/Pieces" instance=ExtResource( 4 )]
-position = Vector2( 8, 24 )
-board_coords = "B6"
-team_colour = 1
-
-[node name="RedSwitch4" parent="Board_Objects/Pieces" instance=ExtResource( 4 )]
-position = Vector2( 48, 24 )
-board_coords = "D6"
-team_colour = 2
-
-[node name="Switch" parent="Board_Objects/Pieces" instance=ExtResource( 4 )]
-position = Vector2( 8, 80 )
-board_coords = "B3"
-team_colour = 2
-
-[node name="Switch2" parent="Board_Objects/Pieces" instance=ExtResource( 4 )]
-position = Vector2( 48, 80 )
-board_coords = "D3"
-team_colour = 2
-
-[node name="Switch3" parent="Board_Objects/Pieces" instance=ExtResource( 4 )]
-position = Vector2( 48, 112 )
-board_coords = "D1"
-team_colour = 2
-
-[node name="Switch4" parent="Board_Objects/Pieces" instance=ExtResource( 4 )]
-position = Vector2( 96, 112 )
-board_coords = "G1"
-team_colour = 2
-
-[node name="Switch5" parent="Board_Objects/Pieces" instance=ExtResource( 4 )]
-position = Vector2( 96, 80 )
-board_coords = "G3"
-team_colour = 2
-
-[node name="Switch6" parent="Board_Objects/Pieces" instance=ExtResource( 4 )]
-position = Vector2( 136, 80 )
-board_coords = "I3"
-team_colour = 2
-
-[node name="Switch7" parent="Board_Objects/Pieces" instance=ExtResource( 4 )]
-position = Vector2( 136, 24 )
-board_coords = "I6"
-team_colour = 2
-
-[node name="Switch8" parent="Board_Objects/Pieces" instance=ExtResource( 4 )]
-position = Vector2( 96, 24 )
-board_coords = "G6"
-team_colour = 2
-
-[node name="Switch9" parent="Board_Objects/Pieces" instance=ExtResource( 4 )]
-position = Vector2( 96, -8 )
-board_coords = "G8"
-team_colour = 2
-
-[node name="RedLaser" parent="Board_Objects" instance=ExtResource( 3 )]
-position = Vector2( -8.37603, -7.81199 )
-fire_rate = 0.1
-
-[node name="BlueLaserSprite" parent="Board_Objects/RedLaser" index="2"]
-visible = false
-
-[node name="BlueLaser" parent="Board_Objects" instance=ExtResource( 3 )]
-position = Vector2( 151.643, 117.179 )
-team_colour = 1
-fire_rate = 0.1
-
-[node name="RedLaserSprite" parent="Board_Objects/BlueLaser" index="1"]
-visible = false
-
-[node name="ClickBox" parent="Board_Objects/BlueLaser" index="3"]
-position = Vector2( -1.69278, 1.23111 )
-scale = Vector2( 0.8, 1 )
-
-[node name="LeftWall" type="Area2D" parent="."]
-collision_layer = 4
-collision_mask = 0
-script = ExtResource( 7 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall"]
-position = Vector2( -94.2375, 50.0338 )
-shape = SubResource( 1 )
-
-[node name="RightWall" type="Area2D" parent="."]
-collision_layer = 4
-collision_mask = 0
-script = ExtResource( 7 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall"]
-position = Vector2( 317.511, 50.0083 )
-shape = SubResource( 2 )
-
-[node name="TopWall" type="Area2D" parent="."]
-collision_layer = 4
-collision_mask = 0
-script = ExtResource( 7 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TopWall"]
-position = Vector2( 90.4385, -86.4569 )
-shape = SubResource( 3 )
-
-[node name="BottomWall" type="Area2D" parent="."]
-collision_layer = 4
-collision_mask = 0
-script = ExtResource( 7 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomWall"]
-position = Vector2( 94.2837, 182.277 )
-shape = SubResource( 4 )
-[connection signal="board_clicked" from="Board" to="." method="_on_board_clicked"]
-
-[editable path="Board_Objects/RedLaser"]
-
-[editable path="Board_Objects/BlueLaser"]
+[node name="Label" type="Label" parent="."]
+margin_left = 40.0
+margin_top = 112.0
+margin_right = 86.0
+margin_bottom = 128.0
+text = "IP Add:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="hostButton" to="." method="_on_hostButton_pressed"]
+[connection signal="pressed" from="joinButton" to="." method="_on_joinButton_pressed"]

@@ -40,8 +40,8 @@ func get_reflectionVec(blast, normalAngleOffset):
 	return blast.velocity.bounce(normalVec)
 
 func _on_ClickBox_input_event(viewport, event, shape_idx):
-	if (Helper.filterLeftClick(event)):
-		toggle_selected()
+	if (Helper.filterLeftClick(event) and is_network_master()):
+		rpc("toggle_selected")
 
 func _on_RotationArrows_clicked_left():
 	animationPlayer.play("FullRotation")

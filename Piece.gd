@@ -14,8 +14,7 @@ export(COLOUR) var team_colour
 signal selected(self_node)
 signal deselected(self_node)
 
-func toggle_selected():
-	#print(selected)
+remotesync func toggle_selected():
 	selected = !selected
 	
 	if (selected):
@@ -29,7 +28,7 @@ func toggle_selected():
 			rotationArrows.enabled = selected
 		emit_signal("deselected", self)
 
-func set_selected(newSelected):
+remotesync func set_selected(newSelected):
 	if (newSelected):
 		$ClickBox/selectSprite.show()
 		if rotationArrows != null:
