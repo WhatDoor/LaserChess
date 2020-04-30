@@ -6,7 +6,7 @@
 [ext_resource path="res://EffectsResources/ClickBox.tscn" type="PackedScene" id=4]
 [ext_resource path="res://EffectsResources/RotationArrows.tscn" type="PackedScene" id=5]
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=1]
 resource_name = "FullRotation"
 length = 5.0
 tracks/0/type = "value"
@@ -22,7 +22,7 @@ tracks/0/keys = {
 "values": [ 0.0, 360.0 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=2]
 length = 0.9
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rotation_degrees")
@@ -37,7 +37,7 @@ tracks/0/keys = {
 "values": [ 0.0, 90.0 ]
 }
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 12.209, 0.899685 )
 
 [sub_resource type="RectangleShape2D" id=4]
@@ -59,22 +59,22 @@ scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Offset"]
-anims/FullRotation = SubResource( 5 )
-anims/RotateRight = SubResource( 6 )
+anims/FullRotation = SubResource( 1 )
+anims/RotateRight = SubResource( 2 )
 
 [node name="HitBoxBot" type="Area2D" parent="Offset"]
 
 [node name="HitBoxBot" type="CollisionShape2D" parent="Offset/HitBoxBot"]
 position = Vector2( -0.963847, 0.537765 )
 rotation = 0.785398
-shape = SubResource( 7 )
+shape = SubResource( 3 )
 
 [node name="HitBoxTop" type="Area2D" parent="Offset"]
 
 [node name="HitBoxTop" type="CollisionShape2D" parent="Offset/HitBoxTop"]
 position = Vector2( 0.31492, -0.770516 )
 rotation = 0.785398
-shape = SubResource( 7 )
+shape = SubResource( 3 )
 
 [node name="ClickBox" parent="." instance=ExtResource( 4 )]
 

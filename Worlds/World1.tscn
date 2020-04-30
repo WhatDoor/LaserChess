@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://OutsideBorderWalls.tscn" type="PackedScene" id=1]
+[ext_resource path="res://DeflectorResources/Deflector.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Worlds/World.gd" type="Script" id=5]
 [ext_resource path="res://BoardResources/Board.tscn" type="PackedScene" id=8]
 [ext_resource path="res://DefenderResources/Defender.tscn" type="PackedScene" id=9]
@@ -28,7 +29,7 @@ team_colour = 1
 orientation = 2
 
 [node name="Defender3" parent="Board_Objects/Pieces" instance=ExtResource( 9 )]
-position = Vector2( 24, 120 )
+position = Vector2( 25.6376, 117.726 )
 board_coords = "C1"
 team_colour = 2
 
@@ -38,7 +39,7 @@ board_coords = "D4"
 team_colour = 1
 
 [node name="King2" parent="Board_Objects/Pieces" instance=ExtResource( 12 )]
-position = Vector2( 96, 64 )
+position = Vector2( 97.3226, 62.2996 )
 board_coords = "G4"
 team_colour = 2
 
@@ -101,6 +102,11 @@ team_colour = 2
 position = Vector2( 95.7622, -9.18912 )
 board_coords = "G8"
 team_colour = 2
+
+[node name="Deflector" parent="Board_Objects/Pieces" instance=ExtResource( 2 )]
+position = Vector2( 80.0553, 61.8275 )
+board_coords = "F4"
+team_colour = 1
 
 [node name="RedLaser" parent="Board_Objects" instance=ExtResource( 11 )]
 position = Vector2( -8.37603, -7.81199 )
