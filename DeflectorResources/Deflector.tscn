@@ -1,0 +1,105 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://DeflectorResources/Deflector.gd" type="Script" id=1]
+[ext_resource path="res://DeflectorResources/RedDeflectorUpLeft.png" type="Texture" id=2]
+[ext_resource path="res://DeflectorResources/BlueDeflectorUpLeft.png" type="Texture" id=3]
+[ext_resource path="res://DeflectorResources/BlueDeflectorUpRight.png" type="Texture" id=4]
+[ext_resource path="res://DeflectorResources/RedDeflectorUpRight.png" type="Texture" id=5]
+[ext_resource path="res://EffectsResources/ClickBox.tscn" type="PackedScene" id=6]
+[ext_resource path="res://EffectsResources/SwapClickBox.tscn" type="PackedScene" id=7]
+[ext_resource path="res://EffectsResources/RotationArrows.tscn" type="PackedScene" id=8]
+[ext_resource path="res://EffectsResources/SwapClickBox.gd" type="Script" id=9]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 1.52844, 1.96557 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 7.91527, 14.3796 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 6.70077, 12.1362 )
+
+[node name="Deflector" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Offset" type="Node2D" parent="."]
+position = Vector2( -1.869, -2.84 )
+scale = Vector2( 0.3, 0.3 )
+
+[node name="UpLeft" type="Node2D" parent="Offset"]
+visible = false
+
+[node name="BlueDeflector" type="Sprite" parent="Offset/UpLeft"]
+texture = ExtResource( 3 )
+
+[node name="RedDeflector" type="Sprite" parent="Offset/UpLeft"]
+texture = ExtResource( 2 )
+
+[node name="UpRight" type="Node2D" parent="Offset"]
+
+[node name="BlueDeflector" type="Sprite" parent="Offset/UpRight"]
+position = Vector2( 5.98903, 0.153561 )
+texture = ExtResource( 4 )
+
+[node name="RedDeflector" type="Sprite" parent="Offset/UpRight"]
+position = Vector2( 11.9379, 0.153566 )
+texture = ExtResource( 5 )
+
+[node name="DownLeft" type="Node2D" parent="Offset"]
+visible = false
+
+[node name="BlueDeflector" type="Sprite" parent="Offset/DownLeft"]
+
+[node name="RedDeflector" type="Sprite" parent="Offset/DownLeft"]
+
+[node name="DownRight" type="Node2D" parent="Offset"]
+visible = false
+
+[node name="BlueDeflector" type="Sprite" parent="Offset/DownRight"]
+
+[node name="RedDeflector" type="Sprite" parent="Offset/DownRight"]
+
+[node name="DeathBox" type="Area2D" parent="Offset"]
+position = Vector2( 6.41646, -10.768 )
+
+[node name="deathBox" type="CollisionShape2D" parent="Offset/DeathBox"]
+position = Vector2( 0.0174681, -0.458954 )
+shape = SubResource( 1 )
+
+[node name="ClickBox" parent="." instance=ExtResource( 6 )]
+position = Vector2( -1.85832, -3.47116 )
+collision_mask = 16
+
+[node name="ClickBox" parent="ClickBox" index="0"]
+position = Vector2( 1.7812, -2.78947 )
+shape = SubResource( 2 )
+
+[node name="selectSprite" parent="ClickBox" index="1"]
+visible = false
+
+[node name="SwapClickBox" parent="." instance=ExtResource( 7 )]
+visible = false
+position = Vector2( 2.37494, -2.17702 )
+scale = Vector2( 1.2, 1.2 )
+script = ExtResource( 9 )
+
+[node name="SwappableSprite" parent="SwapClickBox" index="0"]
+position = Vector2( -1.61728, -3.14338 )
+scale = Vector2( 1, 1.02209 )
+
+[node name="SwapClickBox" parent="SwapClickBox" index="1"]
+position = Vector2( -2.10361, -3.98706 )
+shape = SubResource( 3 )
+
+[node name="RotationArrows" parent="." instance=ExtResource( 8 )]
+position = Vector2( -0.278557, 0.32583 )
+scale = Vector2( 0.7, 0.7 )
+[connection signal="area_entered" from="Offset/DeathBox" to="." method="_on_DeathBox_area_entered"]
+[connection signal="input_event" from="ClickBox" to="." method="_on_ClickBox_input_event"]
+[connection signal="mouse_entered" from="SwapClickBox" to="SwapClickBox" method="_on_SwapClickBox_mouse_entered"]
+[connection signal="mouse_exited" from="SwapClickBox" to="SwapClickBox" method="_on_SwapClickBox_mouse_exited"]
+[connection signal="swap_clicked" from="SwapClickBox" to="." method="_on_SwapClickBox_swap_clicked"]
+
+[editable path="ClickBox"]
+
+[editable path="SwapClickBox"]

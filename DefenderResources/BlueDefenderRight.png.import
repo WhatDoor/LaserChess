@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/redSwitch1.png-d1be40b76f2023b417c81d6e3cba3710.stex"
+path="res://.import/BlueDefenderRight.png-5e9d11e83db01159abffe0fd72d0ba8d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://JozSpritesUpload/redSwitch1.png"
-dest_files=[ "res://.import/redSwitch1.png-d1be40b76f2023b417c81d6e3cba3710.stex" ]
+source_file="res://DefenderResources/BlueDefenderRight.png"
+dest_files=[ "res://.import/BlueDefenderRight.png-5e9d11e83db01159abffe0fd72d0ba8d.stex" ]
 
 [params]
 

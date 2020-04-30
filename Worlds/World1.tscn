@@ -23,8 +23,8 @@ __meta__ = {
 [node name="Pieces" type="YSort" parent="Board_Objects"]
 
 [node name="Defender2" parent="Board_Objects/Pieces" instance=ExtResource( 9 )]
-position = Vector2( 8, 8 )
-board_coords = "B7"
+position = Vector2( 62.6452, 61.813 )
+board_coords = "E4"
 team_colour = 1
 orientation = 2
 
@@ -34,7 +34,7 @@ board_coords = "C1"
 team_colour = 2
 
 [node name="King" parent="Board_Objects/Pieces" instance=ExtResource( 12 )]
-position = Vector2( 40, 64 )
+position = Vector2( 44.722, 61.8536 )
 board_coords = "D4"
 team_colour = 1
 
@@ -94,7 +94,7 @@ board_coords = "I6"
 team_colour = 2
 
 [node name="Switch8" parent="Board_Objects/Pieces" instance=ExtResource( 10 )]
-position = Vector2( 96, 24 )
+position = Vector2( 96.2503, 24 )
 board_coords = "G6"
 team_colour = 2
 
@@ -104,7 +104,7 @@ board_coords = "G8"
 team_colour = 2
 
 [node name="Deflector" parent="Board_Objects/Pieces" instance=ExtResource( 2 )]
-position = Vector2( 80.0553, 61.8275 )
+position = Vector2( 80.4778, 61.8024 )
 board_coords = "F4"
 team_colour = 1
 
@@ -126,5 +126,7 @@ text = "FIRE"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Tween" type="Tween" parent="."]
 [connection signal="board_clicked" from="Board" to="." method="_on_board_clicked"]
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

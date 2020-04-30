@@ -87,8 +87,31 @@ remotesync func move_piece(piece_name, square_name):
 	var piece = $Board_Objects/Pieces.get_node(piece_name)
 	var square = board.get_square(square_name)
 	
-	piece.position = square.position
+	#piece.position = square.position
 	piece.board_coords = square.name
+	
+	var tween = get_node("Tween")
+	
+	if piece.get_type() == "KING":
+		tween.interpolate_property(piece, "position",
+			piece.position, square.position, 1,
+			Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+			
+	elif piece.get_type() == "DEFENDER":
+		tween.interpolate_property(piece, "position",
+				piece.position, square.position, .5,
+				Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
+				
+	else:
+		tween.interpolate_property(piece, "position",
+				piece.position, square.position, 1,
+				Tween.TRANS_ELASTIC, Tween.EASE_IN_OUT)
+		tween.interpolate_property(piece, "position",
+				square.position, piece.position, 1,
+				Tween.TRANS_BOUNCE, Tween.EASE_IN_OUT, 
+				1)
+
+	tween.start()
 
 func _on_piece_selected(piece):	
 	print(piece.name, " selected at ", piece.board_coords)

@@ -17,7 +17,7 @@ extents = Vector2( 0.261966, 3.88968 )
 extents = Vector2( 2.3944, 2.40876 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 21.2775, 37.8385 )
+extents = Vector2( 27.1296, 47.1633 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 21.277, 37.838 )
@@ -27,8 +27,8 @@ scale = Vector2( 0.3, 0.3 )
 script = ExtResource( 3 )
 
 [node name="Offset" type="Node2D" parent="."]
-position = Vector2( -2.515, -15.873 )
-scale = Vector2( 0.7, 0.8 )
+position = Vector2( -2.515, -15.157 )
+scale = Vector2( 0.9, 1 )
 
 [node name="Left" type="Node2D" parent="Offset"]
 visible = false
@@ -80,7 +80,7 @@ shape = SubResource( 2 )
 collision_mask = 16
 
 [node name="ClickBox" parent="ClickBox" index="0"]
-position = Vector2( -1.13153, -20.0108 )
+position = Vector2( -0.400558, -20.0108 )
 shape = SubResource( 3 )
 
 [node name="selectSprite" parent="ClickBox" index="1"]
