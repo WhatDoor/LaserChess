@@ -12,6 +12,8 @@ var currently_selected_piece = null
 var currently_selected_squares = null
 var currently_swappable_pieces = null
 
+var myLaser
+
 func _ready():	
 	#Connect signal handlers for each piece and place each piece in the correct position on the board
 	for piece in pieces:
@@ -38,43 +40,55 @@ func _ready():
 	#Set Owners of lasers
 	if get_tree().is_network_server():
 		$Board_Objects/RedLaser.set_network_master(get_tree().get_network_unique_id())
+		myLaser = $Board_Objects/RedLaser
+		
 		$Board_Objects/BlueLaser.set_network_master(Helper.opponent_id)
 	else:
 		$Board_Objects/RedLaser.set_network_master(Helper.opponent_id)
+		
 		$Board_Objects/BlueLaser.set_network_master(get_tree().get_network_unique_id())
+		myLaser = $Board_Objects/BlueLaser
+
+func _process(delta):
+	if Input.is_action_pressed("End_Turn"):
+		end_turn()
 
 func _on_swappable_piece_clicked(click_piece):
 	print("Swapping ", currently_selected_piece.name, " with ", click_piece.name)
+	
 	#Save the Switch's position and square
 	var currently_selected_piece_position = currently_selected_piece.position
 	var currently_selected_piece_square = currently_selected_piece.board_coords
 	
-	#Swap the Switch and piece's position
-	currently_selected_piece.position = click_piece.position
-	click_piece.position = currently_selected_piece_position
+	#Swap currently selected piece with click piece
+	rpc("move_piece", currently_selected_piece.name, click_piece.board_coords)
 	
-	#Swap the Switch and piece's square
-	currently_selected_piece.board_coords = click_piece.board_coords
-	click_piece.board_coords = currently_selected_piece_square
+	#Swap click piece with currently selected piece
+	rpc("move_piece", click_piece.name, currently_selected_piece_square)
 	
 	#Unselect/Highlight Switch and piece
 	_on_piece_deselected(currently_selected_piece)
 	click_piece.make_swappable(false)
 
 func _on_board_clicked(square, square_indexes):
-	rpc("handle_board_click", square.name, square_indexes)
+	handle_board_click(square, square_indexes)
 
-remotesync func handle_board_click(square_name, square_indexes):
+func handle_board_click(square, square_indexes):
 	#print(square.name, " clicked")
-	
-	var square = board.get_square(square_name) #Need to do this because passing objects directly over network is unsafe
 	
 	#If a piece has been selected and a highlighted square is chosen, then move the piece to that square
 	if currently_selected_piece != null and square_exists_in(currently_selected_squares, square):
 		print("moving ", currently_selected_piece.name, " to ", square.name)
-		currently_selected_piece.position = square.position
-		currently_selected_piece.board_coords = square.name
+		rpc("move_piece", currently_selected_piece.name, square.name)
 		_on_piece_deselected(currently_selected_piece)
+
+remotesync func move_piece(piece_name, square_name):
+	#Getting object from names because passing objects over network is unsafe
+	var piece = $Board_Objects/Pieces.get_node(piece_name)
+	var square = board.get_square(square_name)
+	
+	piece.position = square.position
+	piece.board_coords = square.name
 
 func _on_piece_selected(piece):	
 	print(piece.name, " selected at ", piece.board_coords)
@@ -230,3 +244,9 @@ func square_exists_in(square_list, square):
 		if s.name == square.name:
 			return true
 	return false
+	
+func _on_Button_pressed():
+	end_turn()
+
+func end_turn():
+	myLaser.rpc("fire_blast")

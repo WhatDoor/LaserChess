@@ -6,7 +6,7 @@
 [ext_resource path="res://EffectsResources/ClickBox.tscn" type="PackedScene" id=4]
 [ext_resource path="res://EffectsResources/RotationArrows.tscn" type="PackedScene" id=5]
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 resource_name = "FullRotation"
 length = 5.0
 tracks/0/type = "value"
@@ -22,8 +22,7 @@ tracks/0/keys = {
 "values": [ 0.0, 360.0 ]
 }
 
-[sub_resource type="Animation" id=1]
-resource_name = "RotateRight"
+[sub_resource type="Animation" id=6]
 length = 0.9
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rotation_degrees")
@@ -38,10 +37,10 @@ tracks/0/keys = {
 "values": [ 0.0, 90.0 ]
 }
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 12.209, 0.899685 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 8.58849, 8.95631 )
 
 [node name="Switch" type="Node2D"]
@@ -60,28 +59,28 @@ scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Offset"]
-anims/FullRotation = SubResource( 4 )
-anims/RotateRight = SubResource( 1 )
+anims/FullRotation = SubResource( 5 )
+anims/RotateRight = SubResource( 6 )
 
 [node name="HitBoxBot" type="Area2D" parent="Offset"]
 
 [node name="HitBoxBot" type="CollisionShape2D" parent="Offset/HitBoxBot"]
 position = Vector2( -0.963847, 0.537765 )
 rotation = 0.785398
-shape = SubResource( 2 )
+shape = SubResource( 7 )
 
 [node name="HitBoxTop" type="Area2D" parent="Offset"]
 
 [node name="HitBoxTop" type="CollisionShape2D" parent="Offset/HitBoxTop"]
 position = Vector2( 0.31492, -0.770516 )
 rotation = 0.785398
-shape = SubResource( 2 )
+shape = SubResource( 7 )
 
 [node name="ClickBox" parent="." instance=ExtResource( 4 )]
 
 [node name="ClickBox" parent="ClickBox" index="0"]
 position = Vector2( -0.118683, -0.213773 )
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
 [node name="selectSprite" parent="ClickBox" index="1"]
 visible = false
@@ -91,7 +90,5 @@ scale = Vector2( 0.55, 0.55 )
 [connection signal="area_entered" from="Offset/HitBoxBot" to="." method="_on_BotHitBox_area_entered"]
 [connection signal="area_entered" from="Offset/HitBoxTop" to="." method="_on_HitBoxTop_area_entered"]
 [connection signal="input_event" from="ClickBox" to="." method="_on_ClickBox_input_event"]
-[connection signal="clicked_left" from="RotationArrows" to="." method="_on_RotationArrows_clicked_left"]
-[connection signal="clicked_right" from="RotationArrows" to="." method="_on_RotationArrows_clicked_right"]
 
 [editable path="ClickBox"]

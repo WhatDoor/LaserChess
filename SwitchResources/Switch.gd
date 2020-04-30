@@ -7,7 +7,11 @@ var Blast = preload("res://Projectiles/Blast.tscn")
 var DISTANCE_OFFSET = 10 #offsets from the centre of the switch piece so colliding projectiles dont get stuck when collding
 
 func _ready():
-	rotationArrows = $RotationArrows #initalize rotation arrows
+	#initalize rotation arrows
+	rotationArrows = $RotationArrows 
+	rotationArrows.connect("clicked_left", self, "_on_RotationArrows_clicked_left")
+	rotationArrows.connect("clicked_right", self, "_on_RotationArrows_clicked_right")
+	
 	set_colour(team_colour)
 
 func set_colour(team_colour):
@@ -40,13 +44,5 @@ func get_reflectionVec(blast, normalAngleOffset):
 	return blast.velocity.bounce(normalVec)
 
 func _on_ClickBox_input_event(viewport, event, shape_idx):
-	if (Helper.filterLeftClick(event) and is_network_master()):
-		rpc("toggle_selected")
-
-func _on_RotationArrows_clicked_left():
-	animationPlayer.play("FullRotation")
-	print(self.name, " rotating right. New Angle is ", $Offset.rotation_degrees)
-
-func _on_RotationArrows_clicked_right():
-	$Offset.rotation_degrees -= 90
-	print(self.name, " rotating left. New Angle is ", $Offset.rotation_degrees)
+	if (Helper.filterLeftClick(event)):
+		toggle_selected()
