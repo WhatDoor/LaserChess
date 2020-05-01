@@ -1,10 +1,10 @@
 extends "res://Piece.gd"
 
 enum ORIENTATION_TYPES {
-	FRONT,
-	RIGHT,
-	BACK,
-	LEFT
+	FRONT = 0,
+	LEFT = 1,
+	BACK = 2,
+	RIGHT = 3
 }
 
 export(ORIENTATION_TYPES) var orientation
@@ -64,10 +64,14 @@ func get_type():
 	
 remotesync func rotate_right():
 	orientation = orientation+1
+	if orientation == 4:
+		orientation = 0
 	set_orientation(orientation)
 
 remotesync func rotate_left():
 	orientation = orientation-1
+	if orientation == -1:
+		orientation = 3
 	set_orientation(orientation)
 
 func _on_ClickBox_input_event(viewport, event, shape_idx):
