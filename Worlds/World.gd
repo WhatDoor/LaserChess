@@ -155,11 +155,14 @@ func _on_board_clicked(square, square_indexes):
 
 func _on_Button_pressed():
 	end_turn()
+	
+func _on_blast_destroyed():
+	rpc("toggle_turn")
 
 func end_turn():
 	if Helper.myTurn:
-		rpc("toggle_turn")
 		myLaser.rpc("fire_blast")
+		myLaser.can_fire = false
 
 remotesync func toggle_turn():
 	Helper.myTurn = !Helper.myTurn
@@ -169,6 +172,7 @@ func set_turn_text(my_turn):
 	if my_turn:
 		turnText.set_text("Your Turn")
 		Helper.pieceMovedThisTurn = false
+		myLaser.can_fire = true
 	else:
 		turnText.set_text("Opponent's Turn")
 

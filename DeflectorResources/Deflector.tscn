@@ -10,25 +10,25 @@
 [ext_resource path="res://EffectsResources/RotationArrows.tscn" type="PackedScene" id=8]
 [ext_resource path="res://EffectsResources/SwapClickBox.gd" type="Script" id=9]
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 1.1798, 12.5234 )
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 12.1567, 1.82773 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 1.46686, 11.2482 )
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 1.26504, 9.84557 )
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 1.52844, 1.96557 )
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 7.91527, 14.3796 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 6.70077, 12.1362 )
 
 [node name="Deflector" type="Node2D"]
@@ -54,7 +54,7 @@ collision_mask = 0
 
 [node name="ReflectBox" type="CollisionShape2D" parent="Offset/UpLeft/ReflectBox"]
 position = Vector2( 1.32388, 1.00614 )
-shape = SubResource( 4 )
+shape = SubResource( 1 )
 disabled = true
 
 [node name="UpRight" type="Node2D" parent="Offset"]
@@ -78,7 +78,7 @@ collision_mask = 0
 [node name="ReflectBox" type="CollisionShape2D" parent="Offset/UpRight/ReflectBox"]
 position = Vector2( -0.23799, -1.59551 )
 scale = Vector2( 0.3, 0.3 )
-shape = SubResource( 5 )
+shape = SubResource( 2 )
 disabled = true
 
 [node name="DownLeft" type="Node2D" parent="Offset"]
@@ -96,7 +96,7 @@ collision_mask = 0
 
 [node name="ReflectBox" type="CollisionShape2D" parent="Offset/DownLeft/ReflectBox"]
 position = Vector2( -14.4077, 13.8011 )
-shape = SubResource( 6 )
+shape = SubResource( 3 )
 disabled = true
 
 [node name="DownRight" type="Node2D" parent="Offset"]
@@ -114,12 +114,12 @@ collision_mask = 0
 
 [node name="ReflectBox" type="CollisionShape2D" parent="Offset/DownRight/ReflectBox"]
 position = Vector2( 14.4835, 15.0902 )
-shape = SubResource( 7 )
+shape = SubResource( 4 )
 disabled = true
 
 [node name="ReflectBox2" type="CollisionShape2D" parent="Offset/DownRight/ReflectBox"]
 position = Vector2( 14.4835, 15.0902 )
-shape = SubResource( 7 )
+shape = SubResource( 4 )
 disabled = true
 
 [node name="DeathBox" type="Area2D" parent="Offset"]
@@ -129,7 +129,7 @@ collision_mask = 0
 
 [node name="deathBox" type="CollisionShape2D" parent="Offset/DeathBox"]
 position = Vector2( 0.0174681, 20.0185 )
-shape = SubResource( 1 )
+shape = SubResource( 5 )
 
 [node name="ClickBox" parent="." instance=ExtResource( 6 )]
 position = Vector2( -1.85832, -3.47116 )
@@ -137,7 +137,7 @@ collision_mask = 16
 
 [node name="ClickBox" parent="ClickBox" index="0"]
 position = Vector2( 1.7812, -2.82164 )
-shape = SubResource( 2 )
+shape = SubResource( 6 )
 
 [node name="selectSprite" parent="ClickBox" index="1"]
 visible = false
@@ -154,7 +154,7 @@ scale = Vector2( 1, 1.02209 )
 
 [node name="SwapClickBox" parent="SwapClickBox" index="1"]
 position = Vector2( -2.10361, -3.98706 )
-shape = SubResource( 3 )
+shape = SubResource( 7 )
 
 [node name="RotationArrows" parent="." instance=ExtResource( 8 )]
 position = Vector2( -0.278557, 0.32583 )

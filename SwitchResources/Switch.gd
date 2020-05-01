@@ -1,5 +1,11 @@
 extends "res://Piece.gd"
 
+enum ROTATION_TYPE {
+	normal,
+	rotated
+}
+export(ROTATION_TYPE) var rotation_type = ROTATION_TYPE.normal
+
 onready var tween = $Tween
 onready var offset = $Offset
 
@@ -14,6 +20,10 @@ func _ready():
 	rotationArrows.connect("clicked_right", self, "_on_RotationArrows_clicked_right")
 	
 	set_colour(team_colour)
+	
+	#Set initial rotation
+	if rotation_type == ROTATION_TYPE.rotated:
+		offset.rotation_degrees = 90
 
 func set_colour(team_colour):
 	match team_colour:

@@ -15,8 +15,7 @@ enum team_colours {
 export(DIRECTIONS) var state = DIRECTIONS.RIGHT
 export(team_colours) var team_colour
 
-export var fire_rate = 1
-var can_fire = true
+var can_fire = false
 
 var CENTRE_OFFSET = 12
 var VERTICAL_OFFSET = Vector2(0,-6.7)
@@ -64,11 +63,8 @@ remotesync func fire_blast():
 		
 		blast.fire(Vector2(-sin(rot), cos(rot)))
 		
+		blast.connect("blast_destroyed", get_tree().get_root().get_node("World"), "_on_blast_destroyed")
 		get_parent().add_child(blast)
-		
-		can_fire = false
-		yield(get_tree().create_timer(fire_rate), "timeout")
-		can_fire = true
 
 func _on_ClickBox_input_event(viewport, event, shape_idx):
 	if (Helper.filterLeftClickAndTurnCheck(event) and is_network_master()):
