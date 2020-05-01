@@ -8,7 +8,7 @@ func _player_connected(id):
 	
 	#Game On!
 	Helper.opponent_id = id
-	var world = preload("res://Worlds/World1.tscn").instance()
+	var world = preload("res://Worlds/Ace.tscn").instance()
 	get_tree().get_root().add_child(world)
 	hide()
 

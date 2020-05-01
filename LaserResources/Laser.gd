@@ -1,6 +1,6 @@
 extends Node2D
 
-enum {
+enum DIRECTIONS {
 	DOWN,
 	RIGHT,
 	LEFT,
@@ -12,12 +12,12 @@ enum team_colours {
 	BLUE
 }
 
+export(DIRECTIONS) var state = DIRECTIONS.RIGHT
 export(team_colours) var team_colour
 
 export var fire_rate = 1
 var can_fire = true
 
-var state
 var CENTRE_OFFSET = 12
 var VERTICAL_OFFSET = Vector2(0,-6.7)
 
@@ -28,25 +28,23 @@ onready var animationPlayer = $AnimationPlayer
 func _ready():
 	if team_colour == team_colours.RED:
 		$BlueLaserSprite.hide()
-		state = RIGHT
 	elif team_colour == team_colours.BLUE:
-		state = LEFT
 		$RedLaserSprite.hide()
 
 remotesync func animate():
 	match state:
-		DOWN:
+		DIRECTIONS.DOWN:
 			animationPlayer.play("SwingToRightFromDown")
-			state = RIGHT
-		RIGHT:
+			state = DIRECTIONS.RIGHT
+		DIRECTIONS.RIGHT:
 			animationPlayer.play("SwingToDownFromRight")
-			state = DOWN
-		LEFT:
+			state = DIRECTIONS.DOWN
+		DIRECTIONS.LEFT:
 			animationPlayer.play("SwingToUpFromLeft")
-			state = UP
-		UP:
+			state = DIRECTIONS.UP
+		DIRECTIONS.UP:
 			animationPlayer.play("SwingToLeftFromUp")
-			state = LEFT
+			state = DIRECTIONS.LEFT
 			
 remotesync func fire_blast():
 	if can_fire:
