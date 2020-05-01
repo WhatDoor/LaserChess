@@ -103,8 +103,8 @@ board_coords = "G8"
 team_colour = 2
 
 [node name="Deflector" parent="Board_Objects/Pieces" instance=ExtResource( 2 )]
-position = Vector2( 80.4778, 61.8024 )
-board_coords = "F4"
+position = Vector2( 26.6908, -9.1964 )
+board_coords = "C8"
 team_colour = 1
 
 [node name="RedLaser" parent="Board_Objects" instance=ExtResource( 11 )]

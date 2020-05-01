@@ -80,7 +80,6 @@ disabled = true
 
 [node name="Back" type="Node2D" parent="Offset"]
 visible = false
-scale = Vector2( 1, 1 )
 
 [node name="RedDefender" type="Sprite" parent="Offset/Back"]
 position = Vector2( 2.43659, -6.09144 )
@@ -99,7 +98,6 @@ disabled = true
 
 [node name="Right" type="Node2D" parent="Offset"]
 visible = false
-scale = Vector2( 1, 1 )
 
 [node name="RedDefender" type="Sprite" parent="Offset/Right"]
 position = Vector2( 2.43657, -0.487315 )

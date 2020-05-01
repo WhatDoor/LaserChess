@@ -75,3 +75,4 @@ remotesync func fire_blast():
 func _on_ClickBox_input_event(viewport, event, shape_idx):
 	if (Helper.filterLeftClickAndTurnCheck(event) and is_network_master()):
 		rpc("animate")
+		Helper.pieceMovedThisTurn = true

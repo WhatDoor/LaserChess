@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://DeflectorResources/Deflector.gd" type="Script" id=1]
 [ext_resource path="res://DeflectorResources/RedDeflectorUpLeft.png" type="Texture" id=2]
@@ -9,6 +9,18 @@
 [ext_resource path="res://EffectsResources/SwapClickBox.tscn" type="PackedScene" id=7]
 [ext_resource path="res://EffectsResources/RotationArrows.tscn" type="PackedScene" id=8]
 [ext_resource path="res://EffectsResources/SwapClickBox.gd" type="Script" id=9]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 1.1798, 12.5234 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 12.1567, 1.82773 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 1.46686, 11.2482 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 1.26504, 9.84557 )
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 1.52844, 1.96557 )
@@ -27,7 +39,6 @@ position = Vector2( -1.869, -2.84 )
 scale = Vector2( 0.3, 0.3 )
 
 [node name="UpLeft" type="Node2D" parent="Offset"]
-visible = false
 
 [node name="BlueDeflector" type="Sprite" parent="Offset/UpLeft"]
 texture = ExtResource( 3 )
@@ -35,7 +46,19 @@ texture = ExtResource( 3 )
 [node name="RedDeflector" type="Sprite" parent="Offset/UpLeft"]
 texture = ExtResource( 2 )
 
+[node name="ReflectBox" type="Area2D" parent="Offset/UpLeft"]
+position = Vector2( 3.69175, 4.14492 )
+rotation = 0.785398
+collision_layer = 2
+collision_mask = 0
+
+[node name="ReflectBox" type="CollisionShape2D" parent="Offset/UpLeft/ReflectBox"]
+position = Vector2( 1.32388, 1.00614 )
+shape = SubResource( 4 )
+disabled = true
+
 [node name="UpRight" type="Node2D" parent="Offset"]
+visible = false
 
 [node name="BlueDeflector" type="Sprite" parent="Offset/UpRight"]
 position = Vector2( 5.98903, 0.153561 )
@@ -45,12 +68,36 @@ texture = ExtResource( 4 )
 position = Vector2( 11.9379, 0.153566 )
 texture = ExtResource( 5 )
 
+[node name="ReflectBox" type="Area2D" parent="Offset/UpRight"]
+position = Vector2( 6.23, 9.46667 )
+rotation = 0.785398
+scale = Vector2( 3.33333, 3.33333 )
+collision_layer = 2
+collision_mask = 0
+
+[node name="ReflectBox" type="CollisionShape2D" parent="Offset/UpRight/ReflectBox"]
+position = Vector2( -0.23799, -1.59551 )
+scale = Vector2( 0.3, 0.3 )
+shape = SubResource( 5 )
+disabled = true
+
 [node name="DownLeft" type="Node2D" parent="Offset"]
 visible = false
 
 [node name="BlueDeflector" type="Sprite" parent="Offset/DownLeft"]
 
 [node name="RedDeflector" type="Sprite" parent="Offset/DownLeft"]
+
+[node name="ReflectBox" type="Area2D" parent="Offset/DownLeft"]
+position = Vector2( 3.7985, -7.98236 )
+rotation = -0.785398
+collision_layer = 2
+collision_mask = 0
+
+[node name="ReflectBox" type="CollisionShape2D" parent="Offset/DownLeft/ReflectBox"]
+position = Vector2( -14.4077, 13.8011 )
+shape = SubResource( 6 )
+disabled = true
 
 [node name="DownRight" type="Node2D" parent="Offset"]
 visible = false
@@ -59,11 +106,29 @@ visible = false
 
 [node name="RedDeflector" type="Sprite" parent="Offset/DownRight"]
 
+[node name="ReflectBox" type="Area2D" parent="Offset/DownRight"]
+position = Vector2( 9.30208, -8.27728 )
+rotation = 0.785398
+collision_layer = 2
+collision_mask = 0
+
+[node name="ReflectBox" type="CollisionShape2D" parent="Offset/DownRight/ReflectBox"]
+position = Vector2( 14.4835, 15.0902 )
+shape = SubResource( 7 )
+disabled = true
+
+[node name="ReflectBox2" type="CollisionShape2D" parent="Offset/DownRight/ReflectBox"]
+position = Vector2( 14.4835, 15.0902 )
+shape = SubResource( 7 )
+disabled = true
+
 [node name="DeathBox" type="Area2D" parent="Offset"]
 position = Vector2( 6.41646, -10.768 )
+collision_layer = 2
+collision_mask = 0
 
 [node name="deathBox" type="CollisionShape2D" parent="Offset/DeathBox"]
-position = Vector2( 0.0174681, -0.458954 )
+position = Vector2( 0.0174681, 20.0185 )
 shape = SubResource( 1 )
 
 [node name="ClickBox" parent="." instance=ExtResource( 6 )]
@@ -71,7 +136,7 @@ position = Vector2( -1.85832, -3.47116 )
 collision_mask = 16
 
 [node name="ClickBox" parent="ClickBox" index="0"]
-position = Vector2( 1.7812, -2.78947 )
+position = Vector2( 1.7812, -2.82164 )
 shape = SubResource( 2 )
 
 [node name="selectSprite" parent="ClickBox" index="1"]
@@ -94,6 +159,10 @@ shape = SubResource( 3 )
 [node name="RotationArrows" parent="." instance=ExtResource( 8 )]
 position = Vector2( -0.278557, 0.32583 )
 scale = Vector2( 0.7, 0.7 )
+[connection signal="area_entered" from="Offset/UpLeft/ReflectBox" to="." method="_on_ReflectBox_area_entered"]
+[connection signal="area_entered" from="Offset/UpRight/ReflectBox" to="." method="_on_ReflectBox_area_entered"]
+[connection signal="area_entered" from="Offset/DownLeft/ReflectBox" to="." method="_on_ReflectBox_area_entered"]
+[connection signal="area_entered" from="Offset/DownRight/ReflectBox" to="." method="_on_ReflectBox_area_entered"]
 [connection signal="area_entered" from="Offset/DeathBox" to="." method="_on_DeathBox_area_entered"]
 [connection signal="input_event" from="ClickBox" to="." method="_on_ClickBox_input_event"]
 [connection signal="mouse_entered" from="SwapClickBox" to="SwapClickBox" method="_on_SwapClickBox_mouse_entered"]
