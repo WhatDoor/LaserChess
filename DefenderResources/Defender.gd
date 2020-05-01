@@ -26,7 +26,6 @@ func _ready():
 	set_colour(team_colour)
 	set_orientation(orientation)
 	
-
 func set_colour(team_colour):
 	match team_colour:
 		COLOUR.RED:

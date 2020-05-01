@@ -64,7 +64,7 @@ func _on_swappable_piece_clicked(click_piece):
 	rpc("move_piece", currently_selected_piece.name, click_piece.board_coords)
 	
 	#Swap click piece with currently selected piece
-	rpc("move_piece", click_piece.name, currently_selected_piece_square)
+	rpc("swap_piece", click_piece.name, currently_selected_piece_square)
 	
 	#Unselect/Highlight Switch and piece
 	_on_piece_deselected(currently_selected_piece)
@@ -92,26 +92,70 @@ remotesync func move_piece(piece_name, square_name):
 	
 	var tween = get_node("Tween")
 	
+	#Slow moving on the ground
 	if piece.get_type() == "KING":
 		tween.interpolate_property(piece, "position",
 			piece.position, square.position, 1,
 			Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-			
-	elif piece.get_type() == "DEFENDER":
+	
+	#Fast moving on the ground
+	elif piece.get_type() == "DEFLECTOR":
 		tween.interpolate_property(piece, "position",
-				piece.position, square.position, .5,
-				Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
-				
+				piece.position, square.position, .7,
+				Tween.TRANS_ELASTIC, Tween.EASE_IN_OUT)
+	
+	#Float up and land with a smash
+	elif piece.get_type() == "DEFENDER":
+		var point_above_piece = Vector2(piece.position.x, piece.position.y - 9.5)
+		var point_above_piece2 = Vector2(piece.position.x, piece.position.y - 10)
+		var point_above_square = Vector2(square.position.x, square.position.y - 10)
+		
+		var animTime_1 = 1
+		var animTime_2 = .5
+		var animTime_3 = 1
+		var animTime_4 = .15
+		
+		var DELAY_1 = animTime_1
+		var DELAY_2 = DELAY_1 + animTime_2
+		var DELAY_3 = DELAY_2 + animTime_3 + .2
+		
+		tween.interpolate_property(piece, "position",
+				piece.position, point_above_piece, animTime_1,
+				Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
+		tween.interpolate_property(piece, "position",
+				point_above_piece, point_above_piece2, animTime_2,
+				Tween.TRANS_ELASTIC, Tween.EASE_OUT,
+				DELAY_1)
+		tween.interpolate_property(piece, "position",
+				point_above_piece2, point_above_square, animTime_3,
+				Tween.TRANS_QUAD, Tween.EASE_IN_OUT, 
+				DELAY_2)
+		tween.interpolate_property(piece, "position",
+				point_above_square, square.position, animTime_4,
+				Tween.TRANS_QUAD, Tween.EASE_IN,
+				DELAY_3)
+	
+	#Warps
+	elif piece.get_type() == "SWITCH":
+		piece.position = square.position
+	
 	else:
 		tween.interpolate_property(piece, "position",
 				piece.position, square.position, 1,
 				Tween.TRANS_ELASTIC, Tween.EASE_IN_OUT)
-		tween.interpolate_property(piece, "position",
-				square.position, piece.position, 1,
-				Tween.TRANS_BOUNCE, Tween.EASE_IN_OUT, 
-				1)
 
 	tween.start()
+
+remotesync func swap_piece(piece_name, square_name):
+	#Getting object from names because passing objects over network is unsafe
+	var piece = $Board_Objects/Pieces.get_node(piece_name)
+	var square = board.get_square(square_name)
+	
+	#piece.position = square.position
+	piece.board_coords = square.name
+	
+	#Will eventually replace this with warping animation
+	piece.position = square.position
 
 func _on_piece_selected(piece):	
 	print(piece.name, " selected at ", piece.board_coords)
