@@ -17,7 +17,7 @@ func get_type():
 	return "KING"
 	
 func _on_ClickBox_input_event(viewport, event, shape_idx):
-	if (Helper.filterLeftClick(event)):
+	if (Helper.filterLeftClickAndTurnCheck(event)):
 		toggle_selected()
 
 func _on_HitBox_area_entered(blast):

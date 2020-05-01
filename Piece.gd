@@ -14,6 +14,9 @@ export(COLOUR) var team_colour
 signal selected(self_node)
 signal deselected(self_node)
 
+signal piece_rotating_right(self_node)
+signal piece_rotating_left(self_node)
+
 func toggle_selected():
 	if is_network_master():
 		selected = !selected
@@ -42,13 +45,13 @@ func set_selected(newSelected):
 	selected = newSelected
 	
 remotesync func rotate_right():
-	print(self.name, " rotating right")
+	print(self.name, " rotating right - UNIMPLEMENTED ROTATION - Piece should override this function")
 
 remotesync func rotate_left():
-	print(self.name, " rotating left")
+	print(self.name, " rotating left - UNIMPLEMENTED ROTATION - Piece should override this function")
 
 func _on_RotationArrows_clicked_left():
-	rpc("rotate_right")
+	emit_signal("piece_rotating_right", self)
 
 func _on_RotationArrows_clicked_right():
-	rpc("rotate_left")
+	emit_signal("piece_rotating_left", self)

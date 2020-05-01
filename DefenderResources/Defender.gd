@@ -2,9 +2,9 @@ extends "res://Piece.gd"
 
 enum ORIENTATION_TYPES {
 	FRONT,
+	RIGHT,
 	BACK,
-	LEFT,
-	RIGHT
+	LEFT
 }
 
 export(ORIENTATION_TYPES) var orientation
@@ -12,15 +12,13 @@ export(ORIENTATION_TYPES) var orientation
 signal swap_clicked(self_node)
 
 onready var swapClickBox = $SwapClickBox
+onready var orientationNode = $Offset/Front
 
 func _ready():
 	#initalize rotation arrows
 	rotationArrows = $RotationArrows 
 	rotationArrows.connect("clicked_left", self, "_on_RotationArrows_clicked_left")
 	rotationArrows.connect("clicked_right", self, "_on_RotationArrows_clicked_right")
-	
-	#Hide the starting orientation which is used for game dev
-	$Offset/Front.hide() 
 	
 	#Set colour and starting orientation
 	set_colour(team_colour)
@@ -29,14 +27,20 @@ func _ready():
 func set_colour(team_colour):
 	match team_colour:
 		COLOUR.RED:
-			$Offset/Left/LeftBlueDefender.hide()
-			$Offset/Front/FrontBlueDefender.hide()
+			$Offset/Left/BlueDefender.hide()
+			$Offset/Front/BlueDefender.hide()
+			$Offset/Right/BlueDefender.hide()
+			$Offset/Back/BlueDefender.hide()
 		COLOUR.BLUE:
-			$Offset/Left/LeftRedDefender.hide()
-			$Offset/Front/FrontRedDefender.hide()
+			$Offset/Left/RedDefender.hide()
+			$Offset/Front/RedDefender.hide()
+			$Offset/Right/RedDefender.hide()
+			$Offset/Back/RedDefender.hide()
 
 func set_orientation(orientation):	
-	var orientationNode
+	#Hide and disable current orientation node
+	orientationNode.hide()
+	orientationNode.get_node("DefendBox/DefendBox").disabled = true
 		
 	match orientation:
 		ORIENTATION_TYPES.FRONT:
@@ -44,10 +48,11 @@ func set_orientation(orientation):
 		ORIENTATION_TYPES.LEFT:
 			orientationNode = $Offset/Left
 		ORIENTATION_TYPES.RIGHT:
-			pass
+			orientationNode = $Offset/Right
 		ORIENTATION_TYPES.BACK:
-			pass
+			orientationNode = $Offset/Back
 	
+	#Show and enable new orientation node
 	orientationNode.show()
 	orientationNode.get_node("DefendBox/DefendBox").disabled = false
 
@@ -56,9 +61,17 @@ func make_swappable(swappable):
 
 func get_type():
 	return "DEFENDER"
+	
+remotesync func rotate_right():
+	orientation = orientation+1
+	set_orientation(orientation)
+
+remotesync func rotate_left():
+	orientation = orientation-1
+	set_orientation(orientation)
 
 func _on_ClickBox_input_event(viewport, event, shape_idx):
-	if (Helper.filterLeftClick(event)):
+	if (Helper.filterLeftClickAndTurnCheck(event)):
 		toggle_selected()
 
 func _on_DefendBox_area_entered(blast):

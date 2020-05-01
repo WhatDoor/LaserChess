@@ -56,7 +56,7 @@ remotesync func fire_blast():
 		blast.position = get_position()
 		#print("this position is ", get_global_position())
 		#print("fire point position is ", $FirePoint.get_global_position())		
-		print(name, " ", rotation_degrees)
+		#print(name, " ", rotation_degrees)
 		
 		var rot
 		if team_colour == team_colours.RED:
@@ -73,5 +73,5 @@ remotesync func fire_blast():
 		can_fire = true
 
 func _on_ClickBox_input_event(viewport, event, shape_idx):
-	if (Helper.filterLeftClick(event) and is_network_master()):
+	if (Helper.filterLeftClickAndTurnCheck(event) and is_network_master()):
 		rpc("animate")

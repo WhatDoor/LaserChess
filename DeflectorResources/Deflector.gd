@@ -36,5 +36,5 @@ func _on_DeathBox_area_entered(blast):
 	queue_free()
 
 func _on_ClickBox_input_event(viewport, event, shape_idx):
-	if (Helper.filterLeftClick(event)):
+	if (Helper.filterLeftClickAndTurnCheck(event)):
 		toggle_selected()

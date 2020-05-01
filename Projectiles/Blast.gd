@@ -7,7 +7,7 @@ func fire(direction):
 	velocity = direction
 	$Sprite.position.y = get_sprite_ground_offset(velocity)
 	rotation_degrees = get_reflection_rotation(direction)
-	print(rotation_degrees)
+	#print(rotation_degrees)
 	
 func get_sprite_ground_offset(direction):
 	#Dot Product to get angle between direction and X axis, result should be between 0 (perpendicular) and 1 (parallel)
@@ -25,25 +25,25 @@ func get_reflection_rotation(direction):
 	x = round(x)
 	y = round(y)
 	
-	print("finding rotation angle for ", x,",",y)
+	#print("finding rotation angle for ", x,",",y)
 	
 	if x <= 0 and y <= 0: #Both are negative
-		print("both negative")
+		#print("both negative")
 		return round(rad2deg(-acos(x)))
 			
 	elif y <= 0: #y is negative
-		print("negative y")
+		#print("negative y")
 		return round(rad2deg(asin(y)))
 		
 	elif x >= 0 and y >= 0: #both are positive
-		print("both positive")
+		#print("both positive")
 		return round(rad2deg(acos(x)))
 		
 	elif x <= 0: #x is negative
-		print("negative x")
+		#print("negative x")
 		return round(rad2deg(acos(x)))
 	else:
-		print("BAD BAD")
+		#print("BAD BAD")
 		return 0
 
 func _process(delta):

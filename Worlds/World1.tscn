@@ -26,10 +26,9 @@ __meta__ = {
 position = Vector2( 62.6452, 61.813 )
 board_coords = "E4"
 team_colour = 1
-orientation = 2
 
 [node name="Defender3" parent="Board_Objects/Pieces" instance=ExtResource( 9 )]
-position = Vector2( 25.6376, 117.726 )
+position = Vector2( 25.945, 117.726 )
 board_coords = "C1"
 team_colour = 2
 
@@ -128,5 +127,15 @@ __meta__ = {
 }
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="TurnText" type="RichTextLabel" parent="."]
+margin_left = 174.0
+margin_top = -20.0
+margin_right = 263.0
+margin_bottom = 15.0
+text = "NOT SET"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="board_clicked" from="Board" to="." method="_on_board_clicked"]
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

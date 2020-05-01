@@ -1,6 +1,7 @@
 extends "res://Piece.gd"
 
-onready var animationPlayer = $Offset/AnimationPlayer
+onready var tween = $Tween
+onready var offset = $Offset
 
 var Blast = preload("res://Projectiles/Blast.tscn")
 
@@ -24,6 +25,18 @@ func set_colour(team_colour):
 func get_type():
 	return "SWITCH"
 
+remotesync func rotate_right():
+	tween.interpolate_property(offset, "rotation_degrees",
+				offset.rotation_degrees, offset.rotation_degrees+90, 1,
+				Tween.TRANS_QUAD, Tween.EASE_IN)
+	tween.start()
+
+remotesync func rotate_left():
+	tween.interpolate_property(offset, "rotation_degrees",
+				offset.rotation_degrees, offset.rotation_degrees-90, 1,
+				Tween.TRANS_QUAD, Tween.EASE_IN)
+	tween.start()
+
 func _on_BotHitBox_area_entered(blast):
 	var normalAngleOffset = 135
 	var reflectionVec = get_reflectionVec(blast, normalAngleOffset)
@@ -44,5 +57,5 @@ func get_reflectionVec(blast, normalAngleOffset):
 	return blast.velocity.bounce(normalVec)
 
 func _on_ClickBox_input_event(viewport, event, shape_idx):
-	if (Helper.filterLeftClick(event)):
+	if (Helper.filterLeftClickAndTurnCheck(event)):
 		toggle_selected()

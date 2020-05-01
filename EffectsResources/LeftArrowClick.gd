@@ -9,7 +9,7 @@ func _ready():
 	set_process_unhandled_input(true)
 
 func _unhandled_input(event):
-	if Helper.filterLeftClick(event) and mouse_over:
+	if Helper.filterLeftClickAndTurnCheck(event) and mouse_over:
 		get_tree().set_input_as_handled()
 		emit_signal("clicked")
 

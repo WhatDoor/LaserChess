@@ -26,7 +26,7 @@ func set_enabled(enabled):
 		self.monitorable = false
 
 func _unhandled_input(event):
-	if Helper.filterLeftClick(event) and mouse_over:
+	if Helper.filterLeftClickAndTurnCheck(event) and mouse_over:
 		get_tree().set_input_as_handled()
 		emit_signal("swap_clicked")
 

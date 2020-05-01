@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://DefenderResources/blueDefenderLeft.png" type="Texture" id=1]
 [ext_resource path="res://DefenderResources/redDefenderLeft.png" type="Texture" id=2]
@@ -9,9 +9,19 @@
 [ext_resource path="res://EffectsResources/RotationArrows.tscn" type="PackedScene" id=7]
 [ext_resource path="res://EffectsResources/SwapClickBox.tscn" type="PackedScene" id=8]
 [ext_resource path="res://EffectsResources/SwapClickBox.gd" type="Script" id=9]
+[ext_resource path="res://DefenderResources/RedDefenderBack.png" type="Texture" id=10]
+[ext_resource path="res://DefenderResources/BlueDefenderBack.png" type="Texture" id=11]
+[ext_resource path="res://DefenderResources/BlueDefenderRight.png" type="Texture" id=12]
+[ext_resource path="res://DefenderResources/RedDefenderRight.png" type="Texture" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 0.261966, 3.88968 )
+extents = Vector2( 0.60869, 3.88968 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 5.62313, 0.852881 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 1.10374, 4.84429 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 2.3944, 2.40876 )
@@ -33,10 +43,10 @@ scale = Vector2( 0.9, 1 )
 [node name="Left" type="Node2D" parent="Offset"]
 visible = false
 
-[node name="LeftRedDefender" type="Sprite" parent="Offset/Left"]
+[node name="RedDefender" type="Sprite" parent="Offset/Left"]
 texture = ExtResource( 2 )
 
-[node name="LeftBlueDefender" type="Sprite" parent="Offset/Left"]
+[node name="BlueDefender" type="Sprite" parent="Offset/Left"]
 texture = ExtResource( 1 )
 
 [node name="DefendBox" type="Area2D" parent="Offset/Left"]
@@ -44,17 +54,17 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="DefendBox" type="CollisionShape2D" parent="Offset/Left/DefendBox"]
-position = Vector2( -26.4493, 20.6012 )
+position = Vector2( -25.587, 19.8942 )
 shape = SubResource( 1 )
 disabled = true
 
 [node name="Front" type="Node2D" parent="Offset"]
 
-[node name="FrontRedDefender" type="Sprite" parent="Offset/Front"]
+[node name="RedDefender" type="Sprite" parent="Offset/Front"]
 position = Vector2( 2.263, -5.973 )
 texture = ExtResource( 5 )
 
-[node name="FrontBlueDefender" type="Sprite" parent="Offset/Front"]
+[node name="BlueDefender" type="Sprite" parent="Offset/Front"]
 position = Vector2( 2.263, -5.972 )
 texture = ExtResource( 4 )
 
@@ -66,6 +76,44 @@ collision_mask = 0
 position = Vector2( 3.50604, 23.4027 )
 rotation = 1.5708
 shape = SubResource( 1 )
+disabled = true
+
+[node name="Back" type="Node2D" parent="Offset"]
+visible = false
+scale = Vector2( 1, 1 )
+
+[node name="RedDefender" type="Sprite" parent="Offset/Back"]
+position = Vector2( 2.43659, -6.09144 )
+texture = ExtResource( 10 )
+
+[node name="BlueDefender" type="Sprite" parent="Offset/Back"]
+position = Vector2( 2.43657, -6.09144 )
+texture = ExtResource( 11 )
+
+[node name="DefendBox" type="Area2D" parent="Offset/Back"]
+
+[node name="DefendBox" type="CollisionShape2D" parent="Offset/Back/DefendBox"]
+position = Vector2( 2.96861, 8.47188 )
+shape = SubResource( 5 )
+disabled = true
+
+[node name="Right" type="Node2D" parent="Offset"]
+visible = false
+scale = Vector2( 1, 1 )
+
+[node name="RedDefender" type="Sprite" parent="Offset/Right"]
+position = Vector2( 2.43657, -0.487315 )
+texture = ExtResource( 13 )
+
+[node name="BlueDefender" type="Sprite" parent="Offset/Right"]
+position = Vector2( 4.33169, 0 )
+texture = ExtResource( 12 )
+
+[node name="DefendBox" type="Area2D" parent="Offset/Right"]
+
+[node name="DefendBox" type="CollisionShape2D" parent="Offset/Right/DefendBox"]
+position = Vector2( 29.9112, 19.7381 )
+shape = SubResource( 6 )
 disabled = true
 
 [node name="DeathBox" type="Area2D" parent="Offset"]
@@ -103,6 +151,8 @@ shape = SubResource( 4 )
 [node name="RotationArrows" parent="." instance=ExtResource( 7 )]
 [connection signal="area_entered" from="Offset/Left/DefendBox" to="." method="_on_DefendBox_area_entered"]
 [connection signal="area_entered" from="Offset/Front/DefendBox" to="." method="_on_DefendBox_area_entered"]
+[connection signal="area_entered" from="Offset/Back/DefendBox" to="." method="_on_DefendBox_area_entered"]
+[connection signal="area_entered" from="Offset/Right/DefendBox" to="." method="_on_DefendBox_area_entered"]
 [connection signal="area_entered" from="Offset/DeathBox" to="." method="_on_DeathBox_area_entered"]
 [connection signal="input_event" from="ClickBox" to="." method="_on_ClickBox_input_event"]
 [connection signal="mouse_entered" from="SwapClickBox" to="SwapClickBox" method="_on_SwapClickBox_mouse_entered"]

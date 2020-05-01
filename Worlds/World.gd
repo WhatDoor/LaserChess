@@ -7,6 +7,7 @@ enum COLOUR {
 
 onready var board = $Board
 onready var pieces = $Board_Objects/Pieces.get_children()
+onready var turnText = $TurnText
 
 var currently_selected_piece = null
 var currently_selected_squares = null
@@ -23,6 +24,10 @@ func _ready():
 		if piece.get_type() == "DEFENDER" or piece.get_type() == "DEFLECTOR":
 			piece.connect("swap_clicked", self, "_on_swappable_piece_clicked")
 		
+		if piece.rotationArrows != null:
+			piece.connect("piece_rotating_right", self, "_on_piece_rotating_right")
+			piece.connect("piece_rotating_left", self, "_on_piece_rotating_left")
+		
 		piece.position = board.get_square(piece.board_coords).position
 		
 		# Set owners of pieces - Server is always red
@@ -37,24 +42,86 @@ func _ready():
 			else:
 				piece.set_network_master(Helper.opponent_id)
 	
-	#Set Owners of lasers
+	#Set Owners of lasers and turn
 	if get_tree().is_network_server():
 		$Board_Objects/RedLaser.set_network_master(get_tree().get_network_unique_id())
 		myLaser = $Board_Objects/RedLaser
 		
 		$Board_Objects/BlueLaser.set_network_master(Helper.opponent_id)
+		
+		Helper.myTurn = true
 	else:
 		$Board_Objects/RedLaser.set_network_master(Helper.opponent_id)
 		
 		$Board_Objects/BlueLaser.set_network_master(get_tree().get_network_unique_id())
 		myLaser = $Board_Objects/BlueLaser
+		
+		Helper.myTurn = false
+	set_turn_text(Helper.myTurn)
 
 func _process(delta):
 	if Input.is_action_pressed("End_Turn"):
 		end_turn()
 
+func _on_piece_selected(piece):	
+	#print(piece.name, " selected at ", piece.board_coords)
+	
+	#Update state of pieces list
+	pieces = $Board_Objects/Pieces.get_children()
+	
+	#Deselect any other piece that that is currently selected
+	for p in pieces:
+		if p.name != piece.name && p.selected:
+			p.set_selected(false)
+	
+	#Deselect any other squares that are currently selected
+	if currently_selected_squares != null:
+		for squares in currently_selected_squares:
+			squares.set_selected(false)
+			
+	#Make any currently swappable pieces unswappable - only relevant to Switch
+	if currently_swappable_pieces != null:
+		for p in currently_swappable_pieces:
+			p.make_swappable(false)
+	
+	#Set the currently selected piece
+	currently_selected_piece = piece
+	
+	#Set the currently available squares
+	currently_selected_squares = available_squares(piece.board_coords)
+	
+	#Highlight the currently available squares
+	for squares in currently_selected_squares:
+		squares.set_selected(true)
+	
+	#Set the currently swappable pieces - only relevant to Switch
+	currently_swappable_pieces = get_swappable_pieces(piece)
+	
+	#Make the currently swappable pieces swappable - only relevant to Switch
+	for p in currently_swappable_pieces:
+		p.make_swappable(true)
+		
+func _on_piece_deselected(piece):
+	#print(piece.name, " deselected")
+	
+	#Deselect the piece
+	piece.set_selected(false)
+	
+	#Deselect the selected squares
+	for squares in currently_selected_squares:
+		squares.set_selected(false)
+		
+	#Make any currently swappable pieces unswappable - only relevant to Switch
+	for p in currently_swappable_pieces:
+		p.make_swappable(false)
+	
+	#Unset the currently selected/highlighted pieces and squares
+	currently_selected_piece = null
+	currently_selected_squares = null
+	currently_swappable_pieces = null
+	
 func _on_swappable_piece_clicked(click_piece):
-	print("Swapping ", currently_selected_piece.name, " with ", click_piece.name)
+	#print("Swapping ", currently_selected_piece.name, " with ", click_piece.name)
 	
 	#Save the Switch's position and square
 	var currently_selected_piece_position = currently_selected_piece.position
@@ -69,18 +136,52 @@ func _on_swappable_piece_clicked(click_piece):
 	#Unselect/Highlight Switch and piece
 	_on_piece_deselected(currently_selected_piece)
 	click_piece.make_swappable(false)
+	
+	#Flag that player has made a move already
+	Helper.pieceMovedThisTurn = true
+
+func _on_piece_rotating_right(piece):
+	piece.rpc("rotate_right")
+	_on_piece_deselected(piece)
+	Helper.pieceMovedThisTurn = true
+	
+func _on_piece_rotating_left(piece):
+	piece.rpc("rotate_left")
+	_on_piece_deselected(piece)
+	Helper.pieceMovedThisTurn = true
 
 func _on_board_clicked(square, square_indexes):
 	handle_board_click(square, square_indexes)
 
+func _on_Button_pressed():
+	end_turn()
+
+func end_turn():
+	if Helper.myTurn:
+		rpc("toggle_turn")
+		myLaser.rpc("fire_blast")
+
+remotesync func toggle_turn():
+	Helper.myTurn = !Helper.myTurn
+	set_turn_text(Helper.myTurn)
+	
+func set_turn_text(my_turn):
+	if my_turn:
+		turnText.set_text("Your Turn")
+		Helper.pieceMovedThisTurn = false
+	else:
+		turnText.set_text("Opponent's Turn")
+
 func handle_board_click(square, square_indexes):
 	#print(square.name, " clicked")
-	
+		
 	#If a piece has been selected and a highlighted square is chosen, then move the piece to that square
 	if currently_selected_piece != null and square_exists_in(currently_selected_squares, square):
 		print("moving ", currently_selected_piece.name, " to ", square.name)
 		rpc("move_piece", currently_selected_piece.name, square.name)
 		_on_piece_deselected(currently_selected_piece)
+		
+		Helper.pieceMovedThisTurn = true
 
 remotesync func move_piece(piece_name, square_name):
 	#Getting object from names because passing objects over network is unsafe
@@ -157,44 +258,6 @@ remotesync func swap_piece(piece_name, square_name):
 	#Will eventually replace this with warping animation
 	piece.position = square.position
 
-func _on_piece_selected(piece):	
-	print(piece.name, " selected at ", piece.board_coords)
-	
-	#Update state of pieces list
-	pieces = $Board_Objects/Pieces.get_children()
-	
-	#Deselect any other piece that that is currently selected
-	for p in pieces:
-		if p.name != piece.name && p.selected:
-			p.set_selected(false)
-	
-	#Deselect any other squares that are currently selected
-	if currently_selected_squares != null:
-		for squares in currently_selected_squares:
-			squares.set_selected(false)
-			
-	#Make any currently swappable pieces unswappable - only relevant to Switch
-	if currently_swappable_pieces != null:
-		for p in currently_swappable_pieces:
-			p.make_swappable(false)
-	
-	#Set the currently selected piece
-	currently_selected_piece = piece
-	
-	#Set the currently available squares
-	currently_selected_squares = available_squares(piece.board_coords)
-	
-	#Highlight the currently available squares
-	for squares in currently_selected_squares:
-		squares.set_selected(true)
-	
-	#Set the currently swappable pieces - only relevant to Switch
-	currently_swappable_pieces = get_swappable_pieces(piece)
-	
-	#Make the currently swappable pieces swappable - only relevant to Switch
-	for p in currently_swappable_pieces:
-		p.make_swappable(true)
-
 func get_swappable_pieces(piece):
 	var swappable_pieces = []
 	
@@ -216,26 +279,6 @@ func get_swappable_pieces(piece):
 						swappable_pieces.append(p)
 	
 	return swappable_pieces
-	
-func _on_piece_deselected(piece):
-	print(piece.name, " deselected")
-	
-	#Deselect the piece
-	piece.set_selected(false)
-	
-	#Deselect the selected squares
-	for squares in currently_selected_squares:
-		squares.set_selected(false)
-		
-	#Make any currently swappable pieces unswappable - only relevant to Switch
-	for p in currently_swappable_pieces:
-		p.make_swappable(false)
-	
-	#Unset the currently selected/highlighted pieces and squares
-	currently_selected_piece = null
-	currently_selected_squares = null
-	currently_swappable_pieces = null
-
 
 func get_surrounding_squares(square_name):
 	var surrounding_squares = []
@@ -290,18 +333,18 @@ func is_valid_array_square(square_name):
 	
 	#A8 and J1 are always not allowed
 	if square.name == "A8" || square.name == "J1":
-		print(square.name, " is disallowed because of laser turret")
+		#print(square.name, " is disallowed because of laser turret")
 		return false
 	
 	#Test whether the square colour prevents piece from moving there
 	if square.colour != currently_selected_piece.team_colour && square.colour != square.SQUARE_COLOUR.NORMAL:
-		print(square.name, " is disallowed because of colour")
+		#print(square.name, " is disallowed because of colour")
 		return false
 	
 	#Test whether a piece occupies the square
 	for p in pieces:
 		if p.board_coords == square.name:
-			print(square.name, " occupied by ", p.name)
+			#print(square.name, " occupied by ", p.name)
 			return false
 	
 	return true
@@ -311,9 +354,3 @@ func square_exists_in(square_list, square):
 		if s.name == square.name:
 			return true
 	return false
-	
-func _on_Button_pressed():
-	end_turn()
-
-func end_turn():
-	myLaser.rpc("fire_blast")
