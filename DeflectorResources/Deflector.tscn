@@ -136,6 +136,7 @@ position = Vector2( -1.85832, -3.47116 )
 collision_mask = 16
 
 [node name="ClickBox" parent="ClickBox" index="0"]
+visible = false
 position = Vector2( 1.7812, -2.82164 )
 shape = SubResource( 6 )
 

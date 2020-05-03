@@ -14,7 +14,7 @@ signal swap_clicked(self_node)
 onready var swapClickBox = $SwapClickBox
 onready var orientationNode = $Offset/UpLeft
 
-var DISTANCE_OFFSET = 1 #offsets from the centre of the switch piece so colliding projectiles dont get stuck when collding
+var DISTANCE_OFFSET = 2 #offsets from the centre of the switch piece so colliding projectiles dont get stuck when collding
 var normal_angle_degrees = -135
 
 func _ready():

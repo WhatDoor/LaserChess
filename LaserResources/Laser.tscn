@@ -97,6 +97,7 @@ texture = ExtResource( 5 )
 [node name="ClickBox" parent="." instance=ExtResource( 4 )]
 
 [node name="ClickBox" parent="ClickBox" index="0"]
+visible = false
 position = Vector2( 1.48846, -3.7103 )
 shape = SubResource( 5 )
 

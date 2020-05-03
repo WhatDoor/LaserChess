@@ -30,27 +30,27 @@ func _ready():
 		
 		piece.position = board.get_square(piece.board_coords).position
 		
-		# Set owners of pieces - Server is always red
-		if get_tree().is_network_server():
+		# Set owners of pieces
+		if Helper.myTeamColour == "RED":
 			if piece.team_colour == COLOUR.RED:
 				piece.set_network_master(get_tree().get_network_unique_id())
 			else:
 				piece.set_network_master(Helper.opponent_id)
-		else:
+		elif Helper.myTeamColour == "BLUE":
 			if piece.team_colour == COLOUR.BLUE:
 				piece.set_network_master(get_tree().get_network_unique_id())
 			else:
 				piece.set_network_master(Helper.opponent_id)
 	
 	#Set Owners of lasers and turn
-	if get_tree().is_network_server():
+	if Helper.myTeamColour == "RED":
 		$Board_Objects/RedLaser.set_network_master(get_tree().get_network_unique_id())
 		myLaser = $Board_Objects/RedLaser
 		
 		$Board_Objects/BlueLaser.set_network_master(Helper.opponent_id)
 		
 		Helper.myTurn = true
-	else:
+	elif Helper.myTeamColour == "BLUE":
 		$Board_Objects/RedLaser.set_network_master(Helper.opponent_id)
 		
 		$Board_Objects/BlueLaser.set_network_master(get_tree().get_network_unique_id())
@@ -58,6 +58,12 @@ func _ready():
 		
 		Helper.myTurn = false
 	set_turn_text(Helper.myTurn)
+	
+	#If you are a spectator, disable all controls
+	if Helper.isSpectator:
+		Helper.myTurn = false
+		turnText.set_text("Spectating")
+		$Button.disabled = true
 
 func _process(delta):
 	if Input.is_action_pressed("End_Turn"):
@@ -155,26 +161,28 @@ func _on_board_clicked(square, square_indexes):
 
 func _on_Button_pressed():
 	end_turn()
-	
+
 func _on_blast_destroyed():
 	rpc("toggle_turn")
 
 func end_turn():
 	if Helper.myTurn:
-		myLaser.rpc("fire_blast")
+		myLaser.fire_blast()
+		myLaser.rpc("force_fire_blast")
 		myLaser.can_fire = false
 
 remotesync func toggle_turn():
 	Helper.myTurn = !Helper.myTurn
 	set_turn_text(Helper.myTurn)
-	
+
 func set_turn_text(my_turn):
-	if my_turn:
-		turnText.set_text("Your Turn")
-		Helper.pieceMovedThisTurn = false
-		myLaser.can_fire = true
-	else:
-		turnText.set_text("Opponent's Turn")
+	if not Helper.isSpectator:
+		if my_turn:
+			turnText.set_text("Your Turn")
+			Helper.pieceMovedThisTurn = false
+			myLaser.can_fire = true
+		else:
+			turnText.set_text("Opponent's Turn")
 
 func handle_board_click(square, square_indexes):
 	#print(square.name, " clicked")
@@ -224,6 +232,7 @@ remotesync func move_piece(piece_name, square_name):
 		var DELAY_2 = DELAY_1 + animTime_2
 		var DELAY_3 = DELAY_2 + animTime_3 + .2
 		
+		#Animate Defender piece
 		tween.interpolate_property(piece, "position",
 				piece.position, point_above_piece, animTime_1,
 				Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
@@ -239,7 +248,7 @@ remotesync func move_piece(piece_name, square_name):
 				point_above_square, square.position, animTime_4,
 				Tween.TRANS_QUAD, Tween.EASE_IN,
 				DELAY_3)
-	
+				
 	#Warps
 	elif piece.get_type() == "SWITCH":
 		piece.position = square.position

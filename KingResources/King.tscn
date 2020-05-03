@@ -38,6 +38,7 @@ shape = SubResource( 1 )
 [node name="ClickBox" parent="." instance=ExtResource( 5 )]
 
 [node name="ClickBox" parent="ClickBox" index="0"]
+visible = false
 position = Vector2( 0, -7.87057 )
 shape = SubResource( 2 )
 

@@ -45,7 +45,7 @@ remotesync func animate():
 			animationPlayer.play("SwingToLeftFromUp")
 			state = DIRECTIONS.LEFT
 			
-remotesync func fire_blast():
+func fire_blast():
 	if can_fire:
 		#Instance, rotate and position blast
 		var blast = Blast.instance()
@@ -66,6 +66,27 @@ remotesync func fire_blast():
 		blast.connect("blast_destroyed", get_tree().get_root().get_node("World"), "_on_blast_destroyed")
 		get_parent().add_child(blast)
 
+remotesync func force_fire_blast():
+	#Instance, rotate and position blast
+	var blast = Blast.instance()
+	blast.replication_blast = true
+	#blast.set_global_position($FirePoint.get_global_position())
+	blast.position = get_position()
+	#print("this position is ", get_global_position())
+	#print("fire point position is ", $FirePoint.get_global_position())		
+	#print(name, " ", rotation_degrees)
+	
+	var rot
+	if team_colour == team_colours.RED:
+		rot = deg2rad(rotation_degrees - 90)
+	elif team_colour == team_colours.BLUE:
+		rot = deg2rad(rotation_degrees + 90)
+	
+	blast.fire(Vector2(-sin(rot), cos(rot)))
+	
+	blast.connect("blast_destroyed", get_tree().get_root().get_node("World"), "_on_blast_destroyed")
+	get_parent().add_child(blast)
+		
 func _on_ClickBox_input_event(viewport, event, shape_idx):
 	if (Helper.filterLeftClickAndTurnCheck(event) and is_network_master()):
 		rpc("animate")

@@ -17,19 +17,19 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 0.60869, 3.88968 )
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 5.62313, 0.852881 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 1.10374, 4.84429 )
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 2.3944, 2.40876 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 27.1296, 47.1633 )
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 21.277, 37.838 )
 
 [node name="Defender" type="Node2D"]
@@ -93,7 +93,7 @@ texture = ExtResource( 11 )
 
 [node name="DefendBox" type="CollisionShape2D" parent="Offset/Back/DefendBox"]
 position = Vector2( 2.96861, 8.47188 )
-shape = SubResource( 5 )
+shape = SubResource( 7 )
 disabled = true
 
 [node name="Right" type="Node2D" parent="Offset"]
@@ -111,7 +111,7 @@ texture = ExtResource( 12 )
 
 [node name="DefendBox" type="CollisionShape2D" parent="Offset/Right/DefendBox"]
 position = Vector2( 29.9112, 19.7381 )
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 disabled = true
 
 [node name="DeathBox" type="Area2D" parent="Offset"]
@@ -120,14 +120,15 @@ collision_mask = 0
 
 [node name="DeathBox" type="CollisionShape2D" parent="Offset/DeathBox"]
 position = Vector2( 3.30504, 19.7955 )
-shape = SubResource( 2 )
+shape = SubResource( 9 )
 
 [node name="ClickBox" parent="." instance=ExtResource( 6 )]
 collision_mask = 16
 
 [node name="ClickBox" parent="ClickBox" index="0"]
+visible = false
 position = Vector2( -0.400558, -20.0108 )
-shape = SubResource( 3 )
+shape = SubResource( 5 )
 
 [node name="selectSprite" parent="ClickBox" index="1"]
 visible = false
@@ -144,7 +145,7 @@ scale = Vector2( 2.967, 3.562 )
 
 [node name="SwapClickBox" parent="SwapClickBox" index="1"]
 position = Vector2( -1.132, -20.011 )
-shape = SubResource( 4 )
+shape = SubResource( 6 )
 
 [node name="RotationArrows" parent="." instance=ExtResource( 7 )]
 [connection signal="area_entered" from="Offset/Left/DefendBox" to="." method="_on_DefendBox_area_entered"]

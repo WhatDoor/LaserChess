@@ -2,6 +2,8 @@ extends Area2D
 
 signal blast_destroyed
 
+var replication_blast = false
+
 var speed = 1
 var velocity = Vector2.ZERO
 
@@ -52,7 +54,8 @@ func _process(delta):
 	position += velocity.normalized() * speed
 
 func kill():
-	emit_signal("blast_destroyed")
+	if not replication_blast:
+		emit_signal("blast_destroyed")
 	queue_free()
 
 func _on_Blast_area_entered(area):

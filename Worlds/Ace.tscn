@@ -1,0 +1,197 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Worlds/World.gd" type="Script" id=1]
+[ext_resource path="res://SwitchResources/Switch.tscn" type="PackedScene" id=2]
+[ext_resource path="res://DeflectorResources/Deflector.tscn" type="PackedScene" id=3]
+[ext_resource path="res://BoardResources/Board.tscn" type="PackedScene" id=4]
+[ext_resource path="res://DefenderResources/Defender.tscn" type="PackedScene" id=5]
+[ext_resource path="res://LaserResources/Laser.tscn" type="PackedScene" id=6]
+[ext_resource path="res://KingResources/King.tscn" type="PackedScene" id=7]
+[ext_resource path="res://OutsideBorderWalls.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Fonts/Font-16.tres" type="DynamicFont" id=9]
+
+[node name="World" type="Node2D"]
+position = Vector2( 52.2539, 41.0217 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [  ]
+}
+
+[node name="Board" parent="." instance=ExtResource( 4 )]
+
+[node name="Board_Objects" type="YSort" parent="."]
+
+[node name="Pieces" type="YSort" parent="Board_Objects"]
+
+[node name="Defender2" parent="Board_Objects/Pieces" instance=ExtResource( 5 )]
+position = Vector2( 79.5104, 114.517 )
+board_coords = "F1"
+team_colour = 2
+orientation = 2
+
+[node name="Defender4" parent="Board_Objects/Pieces" instance=ExtResource( 5 )]
+position = Vector2( 63.4226, -9.07328 )
+board_coords = "E8"
+team_colour = 1
+
+[node name="Defender5" parent="Board_Objects/Pieces" instance=ExtResource( 5 )]
+position = Vector2( 98.4837, -9.60032 )
+board_coords = "G8"
+team_colour = 1
+
+[node name="Defender3" parent="Board_Objects/Pieces" instance=ExtResource( 5 )]
+position = Vector2( 44.9182, 115.618 )
+board_coords = "D1"
+team_colour = 2
+orientation = 2
+
+[node name="King" parent="Board_Objects/Pieces" instance=ExtResource( 7 )]
+position = Vector2( 61.5871, 115.084 )
+board_coords = "E1"
+team_colour = 2
+
+[node name="King2" parent="Board_Objects/Pieces" instance=ExtResource( 7 )]
+position = Vector2( 80.4575, -8.8502 )
+board_coords = "F8"
+team_colour = 1
+
+[node name="Switch" parent="Board_Objects/Pieces" instance=ExtResource( 2 )]
+position = Vector2( 62.2847, 62.094 )
+board_coords = "E4"
+team_colour = 2
+rotation_type = 1
+
+[node name="Switch2" parent="Board_Objects/Pieces" instance=ExtResource( 2 )]
+position = Vector2( 61.9664, 44.4251 )
+board_coords = "E5"
+team_colour = 1
+
+[node name="Switch3" parent="Board_Objects/Pieces" instance=ExtResource( 2 )]
+position = Vector2( 79.8857, 61.9316 )
+board_coords = "F4"
+team_colour = 2
+
+[node name="Switch4" parent="Board_Objects/Pieces" instance=ExtResource( 2 )]
+position = Vector2( 80.4524, 44.5394 )
+board_coords = "F5"
+team_colour = 1
+rotation_type = 1
+
+[node name="Deflector" parent="Board_Objects/Pieces" instance=ExtResource( 3 )]
+position = Vector2( -8.37021, 44.0342 )
+board_coords = "A5"
+team_colour = 1
+orientation = 1
+
+[node name="Deflector2" parent="Board_Objects/Pieces" instance=ExtResource( 3 )]
+position = Vector2( -9.4111, 62.7571 )
+board_coords = "A4"
+team_colour = 1
+orientation = 2
+
+[node name="Deflector3" parent="Board_Objects/Pieces" instance=ExtResource( 3 )]
+position = Vector2( 26.4273, 62.4804 )
+board_coords = "C4"
+team_colour = 2
+
+[node name="Deflector4" parent="Board_Objects/Pieces" instance=ExtResource( 3 )]
+position = Vector2( 26.9543, 43.7838 )
+board_coords = "C5"
+team_colour = 2
+orientation = 3
+
+[node name="Deflector5" parent="Board_Objects/Pieces" instance=ExtResource( 3 )]
+position = Vector2( 27.2179, 7.93155 )
+board_coords = "C7"
+team_colour = 1
+orientation = 3
+
+[node name="Deflector6" parent="Board_Objects/Pieces" instance=ExtResource( 3 )]
+position = Vector2( 45.1239, 26.3785 )
+board_coords = "D6"
+team_colour = 2
+
+[node name="Deflector7" parent="Board_Objects/Pieces" instance=ExtResource( 3 )]
+position = Vector2( 26.6908, 114.92 )
+board_coords = "C1"
+team_colour = 2
+
+[node name="Deflector8" parent="Board_Objects/Pieces" instance=ExtResource( 3 )]
+position = Vector2( 115.76, 97.2648 )
+board_coords = "H2"
+team_colour = 2
+orientation = 1
+
+[node name="Deflector9" parent="Board_Objects/Pieces" instance=ExtResource( 3 )]
+position = Vector2( 97.8406, 80.9267 )
+board_coords = "G3"
+team_colour = 1
+orientation = 2
+
+[node name="Deflector10" parent="Board_Objects/Pieces" instance=ExtResource( 3 )]
+position = Vector2( 116.023, 62.7439 )
+board_coords = "H4"
+team_colour = 1
+orientation = 1
+
+[node name="Deflector11" parent="Board_Objects/Pieces" instance=ExtResource( 3 )]
+position = Vector2( 114.969, 45.0882 )
+board_coords = "H5"
+team_colour = 1
+orientation = 2
+
+[node name="Deflector12" parent="Board_Objects/Pieces" instance=ExtResource( 3 )]
+position = Vector2( 151.598, 45.0882 )
+board_coords = "J5"
+team_colour = 2
+
+[node name="Deflector13" parent="Board_Objects/Pieces" instance=ExtResource( 3 )]
+position = Vector2( 151.835, 62.7439 )
+board_coords = "J4"
+team_colour = 2
+orientation = 3
+
+[node name="Deflector14" parent="Board_Objects/Pieces" instance=ExtResource( 3 )]
+position = Vector2( 116.037, -8.14233 )
+board_coords = "H8"
+team_colour = 1
+orientation = 2
+
+[node name="RedLaser" parent="Board_Objects" instance=ExtResource( 6 )]
+position = Vector2( -8.37603, -7.81199 )
+rotation = 1.5708
+state = 0
+
+[node name="BlueLaser" parent="Board_Objects" instance=ExtResource( 6 )]
+position = Vector2( 151.643, 117.179 )
+rotation = 1.5708
+state = 3
+team_colour = 1
+
+[node name="OutsideBorderWalls" parent="." instance=ExtResource( 8 )]
+
+[node name="Button" type="Button" parent="."]
+margin_left = 182.319
+margin_top = 83.5573
+margin_right = 246.319
+margin_bottom = 123.557
+custom_fonts/font = ExtResource( 9 )
+text = "FIRE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="TurnText" type="RichTextLabel" parent="."]
+margin_left = 166.0
+margin_top = -20.0
+margin_right = 263.0
+margin_bottom = 33.0
+custom_fonts/normal_font = ExtResource( 9 )
+text = "NOT SET"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="board_clicked" from="Board" to="." method="_on_board_clicked"]
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
