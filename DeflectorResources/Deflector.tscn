@@ -1,17 +1,21 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://DeflectorResources/Deflector.gd" type="Script" id=1]
-[ext_resource path="res://DeflectorResources/RedDeflectorUpLeft.png" type="Texture" id=2]
-[ext_resource path="res://DeflectorResources/BlueDeflectorUpLeft.png" type="Texture" id=3]
-[ext_resource path="res://DeflectorResources/BlueDeflectorUpRight.png" type="Texture" id=4]
-[ext_resource path="res://DeflectorResources/RedDeflectorUpRight.png" type="Texture" id=5]
+[ext_resource path="res://DeflectorResources/reddeflector2.png" type="Texture" id=2]
+[ext_resource path="res://DeflectorResources/bluedeflector2.png" type="Texture" id=3]
+[ext_resource path="res://DeflectorResources/reddeflector3.png" type="Texture" id=4]
+[ext_resource path="res://DeflectorResources/bluedeflector3.png" type="Texture" id=5]
 [ext_resource path="res://EffectsResources/ClickBox.tscn" type="PackedScene" id=6]
 [ext_resource path="res://EffectsResources/SwapClickBox.tscn" type="PackedScene" id=7]
 [ext_resource path="res://EffectsResources/RotationArrows.tscn" type="PackedScene" id=8]
 [ext_resource path="res://EffectsResources/SwapClickBox.gd" type="Script" id=9]
+[ext_resource path="res://DeflectorResources/bluedeflector4.png" type="Texture" id=10]
+[ext_resource path="res://DeflectorResources/reddeflector4.png" type="Texture" id=11]
+[ext_resource path="res://DeflectorResources/bluedeflector1.png" type="Texture" id=12]
+[ext_resource path="res://DeflectorResources/reddeflector1.png" type="Texture" id=13]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 1.1798, 12.5234 )
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 1.26504, 9.84557 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 12.1567, 1.82773 )
@@ -19,8 +23,8 @@ extents = Vector2( 12.1567, 1.82773 )
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 1.46686, 11.2482 )
 
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 1.26504, 9.84557 )
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 1.1798, 12.5234 )
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 1.52844, 1.96557 )
@@ -41,32 +45,39 @@ scale = Vector2( 0.3, 0.3 )
 [node name="UpLeft" type="Node2D" parent="Offset"]
 
 [node name="BlueDeflector" type="Sprite" parent="Offset/UpLeft"]
-texture = ExtResource( 3 )
+position = Vector2( -1.062, -4.007 )
+texture = ExtResource( 10 )
 
 [node name="RedDeflector" type="Sprite" parent="Offset/UpLeft"]
-texture = ExtResource( 2 )
+position = Vector2( 8.954, -4.084 )
+texture = ExtResource( 11 )
 
 [node name="ReflectBox" type="Area2D" parent="Offset/UpLeft"]
-position = Vector2( 3.69175, 4.14492 )
+position = Vector2( 9.30208, -8.27728 )
 rotation = 0.785398
 collision_layer = 2
 collision_mask = 0
 
 [node name="ReflectBox" type="CollisionShape2D" parent="Offset/UpLeft/ReflectBox"]
-position = Vector2( 1.32388, 1.00614 )
-shape = SubResource( 1 )
+position = Vector2( 14.4835, 15.0902 )
+shape = SubResource( 4 )
+disabled = true
+
+[node name="ReflectBox2" type="CollisionShape2D" parent="Offset/UpLeft/ReflectBox"]
+position = Vector2( 14.4835, 15.0902 )
+shape = SubResource( 4 )
 disabled = true
 
 [node name="UpRight" type="Node2D" parent="Offset"]
 visible = false
 
 [node name="BlueDeflector" type="Sprite" parent="Offset/UpRight"]
-position = Vector2( 5.98903, 0.153561 )
-texture = ExtResource( 4 )
+position = Vector2( 8.937, -4.082 )
+texture = ExtResource( 5 )
 
 [node name="RedDeflector" type="Sprite" parent="Offset/UpRight"]
-position = Vector2( 11.9379, 0.153566 )
-texture = ExtResource( 5 )
+position = Vector2( 8.935, -4.024 )
+texture = ExtResource( 4 )
 
 [node name="ReflectBox" type="Area2D" parent="Offset/UpRight"]
 position = Vector2( 6.23, 9.46667 )
@@ -85,8 +96,12 @@ disabled = true
 visible = false
 
 [node name="BlueDeflector" type="Sprite" parent="Offset/DownLeft"]
+position = Vector2( -5.121, 0 )
+texture = ExtResource( 12 )
 
 [node name="RedDeflector" type="Sprite" parent="Offset/DownLeft"]
+position = Vector2( -5.137, 0 )
+texture = ExtResource( 13 )
 
 [node name="ReflectBox" type="Area2D" parent="Offset/DownLeft"]
 position = Vector2( 3.7985, -7.98236 )
@@ -103,23 +118,22 @@ disabled = true
 visible = false
 
 [node name="BlueDeflector" type="Sprite" parent="Offset/DownRight"]
+position = Vector2( -7.142, 0 )
+texture = ExtResource( 3 )
 
 [node name="RedDeflector" type="Sprite" parent="Offset/DownRight"]
+position = Vector2( -13.086, 0 )
+texture = ExtResource( 2 )
 
 [node name="ReflectBox" type="Area2D" parent="Offset/DownRight"]
-position = Vector2( 9.30208, -8.27728 )
+position = Vector2( 3.69175, 4.14492 )
 rotation = 0.785398
 collision_layer = 2
 collision_mask = 0
 
 [node name="ReflectBox" type="CollisionShape2D" parent="Offset/DownRight/ReflectBox"]
-position = Vector2( 14.4835, 15.0902 )
-shape = SubResource( 4 )
-disabled = true
-
-[node name="ReflectBox2" type="CollisionShape2D" parent="Offset/DownRight/ReflectBox"]
-position = Vector2( 14.4835, 15.0902 )
-shape = SubResource( 4 )
+position = Vector2( 1.32388, 1.00614 )
+shape = SubResource( 1 )
 disabled = true
 
 [node name="DeathBox" type="Area2D" parent="Offset"]
