@@ -43,6 +43,7 @@ position = Vector2( -1.869, -2.84 )
 scale = Vector2( 0.3, 0.3 )
 
 [node name="UpLeft" type="Node2D" parent="Offset"]
+visible = false
 
 [node name="BlueDeflector" type="Sprite" parent="Offset/UpLeft"]
 position = Vector2( -1.062, -4.007 )
@@ -59,12 +60,7 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="ReflectBox" type="CollisionShape2D" parent="Offset/UpLeft/ReflectBox"]
-position = Vector2( 14.4835, 15.0902 )
-shape = SubResource( 4 )
-disabled = true
-
-[node name="ReflectBox2" type="CollisionShape2D" parent="Offset/UpLeft/ReflectBox"]
-position = Vector2( 14.4835, 15.0902 )
+position = Vector2( 5.82921, 14.6701 )
 shape = SubResource( 4 )
 disabled = true
 
@@ -115,7 +111,6 @@ shape = SubResource( 3 )
 disabled = true
 
 [node name="DownRight" type="Node2D" parent="Offset"]
-visible = false
 
 [node name="BlueDeflector" type="Sprite" parent="Offset/DownRight"]
 position = Vector2( -7.142, 0 )
@@ -132,7 +127,7 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="ReflectBox" type="CollisionShape2D" parent="Offset/DownRight/ReflectBox"]
-position = Vector2( 1.32388, 1.00614 )
+position = Vector2( 9.81014, 1.76234 )
 shape = SubResource( 1 )
 disabled = true
 
