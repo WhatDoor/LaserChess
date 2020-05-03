@@ -15,11 +15,16 @@ var currently_swappable_pieces = null
 
 var myLaser
 
+var currently_hovering_over_piece = false
+
 func _ready():	
 	#Connect signal handlers for each piece and place each piece in the correct position on the board
 	for piece in pieces:
 		piece.connect("selected", self, "_on_piece_selected")
 		piece.connect("deselected", self, "_on_piece_deselected")
+		
+		piece.connect("mouse_over_piece", self, "_on_mouse_over_piece")
+		piece.connect("mouse_off_piece", self, "_on_mouse_off_piece")
 		
 		if piece.get_type() == "DEFENDER" or piece.get_type() == "DEFLECTOR":
 			piece.connect("swap_clicked", self, "_on_swappable_piece_clicked")
@@ -68,6 +73,12 @@ func _ready():
 func _process(delta):
 	if Input.is_action_pressed("End_Turn"):
 		end_turn()
+
+func _on_mouse_over_piece(piece):
+	currently_hovering_over_piece = true
+
+func _on_mouse_off_piece(piece):
+	currently_hovering_over_piece = false
 
 func _on_piece_selected(piece):	
 	#print(piece.name, " selected at ", piece.board_coords)
@@ -187,8 +198,8 @@ func set_turn_text(my_turn):
 func handle_board_click(square, square_indexes):
 	#print(square.name, " clicked")
 		
-	#If a piece has been selected and a highlighted square is chosen, then move the piece to that square
-	if currently_selected_piece != null and square_exists_in(currently_selected_squares, square):
+	#If a piece has been selected AND a highlighted square is chosen AND you haven't clicked through a piece's clickbox, then move the piece to that square
+	if currently_selected_piece != null and square_exists_in(currently_selected_squares, square) and not currently_hovering_over_piece:
 		print("moving ", currently_selected_piece.name, " to ", square.name)
 		rpc("move_piece", currently_selected_piece.name, square.name)
 		_on_piece_deselected(currently_selected_piece)

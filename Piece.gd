@@ -17,6 +17,9 @@ signal deselected(self_node)
 signal piece_rotating_right(self_node)
 signal piece_rotating_left(self_node)
 
+signal mouse_over_piece(self_node)
+signal mouse_off_piece(self_node)
+
 func toggle_selected():
 	if is_network_master():
 		selected = !selected
@@ -55,3 +58,9 @@ func _on_RotationArrows_clicked_left():
 
 func _on_RotationArrows_clicked_right():
 	emit_signal("piece_rotating_left", self)
+
+func _on_Piece_Hovered():
+	emit_signal("mouse_over_piece", self)
+
+func _on_Piece_Off_Hovered():
+	emit_signal("mouse_off_piece", self)

@@ -12,6 +12,7 @@ export(ORIENTATION_TYPES) var orientation
 signal swap_clicked(self_node)
 
 onready var swapClickBox = $SwapClickBox
+onready var clickBox = $ClickBox
 onready var orientationNode = $Offset/UpLeft
 
 var DISTANCE_OFFSET = 2 #offsets from the centre of the switch piece so colliding projectiles dont get stuck when collding
@@ -22,6 +23,10 @@ func _ready():
 	rotationArrows = $RotationArrows 
 	rotationArrows.connect("clicked_left", self, "_on_RotationArrows_clicked_left")
 	rotationArrows.connect("clicked_right", self, "_on_RotationArrows_clicked_right")
+	
+	#Connect ClickBox to receive hovering
+	clickBox.connect("mouse_entered", self, "_on_Piece_Hovered")
+	clickBox.connect("mouse_exited", self, "_on_Piece_Off_Hovered")
 	
 	#Set colour and starting orientation
 	set_colour(team_colour)
