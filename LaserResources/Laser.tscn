@@ -106,6 +106,7 @@ visible = false
 
 [node name="FirePoint" type="Node2D" parent="."]
 position = Vector2( 12.7411, -7.14938 )
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="input_event" from="ClickBox" to="." method="_on_ClickBox_input_event"]
 
 [editable path="ClickBox"]

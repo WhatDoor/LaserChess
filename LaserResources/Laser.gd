@@ -16,6 +16,7 @@ export(DIRECTIONS) var state = DIRECTIONS.RIGHT
 export(team_colours) var team_colour
 
 var can_fire = false
+var is_rotating = false
 
 var CENTRE_OFFSET = 12
 var VERTICAL_OFFSET = Vector2(0,-6.7)
@@ -89,5 +90,10 @@ remotesync func force_fire_blast():
 		
 func _on_ClickBox_input_event(viewport, event, shape_idx):
 	if (Helper.filterLeftClickAndTurnCheck(event) and is_network_master()):
+		is_rotating = true
 		rpc("animate")
 		Helper.pieceMovedThisTurn = true
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	is_rotating = false

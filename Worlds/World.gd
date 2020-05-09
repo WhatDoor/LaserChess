@@ -219,12 +219,13 @@ func end_game_show_lobby():
 	Helper.reset()
 
 func end_turn():
-	if Helper.myTurn:
-		Helper.pieceMovedThisTurn = true #prevent movement while projectile is moving
+	if Helper.myTurn and not myLaser.is_rotating:
+		#prevent movement while projectile is moving and deselected currently selected piece
+		Helper.pieceMovedThisTurn = true 
 		if currently_selected_piece != null:
 			_on_piece_deselected(currently_selected_piece)
 		
-		
+		#Fire Blast
 		myLaser.fire_blast()
 		myLaser.rpc("force_fire_blast")
 		myLaser.can_fire = false
