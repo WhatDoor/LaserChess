@@ -10,6 +10,11 @@ var myTeamColour = "SPECTATOR"
 
 var pieceMovedThisTurn = false
 
-
 func filterLeftClickAndTurnCheck(event):
 	return (event is InputEventMouseButton && event.is_pressed() && event.get_button_index() == 1 && myTurn && not pieceMovedThisTurn && not isSpectator)
+
+func reset():
+	myName = "Unnamed"
+	myTurn = false
+	isSpectator = true #everyone is a spectator by default unless specifically set by server
+	myTeamColour = "SPECTATOR"

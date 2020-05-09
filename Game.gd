@@ -20,7 +20,7 @@ func _player_connected(id):
 		$NotificationText.show()
 		
 		pinged_server_with_info = true
-		
+
 remote func set_as_player(id, team_colour):
 	Helper.opponent_id = id
 	Helper.myTeamColour = team_colour

@@ -1,5 +1,7 @@
 extends "res://Piece.gd"
 
+signal king_lost(self_node)
+
 onready var blueKingSprite = $Offset/BlueKingSprite
 onready var redKingSprite = $Offset/RedKingSprite
 
@@ -21,6 +23,7 @@ func _on_ClickBox_input_event(viewport, event, shape_idx):
 		toggle_selected()
 
 func _on_HitBox_area_entered(blast):
-	blast.kill()
+	blast.kill_quietly()
 	queue_free()
+	emit_signal("king_lost", self)
 

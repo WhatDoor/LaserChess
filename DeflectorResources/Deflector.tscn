@@ -43,7 +43,6 @@ position = Vector2( -1.869, -2.84 )
 scale = Vector2( 0.3, 0.3 )
 
 [node name="UpLeft" type="Node2D" parent="Offset"]
-visible = false
 
 [node name="BlueDeflector" type="Sprite" parent="Offset/UpLeft"]
 position = Vector2( -1.062, -4.007 )
@@ -111,6 +110,7 @@ shape = SubResource( 3 )
 disabled = true
 
 [node name="DownRight" type="Node2D" parent="Offset"]
+visible = false
 
 [node name="BlueDeflector" type="Sprite" parent="Offset/DownRight"]
 position = Vector2( -7.142, 0 )

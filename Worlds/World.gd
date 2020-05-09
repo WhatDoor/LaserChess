@@ -17,6 +17,8 @@ var myLaser
 
 var currently_hovering_over_piece = false
 
+var game_over = false
+
 func _ready():	
 	#Connect signal handlers for each piece and place each piece in the correct position on the board
 	for piece in pieces:
@@ -28,6 +30,9 @@ func _ready():
 		
 		if piece.get_type() == "DEFENDER" or piece.get_type() == "DEFLECTOR":
 			piece.connect("swap_clicked", self, "_on_swappable_piece_clicked")
+		
+		if piece.get_type() == "KING":
+			piece.connect("king_lost", self, "_on_king_lost")
 		
 		if piece.rotationArrows != null:
 			piece.connect("piece_rotating_right", self, "_on_piece_rotating_right")
@@ -73,6 +78,28 @@ func _ready():
 func _process(delta):
 	if Input.is_action_pressed("End_Turn"):
 		end_turn()
+
+func _on_king_lost(king):
+	var myColour = -1
+	
+	match Helper.myTeamColour:
+		"SPECTATOR":
+			myColour = 3
+		"RED":
+			myColour = COLOUR.RED
+		"BLUE":
+			myColour = COLOUR.BLUE
+	
+	if 3 == myColour:
+		turnText.set_text("GAME ENDED")
+	elif king.team_colour == myColour:
+		turnText.set_text("YOU LOSE!")
+	elif king.team_colour != myColour:
+		turnText.set_text("YOU WIN!")
+	
+	#Set Button to try again
+	$Button.set_text("Go Again")
+	game_over = true
 
 func _on_mouse_over_piece(piece):
 	currently_hovering_over_piece = true
@@ -171,13 +198,33 @@ func _on_board_clicked(square, square_indexes):
 	handle_board_click(square, square_indexes)
 
 func _on_Button_pressed():
-	end_turn()
+	if game_over:
+		end_game_show_lobby()
+	else:
+		end_turn()
 
 func _on_blast_destroyed():
 	rpc("toggle_turn")
 
+func end_game_show_lobby():
+	queue_free()
+		
+	if get_tree().is_network_server():
+		get_tree().get_root().get_node("HostLobby").show()
+		get_tree().set_refuse_new_network_connections(false)
+	else:
+		get_tree().get_root().get_node("Lobby").show()
+	
+	#Reset Helper flags in preparation for new game
+	Helper.reset()
+
 func end_turn():
 	if Helper.myTurn:
+		Helper.pieceMovedThisTurn = true #prevent movement while projectile is moving
+		if currently_selected_piece != null:
+			_on_piece_deselected(currently_selected_piece)
+		
+		
 		myLaser.fire_blast()
 		myLaser.rpc("force_fire_blast")
 		myLaser.can_fire = false

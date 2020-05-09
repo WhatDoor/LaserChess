@@ -58,5 +58,8 @@ func kill():
 		emit_signal("blast_destroyed")
 	queue_free()
 
+func kill_quietly():
+	queue_free()
+
 func _on_Blast_area_entered(area):
 	pass # Replace with function body.

@@ -17,13 +17,13 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 0.60869, 3.88968 )
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 5.62313, 0.852881 )
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 1.10374, 4.84429 )
 
-[sub_resource type="RectangleShape2D" id=9]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 2.3944, 2.40876 )
 
 [sub_resource type="RectangleShape2D" id=5]
@@ -93,7 +93,7 @@ texture = ExtResource( 11 )
 
 [node name="DefendBox" type="CollisionShape2D" parent="Offset/Back/DefendBox"]
 position = Vector2( 2.96861, 8.47188 )
-shape = SubResource( 7 )
+shape = SubResource( 2 )
 disabled = true
 
 [node name="Right" type="Node2D" parent="Offset"]
@@ -111,7 +111,7 @@ texture = ExtResource( 12 )
 
 [node name="DefendBox" type="CollisionShape2D" parent="Offset/Right/DefendBox"]
 position = Vector2( 29.9112, 19.7381 )
-shape = SubResource( 8 )
+shape = SubResource( 3 )
 disabled = true
 
 [node name="DeathBox" type="Area2D" parent="Offset"]
@@ -120,7 +120,7 @@ collision_mask = 0
 
 [node name="DeathBox" type="CollisionShape2D" parent="Offset/DeathBox"]
 position = Vector2( 3.30504, 19.7955 )
-shape = SubResource( 9 )
+shape = SubResource( 4 )
 
 [node name="ClickBox" parent="." instance=ExtResource( 6 )]
 collision_mask = 16

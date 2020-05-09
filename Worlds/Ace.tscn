@@ -74,7 +74,7 @@ team_colour = 2
 [node name="Switch4" parent="Board_Objects/Pieces" instance=ExtResource( 2 )]
 position = Vector2( 80.4524, 44.5394 )
 board_coords = "F5"
-team_colour = 1
+team_colour = 2
 rotation_type = 1
 
 [node name="Deflector" parent="Board_Objects/Pieces" instance=ExtResource( 3 )]

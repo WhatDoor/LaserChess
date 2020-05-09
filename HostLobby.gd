@@ -5,8 +5,23 @@ onready var lobby = get_tree().get_root().get_node("Lobby")
 var list_of_players = []
 
 func _ready():
+	get_tree().connect("network_peer_disconnected", self, "_player_disconnected")
+	
 	var profile = {"name": "Host", "id":1}
 	list_of_players.append(profile)
+	update_playerOutput()
+
+func _player_disconnected(id):
+	var playerDisconnected = null
+	
+	for player in list_of_players:
+		if player.id == id:
+			playerDisconnected = player
+	
+	if playerDisconnected != null:
+		print("Player " + playerDisconnected.name + " - " + str(playerDisconnected.id) + " disconnected!")
+		list_of_players.erase(playerDisconnected)
+	
 	update_playerOutput()
 
 remote func player_connected(id, playerName):
