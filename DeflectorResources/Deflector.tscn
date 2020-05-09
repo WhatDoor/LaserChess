@@ -14,7 +14,7 @@
 [ext_resource path="res://DeflectorResources/bluedeflector1.png" type="Texture" id=12]
 [ext_resource path="res://DeflectorResources/reddeflector1.png" type="Texture" id=13]
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 1.26504, 9.84557 )
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -23,7 +23,7 @@ extents = Vector2( 12.1567, 1.82773 )
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 1.46686, 11.2482 )
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 1.1798, 12.5234 )
 
 [sub_resource type="RectangleShape2D" id=5]
@@ -45,7 +45,7 @@ scale = Vector2( 0.3, 0.3 )
 [node name="UpLeft" type="Node2D" parent="Offset"]
 
 [node name="BlueDeflector" type="Sprite" parent="Offset/UpLeft"]
-position = Vector2( -1.062, -4.007 )
+position = Vector2( 6.813, -4.057 )
 texture = ExtResource( 10 )
 
 [node name="RedDeflector" type="Sprite" parent="Offset/UpLeft"]
@@ -60,18 +60,18 @@ collision_mask = 0
 
 [node name="ReflectBox" type="CollisionShape2D" parent="Offset/UpLeft/ReflectBox"]
 position = Vector2( 5.82921, 14.6701 )
-shape = SubResource( 4 )
+shape = SubResource( 1 )
 disabled = true
 
 [node name="UpRight" type="Node2D" parent="Offset"]
 visible = false
 
 [node name="BlueDeflector" type="Sprite" parent="Offset/UpRight"]
-position = Vector2( 8.937, -4.082 )
+position = Vector2( -1.047, -3.995 )
 texture = ExtResource( 5 )
 
 [node name="RedDeflector" type="Sprite" parent="Offset/UpRight"]
-position = Vector2( 8.935, -4.024 )
+position = Vector2( -1.069, -4.088 )
 texture = ExtResource( 4 )
 
 [node name="ReflectBox" type="Area2D" parent="Offset/UpRight"]
@@ -128,7 +128,7 @@ collision_mask = 0
 
 [node name="ReflectBox" type="CollisionShape2D" parent="Offset/DownRight/ReflectBox"]
 position = Vector2( 9.81014, 1.76234 )
-shape = SubResource( 1 )
+shape = SubResource( 4 )
 disabled = true
 
 [node name="DeathBox" type="Area2D" parent="Offset"]
